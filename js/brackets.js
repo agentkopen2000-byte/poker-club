@@ -142,7 +142,7 @@
     return div.innerHTML;
   }
 
-  var ADMIN_PASSWORDS = ['homer', 'bart'];
+  var ADMIN_PASSWORD = 'idk';
 
   function showAdminPanel() {
     document.getElementById('adminLogin').style.display = 'none';
@@ -171,7 +171,7 @@
       var password = document.getElementById('adminName').value.trim();
       var errorEl = document.getElementById('adminError');
 
-      if (ADMIN_PASSWORDS.indexOf(password.toLowerCase()) >= 0) {
+      if (password === ADMIN_PASSWORD) {
         errorEl.classList.remove('visible');
         sessionStorage.setItem('pokerClub_admin', 'true');
         showAdminPanel();
