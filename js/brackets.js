@@ -142,7 +142,7 @@
     return div.innerHTML;
   }
 
-  var ADMIN_PASSWORD = 'idk';
+  var ADMIN_PASSWORD = '2026PkerClbVE';
 
   function showAdminPanel() {
     document.getElementById('adminLogin').style.display = 'none';
