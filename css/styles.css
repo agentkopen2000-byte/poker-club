@@ -1,14 +1,16 @@
-/* ===== CSS Variables ===== */
+/* ===== CSS Variables (Harker School Theme) ===== */
 :root {
-  --bg-primary: #0d2818;
-  --bg-secondary: #1a472a;
-  --bg-card: #1e5233;
-  --gold: #d4af37;
-  --gold-light: #f0d060;
+  --bg-primary: #0a1f12;
+  --bg-secondary: #153d1f;
+  --bg-card: #1b4d28;
+  --gold: #ffffff;
+  --gold-light: #d4e8da;
+  --accent: #2e8b57;
+  --accent-light: #4caf6e;
   --red: #c0392b;
   --red-suit: #e74c3c;
-  --text-primary: #f0e6d3;
-  --text-secondary: #a8b5a0;
+  --text-primary: #f5f5f5;
+  --text-secondary: #b0c4b8;
   --card-white: #fafafa;
   --shadow: rgba(0, 0, 0, 0.5);
   --radius: 8px;
@@ -27,9 +29,9 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background-color: var(--bg-primary);
   background-image:
-    radial-gradient(ellipse at 20% 50%, rgba(26, 71, 42, 0.6) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 50%, rgba(26, 71, 42, 0.4) 0%, transparent 50%),
-    radial-gradient(circle at 50% 50%, rgba(30, 82, 51, 0.3) 0%, transparent 70%);
+    radial-gradient(ellipse at 20% 50%, rgba(21, 61, 31, 0.6) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 50%, rgba(21, 61, 31, 0.4) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(27, 77, 40, 0.3) 0%, transparent 70%);
   color: var(--text-primary);
   line-height: 1.6;
   min-height: 100vh;
@@ -55,7 +57,7 @@ a:hover {
 .navbar {
   background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+  border-bottom: 1px solid rgba(46, 139, 87, 0.4);
   padding: 0 1.5rem;
   position: sticky;
   top: 0;
@@ -161,26 +163,26 @@ a:hover {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--gold), #b8941e);
-  color: #1a1a1a;
-  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+  background: linear-gradient(135deg, var(--accent), #237a47);
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(46, 139, 87, 0.3);
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, var(--gold-light), var(--gold));
-  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.5);
+  background: linear-gradient(135deg, var(--accent-light), var(--accent));
+  box-shadow: 0 4px 20px rgba(46, 139, 87, 0.5);
   transform: translateY(-1px);
-  color: #1a1a1a;
+  color: #ffffff;
 }
 
 .btn-secondary {
   background: transparent;
-  color: var(--gold);
-  border: 2px solid var(--gold);
+  color: var(--accent-light);
+  border: 2px solid var(--accent);
 }
 
 .btn-secondary:hover {
-  background: rgba(212, 175, 55, 0.1);
+  background: rgba(46, 139, 87, 0.15);
 }
 
 .btn-danger {
@@ -201,7 +203,7 @@ a:hover {
 /* ===== Cards ===== */
 .card {
   background: var(--bg-secondary);
-  border: 1px solid rgba(212, 175, 55, 0.2);
+  border: 1px solid rgba(46, 139, 87, 0.25);
   border-radius: var(--radius);
   padding: 2rem;
   box-shadow: 0 4px 20px var(--shadow);
@@ -250,8 +252,8 @@ a:hover {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--gold), #b8941e);
-  color: #1a1a1a;
+  background: linear-gradient(135deg, var(--accent), #237a47);
+  color: #ffffff;
   font-size: 1.3rem;
   font-weight: bold;
   margin-bottom: 1rem;
@@ -287,7 +289,7 @@ a:hover {
 .form-group label {
   display: block;
   margin-bottom: 0.5rem;
-  color: var(--gold);
+  color: var(--accent-light);
   font-weight: 600;
 }
 
@@ -295,7 +297,7 @@ a:hover {
   width: 100%;
   padding: 0.8rem 1rem;
   background: rgba(0, 0, 0, 0.3);
-  border: 2px solid rgba(212, 175, 55, 0.3);
+  border: 2px solid rgba(46, 139, 87, 0.3);
   border-radius: var(--radius);
   color: var(--text-primary);
   font-size: 1rem;
@@ -304,7 +306,7 @@ a:hover {
 
 .form-input:focus {
   outline: none;
-  border-color: var(--gold);
+  border-color: var(--accent-light);
 }
 
 .form-input::placeholder {
@@ -339,7 +341,7 @@ a:hover {
 
 .progress-bar {
   height: 100%;
-  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  background: linear-gradient(90deg, var(--accent), var(--accent-light));
   border-radius: 20px;
   transition: width 0.4s ease;
 }
@@ -364,8 +366,8 @@ a:hover {
 }
 
 .scenario-badge {
-  background: var(--gold);
-  color: #1a1a1a;
+  background: var(--accent);
+  color: #ffffff;
   font-size: 0.8rem;
   font-weight: bold;
   padding: 0.3rem 0.8rem;
@@ -375,12 +377,12 @@ a:hover {
 
 .scenario-title {
   font-size: 1.2rem;
-  color: var(--gold);
+  color: var(--accent-light);
 }
 
 .scenario-situation {
   background: rgba(0, 0, 0, 0.25);
-  border-left: 3px solid var(--gold);
+  border-left: 3px solid var(--accent);
   padding: 1rem 1.25rem;
   margin-bottom: 1.5rem;
   border-radius: 0 var(--radius) var(--radius) 0;
@@ -402,7 +404,7 @@ a:hover {
 }
 
 .hand-info-item strong {
-  color: var(--gold);
+  color: var(--accent-light);
   display: block;
   font-size: 0.75rem;
   text-transform: uppercase;
@@ -437,13 +439,13 @@ a:hover {
 }
 
 .option-btn:hover:not(.selected):not(.correct):not(.wrong):not(.missed) {
-  border-color: var(--gold);
-  background: rgba(212, 175, 55, 0.1);
+  border-color: var(--accent-light);
+  background: rgba(46, 139, 87, 0.1);
 }
 
 .option-btn.selected {
-  border-color: var(--gold);
-  background: rgba(212, 175, 55, 0.15);
+  border-color: var(--accent-light);
+  background: rgba(46, 139, 87, 0.15);
 }
 
 .option-btn.correct {
@@ -463,13 +465,13 @@ a:hover {
 
 .option-label {
   font-weight: 600;
-  color: var(--gold);
+  color: var(--accent-light);
   margin-right: 0.5rem;
 }
 
 .explanation-box {
   background: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(212, 175, 55, 0.3);
+  border: 1px solid rgba(46, 139, 87, 0.3);
   border-radius: var(--radius);
   padding: 1rem 1.25rem;
   margin-bottom: 1.5rem;
@@ -521,7 +523,7 @@ a:hover {
 .score-display {
   font-size: 3rem;
   font-weight: bold;
-  color: var(--gold);
+  color: var(--accent-light);
   margin-bottom: 0.5rem;
 }
 
@@ -574,7 +576,7 @@ a:hover {
 
 .bracket-column {
   background: var(--bg-secondary);
-  border: 1px solid rgba(212, 175, 55, 0.2);
+  border: 1px solid rgba(46, 139, 87, 0.25);
   border-radius: var(--radius);
   padding: 1.5rem;
   min-height: 300px;
@@ -649,7 +651,7 @@ a:hover {
 }
 
 .matchup-player .score {
-  color: var(--gold);
+  color: var(--accent-light);
   font-size: 0.8rem;
 }
 
@@ -676,7 +678,7 @@ a:hover {
 }
 
 .player-list .player-score {
-  color: var(--gold);
+  color: var(--accent-light);
   font-size: 0.85rem;
 }
 
