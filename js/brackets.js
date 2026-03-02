@@ -142,12 +142,11 @@
     return div.innerHTML;
   }
 
-  var ADMINS = ['homer', 'bart'];
+  var ADMIN_PASSWORDS = ['homer', 'bart'];
 
-  function showAdminPanel(name) {
+  function showAdminPanel() {
     document.getElementById('adminLogin').style.display = 'none';
     document.getElementById('adminPanel').style.display = 'block';
-    document.getElementById('adminDisplayName').textContent = name;
   }
 
   function hideAdminPanel() {
@@ -164,18 +163,18 @@
     // Restore admin session
     var savedAdmin = sessionStorage.getItem('pokerClub_admin');
     if (savedAdmin) {
-      showAdminPanel(savedAdmin);
+      showAdminPanel();
     }
 
     // Admin login
     document.getElementById('adminLoginBtn').addEventListener('click', function () {
-      var name = document.getElementById('adminName').value.trim();
+      var password = document.getElementById('adminName').value.trim();
       var errorEl = document.getElementById('adminError');
 
-      if (ADMINS.indexOf(name.toLowerCase()) >= 0) {
+      if (ADMIN_PASSWORDS.indexOf(password.toLowerCase()) >= 0) {
         errorEl.classList.remove('visible');
-        sessionStorage.setItem('pokerClub_admin', name);
-        showAdminPanel(name);
+        sessionStorage.setItem('pokerClub_admin', 'true');
+        showAdminPanel();
       } else {
         errorEl.classList.add('visible');
       }
