@@ -142,7 +142,7 @@
     return div.innerHTML;
   }
 
-  var ADMINS = ['ethan yang', 'vikram thvar'];
+  var ADMINS = ['homer', 'bart'];
 
   function showAdminPanel(name) {
     document.getElementById('adminLogin').style.display = 'none';
