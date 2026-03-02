@@ -142,18 +142,56 @@
     return div.innerHTML;
   }
 
-  // Clear data button
+  var ADMINS = ['ethan yang', 'vikram thvar'];
+
+  function showAdminPanel(name) {
+    document.getElementById('adminLogin').style.display = 'none';
+    document.getElementById('adminPanel').style.display = 'block';
+    document.getElementById('adminDisplayName').textContent = name;
+  }
+
+  function hideAdminPanel() {
+    document.getElementById('adminLogin').style.display = 'block';
+    document.getElementById('adminPanel').style.display = 'none';
+    document.getElementById('adminName').value = '';
+    document.getElementById('adminError').classList.remove('visible');
+    sessionStorage.removeItem('pokerClub_admin');
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     init();
 
-    var clearBtn = document.getElementById('clearDataBtn');
-    if (clearBtn) {
-      clearBtn.addEventListener('click', function () {
-        if (confirm('Are you sure you want to clear all player data? This cannot be undone.')) {
-          PokerStorage.clearAllData();
-          renderBrackets();
-        }
-      });
+    // Restore admin session
+    var savedAdmin = sessionStorage.getItem('pokerClub_admin');
+    if (savedAdmin) {
+      showAdminPanel(savedAdmin);
     }
+
+    // Admin login
+    document.getElementById('adminLoginBtn').addEventListener('click', function () {
+      var name = document.getElementById('adminName').value.trim();
+      var errorEl = document.getElementById('adminError');
+
+      if (ADMINS.indexOf(name.toLowerCase()) >= 0) {
+        errorEl.classList.remove('visible');
+        sessionStorage.setItem('pokerClub_admin', name);
+        showAdminPanel(name);
+      } else {
+        errorEl.classList.add('visible');
+      }
+    });
+
+    // Admin logout
+    document.getElementById('adminLogout').addEventListener('click', function () {
+      hideAdminPanel();
+    });
+
+    // Clear data
+    document.getElementById('clearDataBtn').addEventListener('click', function () {
+      if (confirm('Are you sure you want to clear all player data? This cannot be undone.')) {
+        PokerStorage.clearAllData();
+        renderBrackets();
+      }
+    });
   });
 })();
