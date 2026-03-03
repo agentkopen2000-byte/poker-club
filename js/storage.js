@@ -56,6 +56,24 @@ const PokerStorage = {
     localStorage.removeItem(this.KEYS.currentPlayer);
   },
 
+  movePlayer(timestamp, newBracket) {
+    var players = this.getPlayers();
+    for (var i = 0; i < players.length; i++) {
+      if (players[i].timestamp === timestamp) {
+        players[i].bracket = newBracket;
+        break;
+      }
+    }
+    localStorage.setItem(this.KEYS.players, JSON.stringify(players));
+  },
+
+  removePlayer(timestamp) {
+    var players = this.getPlayers().filter(function (p) {
+      return p.timestamp !== timestamp;
+    });
+    localStorage.setItem(this.KEYS.players, JSON.stringify(players));
+  },
+
   clearAllData() {
     localStorage.removeItem(this.KEYS.players);
     localStorage.removeItem(this.KEYS.currentPlayer);

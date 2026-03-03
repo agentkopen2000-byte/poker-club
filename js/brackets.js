@@ -8,6 +8,8 @@
     { key: 'platinum', label: 'Platinum', cssClass: 'platinum' }
   ];
 
+  var isAdmin = false;
+
   function init() {
     renderBrackets();
   }
@@ -28,35 +30,58 @@
       if (players.length === 0) {
         html += '<div class="bracket-empty">No players registered yet</div>';
       } else if (players.length === 1) {
-        html += renderPlayerList(players);
+        html += renderPlayerList(players, config.key);
         html += '<div class="bracket-empty">Waiting for more players...</div>';
       } else {
-        html += renderBracketMatchups(players);
+        html += renderBracketMatchups(players, config.key);
       }
 
       col.innerHTML = html;
       grid.appendChild(col);
     }
+
+    // Bind admin controls if admin
+    if (isAdmin) {
+      bindAdminControls();
+    }
   }
 
-  function renderPlayerList(players) {
+  function renderPlayerList(players, currentBracket) {
     var html = '<ul class="player-list">';
     for (var i = 0; i < players.length; i++) {
-      html += '<li><span>' + escapeHtml(players[i].name) + '</span><span class="player-score">' + players[i].score + ' pts</span></li>';
+      html += renderPlayerRow(players[i], currentBracket, i + 1);
     }
     html += '</ul>';
     return html;
   }
 
-  function renderBracketMatchups(players) {
+  function renderPlayerRow(player, currentBracket, seed) {
+    var html = '<li>';
+    html += '<span>' + (seed ? '#' + seed + ' ' : '') + escapeHtml(player.name) + '</span>';
+    html += '<span style="display:flex;align-items:center;gap:0.5rem;">';
+    html += '<span class="player-score">' + player.score + ' pts</span>';
+    if (isAdmin) {
+      html += '<select class="admin-move-select" data-timestamp="' + player.timestamp + '" data-current="' + currentBracket + '">';
+      for (var j = 0; j < bracketConfig.length; j++) {
+        var selected = bracketConfig[j].key === currentBracket ? ' selected' : '';
+        html += '<option value="' + bracketConfig[j].key + '"' + selected + '>' + bracketConfig[j].label + '</option>';
+      }
+      html += '</select>';
+      html += '<button class="admin-remove-btn" data-timestamp="' + player.timestamp + '" title="Remove player">&times;</button>';
+    }
+    html += '</span>';
+    html += '</li>';
+    return html;
+  }
+
+  function renderBracketMatchups(players, currentBracket) {
     // Pad to next power of 2
     var size = nextPowerOf2(players.length);
-    var seeded = players.slice(); // already sorted by score desc
+    var seeded = players.slice();
     while (seeded.length < size) {
       seeded.push({ name: 'BYE', score: 0, bye: true });
     }
 
-    // Create seeded matchups: #1 vs #last, #2 vs #second-last, etc.
     var matchups = [];
     for (var i = 0; i < size / 2; i++) {
       matchups.push([seeded[i], seeded[size - 1 - i]]);
@@ -67,10 +92,10 @@
 
     var html = '';
 
-    // Show player list with seeds
+    // Show player list with seeds and admin controls
     html += '<ul class="player-list" style="margin-bottom:1.5rem">';
     for (var p = 0; p < players.length; p++) {
-      html += '<li><span>#' + (p + 1) + ' ' + escapeHtml(players[p].name) + '</span><span class="player-score">' + players[p].score + ' pts</span></li>';
+      html += renderPlayerRow(players[p], currentBracket, p + 1);
     }
     html += '</ul>';
 
@@ -119,6 +144,31 @@
       '</div>';
   }
 
+  function bindAdminControls() {
+    // Move player selects
+    var selects = document.querySelectorAll('.admin-move-select');
+    for (var i = 0; i < selects.length; i++) {
+      selects[i].addEventListener('change', function () {
+        var timestamp = parseInt(this.getAttribute('data-timestamp'));
+        var newBracket = this.value;
+        PokerStorage.movePlayer(timestamp, newBracket);
+        renderBrackets();
+      });
+    }
+
+    // Remove player buttons
+    var removeBtns = document.querySelectorAll('.admin-remove-btn');
+    for (var j = 0; j < removeBtns.length; j++) {
+      removeBtns[j].addEventListener('click', function () {
+        var timestamp = parseInt(this.getAttribute('data-timestamp'));
+        if (confirm('Remove this player from the tournament?')) {
+          PokerStorage.removePlayer(timestamp);
+          renderBrackets();
+        }
+      });
+    }
+  }
+
   function getRoundLabels(totalRounds) {
     var labels = [];
     for (var i = totalRounds; i >= 1; i--) {
@@ -146,16 +196,20 @@
   var ADMIN_PASSWORD = '2026PkerClbVE';
 
   function showAdminPanel() {
+    isAdmin = true;
     document.getElementById('adminLogin').style.display = 'none';
     document.getElementById('adminPanel').style.display = 'block';
+    renderBrackets();
   }
 
   function hideAdminPanel() {
+    isAdmin = false;
     document.getElementById('adminLogin').style.display = 'block';
     document.getElementById('adminPanel').style.display = 'none';
     document.getElementById('adminName').value = '';
     document.getElementById('adminError').classList.remove('visible');
     sessionStorage.removeItem('pokerClub_admin');
+    renderBrackets();
   }
 
   document.addEventListener('DOMContentLoaded', function () {

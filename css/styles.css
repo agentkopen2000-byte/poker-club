@@ -689,6 +689,38 @@ a:hover {
   font-size: 0.85rem;
 }
 
+/* Admin inline controls */
+.admin-move-select {
+  padding: 0.2rem 0.4rem;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(46, 139, 87, 0.4);
+  border-radius: 4px;
+  color: var(--text-primary);
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.admin-move-select:focus {
+  outline: none;
+  border-color: var(--accent-light);
+}
+
+.admin-remove-btn {
+  background: rgba(192, 57, 43, 0.3);
+  border: 1px solid rgba(192, 57, 43, 0.5);
+  border-radius: 4px;
+  color: var(--red-suit);
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0.1rem 0.4rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.admin-remove-btn:hover {
+  background: rgba(192, 57, 43, 0.5);
+}
+
 /* Admin section */
 .admin-section {
   margin-top: 3rem;
