@@ -2,9 +2,10 @@
 
 (function () {
   var bracketConfig = [
-    { key: 'beginner', label: 'Beginner', cssClass: 'beginner' },
-    { key: 'intermediate', label: 'Intermediate', cssClass: 'intermediate' },
-    { key: 'advanced', label: 'Advanced', cssClass: 'advanced' }
+    { key: 'bronze', label: 'Bronze', cssClass: 'bronze' },
+    { key: 'silver', label: 'Silver', cssClass: 'silver' },
+    { key: 'gold', label: 'Gold', cssClass: 'gold' },
+    { key: 'platinum', label: 'Platinum', cssClass: 'platinum' }
   ];
 
   function init() {

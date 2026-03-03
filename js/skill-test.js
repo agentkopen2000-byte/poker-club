@@ -133,9 +133,10 @@
   }
 
   function determineBracket(score) {
-    if (score <= 10) return 'beginner';
-    if (score <= 20) return 'intermediate';
-    return 'advanced';
+    if (score <= 15) return 'bronze';
+    if (score <= 30) return 'silver';
+    if (score <= 45) return 'gold';
+    return 'platinum';
   }
 
   function showResults() {
@@ -153,11 +154,11 @@
     PokerStorage.clearCurrentPlayer();
 
     var container = document.getElementById('testContent');
-    var bracketLabels = { beginner: 'Beginner', intermediate: 'Intermediate', advanced: 'Advanced' };
+    var bracketLabels = { bronze: 'Bronze', silver: 'Silver', gold: 'Gold', platinum: 'Platinum' };
 
     container.innerHTML = '<div class="card results-card">' +
       '<h2>Results</h2>' +
-      '<div class="score-display">' + totalScore + '<span> / 30</span></div>' +
+      '<div class="score-display">' + totalScore + '<span> / 60</span></div>' +
       '<p style="color:var(--text-secondary);margin-bottom:1rem;">Your tournament bracket:</p>' +
       '<div class="bracket-result ' + bracket + '">' + bracketLabels[bracket] + '</div>' +
       '<div class="results-actions">' +

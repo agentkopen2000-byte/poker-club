@@ -541,22 +541,28 @@ a:hover {
   display: inline-block;
 }
 
-.bracket-result.beginner {
-  background: rgba(52, 152, 219, 0.2);
-  color: #5dade2;
-  border: 2px solid rgba(52, 152, 219, 0.4);
+.bracket-result.bronze {
+  background: rgba(205, 127, 50, 0.2);
+  color: #cd7f32;
+  border: 2px solid rgba(205, 127, 50, 0.4);
 }
 
-.bracket-result.intermediate {
-  background: rgba(241, 196, 15, 0.2);
-  color: #f1c40f;
-  border: 2px solid rgba(241, 196, 15, 0.4);
+.bracket-result.silver {
+  background: rgba(192, 192, 192, 0.2);
+  color: #c0c0c0;
+  border: 2px solid rgba(192, 192, 192, 0.4);
 }
 
-.bracket-result.advanced {
-  background: rgba(231, 76, 60, 0.2);
-  color: #e74c3c;
-  border: 2px solid rgba(231, 76, 60, 0.4);
+.bracket-result.gold {
+  background: rgba(255, 215, 0, 0.2);
+  color: #ffd700;
+  border: 2px solid rgba(255, 215, 0, 0.4);
+}
+
+.bracket-result.platinum {
+  background: rgba(80, 200, 220, 0.2);
+  color: #50c8dc;
+  border: 2px solid rgba(80, 200, 220, 0.4);
 }
 
 .results-actions {
@@ -569,7 +575,7 @@ a:hover {
 /* ===== Brackets Page ===== */
 .brackets-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
   margin-top: 2rem;
 }
@@ -588,9 +594,10 @@ a:hover {
   font-size: 1.3rem;
 }
 
-.bracket-column.beginner h3 { color: #5dade2; }
-.bracket-column.intermediate h3 { color: #f1c40f; }
-.bracket-column.advanced h3 { color: #e74c3c; }
+.bracket-column.bronze h3 { color: #cd7f32; }
+.bracket-column.silver h3 { color: #c0c0c0; }
+.bracket-column.gold h3 { color: #ffd700; }
+.bracket-column.platinum h3 { color: #50c8dc; }
 
 .bracket-count {
   text-align: center;
