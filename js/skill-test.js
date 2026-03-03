@@ -1,12 +1,24 @@
 /* Skill Test Engine */
 
 (function () {
-  var scenarios = window.POKER_SCENARIOS;
+  var QUESTIONS_PER_TEST = 10;
+  var scenarios = [];
   var currentIndex = 0;
   var answers = [];
   var totalScore = 0;
   var selectedOption = -1;
   var answered = false;
+
+  function shuffle(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = a[i];
+      a[i] = a[j];
+      a[j] = tmp;
+    }
+    return a;
+  }
 
   function init() {
     var player = PokerStorage.getCurrentPlayer();
@@ -14,6 +26,8 @@
       window.location.href = 'register.html';
       return;
     }
+    // Pick 10 random scenarios from the full pool
+    scenarios = shuffle(window.POKER_SCENARIOS).slice(0, QUESTIONS_PER_TEST);
     renderScenario();
   }
 
@@ -26,16 +40,16 @@
     container.innerHTML = '';
 
     // Progress bar
-    var progress = ((currentIndex) / scenarios.length) * 100;
+    var progress = ((currentIndex) / QUESTIONS_PER_TEST) * 100;
     container.innerHTML += '<div class="progress-bar-container"><div class="progress-bar" style="width:' + progress + '%"></div></div>' +
-      '<div class="progress-text">Question ' + (currentIndex + 1) + ' of ' + scenarios.length + '</div>';
+      '<div class="progress-text">Question ' + (currentIndex + 1) + ' of ' + QUESTIONS_PER_TEST + '</div>';
 
     // Scenario card
     var card = document.createElement('div');
     card.className = 'card scenario-card';
 
     var headerHtml = '<div class="scenario-header">' +
-      '<span class="scenario-badge">Scenario ' + scenario.id + '</span>' +
+      '<span class="scenario-badge">Scenario ' + (currentIndex + 1) + '</span>' +
       '<span class="scenario-title">' + scenario.title + '</span>' +
       '</div>';
 
@@ -124,7 +138,7 @@
 
   function handleNext() {
     currentIndex++;
-    if (currentIndex >= scenarios.length) {
+    if (currentIndex >= QUESTIONS_PER_TEST) {
       showResults();
     } else {
       renderScenario();
@@ -133,9 +147,9 @@
   }
 
   function determineBracket(score) {
-    if (score <= 15) return 'bronze';
-    if (score <= 30) return 'silver';
-    if (score <= 45) return 'gold';
+    if (score <= 7) return 'bronze';
+    if (score <= 15) return 'silver';
+    if (score <= 22) return 'gold';
     return 'platinum';
   }
 
@@ -158,7 +172,7 @@
 
     container.innerHTML = '<div class="card results-card">' +
       '<h2>Results</h2>' +
-      '<div class="score-display">' + totalScore + '<span> / 60</span></div>' +
+      '<div class="score-display">' + totalScore + '<span> / 30</span></div>' +
       '<p style="color:var(--text-secondary);margin-bottom:1rem;">Your tournament bracket:</p>' +
       '<div class="bracket-result ' + bracket + '">' + bracketLabels[bracket] + '</div>' +
       '<div class="results-actions">' +
