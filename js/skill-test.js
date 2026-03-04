@@ -73,8 +73,20 @@
     }
 
     // Fresh start — clear any stale progress and pick 10 random scenarios
+    // Always include the 7-2 question (id: 2), then fill remaining 9 randomly
     PokerStorage.clearQuizProgress();
-    scenarios = shuffle(window.POKER_SCENARIOS).slice(0, QUESTIONS_PER_TEST);
+    var allScenarios = window.POKER_SCENARIOS;
+    var mandatory = null;
+    var rest = [];
+    for (var m = 0; m < allScenarios.length; m++) {
+      if (allScenarios[m].id === 2) {
+        mandatory = allScenarios[m];
+      } else {
+        rest.push(allScenarios[m]);
+      }
+    }
+    scenarios = [mandatory].concat(shuffle(rest).slice(0, QUESTIONS_PER_TEST - 1));
+    scenarios = shuffle(scenarios);
     currentIndex = 0;
     answers = [];
     totalScore = 0;

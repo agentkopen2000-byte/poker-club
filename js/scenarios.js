@@ -26,10 +26,10 @@ window.POKER_SCENARIOS = [
     potSize: "150",
     opponentAction: "It costs 100 to call and see the flop.",
     options: [
-      { text: "Fold \u2014 this is a weak hand", points: 3, explanation: "Smart! 7-2 offsuit is the worst starting hand in poker. Save your chips." },
-      { text: "Call and hope for the best", points: 0, explanation: "7-2 offsuit is the worst hand in poker! Too far apart for a straight, not suited for a flush." },
-      { text: "Raise to trick everyone", points: 0, explanation: "Bluffing with the worst hand is very risky. Wait for stronger cards." },
-      { text: "Call only if nobody else has bet", points: 1, explanation: "Even with no raises, 7-2 offsuit is still too weak. Fold and wait." }
+      { text: "Go all-in \u2014 7-2 is the Harker Poker Club special!", points: 3, explanation: "That's the spirit! True Harker Poker Club members go all-in with 7-2. Loyalty above all!" },
+      { text: "Fold \u2014 this is a weak hand", points: 0, explanation: "Technically correct in real poker, but in Harker Poker Club, 7-2 is sacred. You gotta send it!" },
+      { text: "Call and hope for the best", points: 0, explanation: "Half measures won't cut it. If you're playing 7-2, you go ALL IN. That's the rule!" },
+      { text: "Raise a little to test the waters", points: 1, explanation: "Close, but a real Harker Poker Club member doesn't hesitate \u2014 it's all-in or nothing with 7-2!" }
     ]
   },
   {
