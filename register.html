@@ -25,17 +25,24 @@
     <div class="register-wrapper">
       <div class="card">
         <h2 style="text-align: center; margin-bottom: 0.5rem;">Register for the Tournament</h2>
-        <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem;">
-          Enter your name to begin the skill test. Your results will determine your tournament bracket.
+        <p style="text-align: center; color: var(--text-secondary); margin-bottom: 1rem;">
+          Enter your first and last name to begin the skill test. Your results will determine your tournament bracket.
         </p>
+        <div style="background: rgba(46, 139, 87, 0.15); border: 1px solid rgba(46, 139, 87, 0.3); border-radius: var(--radius); padding: 0.75rem 1rem; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--text-secondary);">
+          Returning to finish your test? Enter the exact same first and last name to pick up where you left off.
+        </div>
 
         <form id="registerForm">
           <div class="form-group">
-            <label for="playerName">Your Name</label>
-            <input type="text" id="playerName" class="form-input" placeholder="Enter your name" maxlength="30" autocomplete="off">
-            <div class="form-error" id="nameError">Please enter your name.</div>
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" class="form-input" placeholder="Enter your first name" maxlength="20" autocomplete="off">
           </div>
-          <button type="submit" class="btn btn-primary" style="width: 100;">Start Skill Test</button>
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" class="form-input" placeholder="Enter your last name" maxlength="20" autocomplete="off">
+          </div>
+          <div class="form-error" id="nameError">Please enter both your first and last name.</div>
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Start Skill Test</button>
         </form>
       </div>
     </div>
@@ -51,17 +58,37 @@
   <script>
     document.getElementById('registerForm').addEventListener('submit', function (e) {
       e.preventDefault();
-      var name = document.getElementById('playerName').value.trim();
+      var first = document.getElementById('firstName').value.trim();
+      var last = document.getElementById('lastName').value.trim();
       var errorEl = document.getElementById('nameError');
 
-      if (!name) {
-        errorEl.textContent = 'Please enter your name.';
+      if (!first || !last) {
+        errorEl.textContent = 'Please enter both your first and last name.';
         errorEl.classList.add('visible');
         return;
       }
 
+      // Normalize: capitalize first letter of each, lowercase rest
+      function capitalize(s) {
+        return s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
+      }
+      var fullName = capitalize(first) + ' ' + capitalize(last);
+
+      // Check if this player has saved quiz progress
+      var progress = PokerStorage.getQuizProgress();
+      var currentPlayer = PokerStorage.getCurrentPlayer();
+
+      if (currentPlayer && currentPlayer.name.toLowerCase() === fullName.toLowerCase() && progress) {
+        // Returning player with saved progress — just resume
+        errorEl.classList.remove('visible');
+        window.location.href = 'skill-test.html';
+        return;
+      }
+
+      // New player or different name — clear old progress and start fresh
+      PokerStorage.clearQuizProgress();
       errorEl.classList.remove('visible');
-      PokerStorage.setCurrentPlayer(name);
+      PokerStorage.setCurrentPlayer(fullName);
       window.location.href = 'skill-test.html';
     });
   </script>

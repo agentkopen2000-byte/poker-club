@@ -21,12 +21,14 @@
   }
 
   function saveProgress() {
-    // Save scenario IDs so we can restore the exact same set
+    var player = PokerStorage.getCurrentPlayer();
+    var playerName = player ? player.name : '';
     var scenarioIds = [];
     for (var i = 0; i < scenarios.length; i++) {
       scenarioIds.push(scenarios[i].id);
     }
     PokerStorage.saveQuizProgress({
+      playerName: playerName,
       scenarioIds: scenarioIds,
       currentIndex: currentIndex,
       answers: answers,
@@ -37,13 +39,15 @@
   function init() {
     var player = PokerStorage.getCurrentPlayer();
     if (!player) {
+      // Check if there's saved progress — redirect to register to re-enter name
       window.location.href = 'register.html';
       return;
     }
 
-    // Try to restore progress
+    // Try to restore progress for this player
     var progress = PokerStorage.getQuizProgress();
-    if (progress && progress.scenarioIds && progress.currentIndex < QUESTIONS_PER_TEST) {
+    if (progress && progress.scenarioIds && progress.currentIndex < QUESTIONS_PER_TEST
+        && progress.playerName && progress.playerName.toLowerCase() === player.name.toLowerCase()) {
       // Rebuild scenarios from saved IDs
       var allScenarios = window.POKER_SCENARIOS;
       var restored = [];
@@ -65,7 +69,8 @@
       }
     }
 
-    // Fresh start — pick 10 random scenarios
+    // Fresh start — clear any stale progress and pick 10 random scenarios
+    PokerStorage.clearQuizProgress();
     scenarios = shuffle(window.POKER_SCENARIOS).slice(0, QUESTIONS_PER_TEST);
     currentIndex = 0;
     answers = [];
