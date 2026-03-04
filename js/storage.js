@@ -3,7 +3,8 @@
 const PokerStorage = {
   KEYS: {
     players: 'pokerClub_players',
-    currentPlayer: 'pokerClub_currentPlayer'
+    currentPlayer: 'pokerClub_currentPlayer',
+    quizProgress: 'pokerClub_quizProgress'
   },
 
   getPlayers() {
@@ -74,8 +75,29 @@ const PokerStorage = {
     localStorage.setItem(this.KEYS.players, JSON.stringify(players));
   },
 
+  saveQuizProgress(progress) {
+    try {
+      localStorage.setItem(this.KEYS.quizProgress, JSON.stringify(progress));
+    } catch (e) {
+      console.error('Failed to save quiz progress:', e);
+    }
+  },
+
+  getQuizProgress() {
+    try {
+      return JSON.parse(localStorage.getItem(this.KEYS.quizProgress));
+    } catch {
+      return null;
+    }
+  },
+
+  clearQuizProgress() {
+    localStorage.removeItem(this.KEYS.quizProgress);
+  },
+
   clearAllData() {
     localStorage.removeItem(this.KEYS.players);
     localStorage.removeItem(this.KEYS.currentPlayer);
+    localStorage.removeItem(this.KEYS.quizProgress);
   }
 };

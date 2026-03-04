@@ -20,14 +20,57 @@
     return a;
   }
 
+  function saveProgress() {
+    // Save scenario IDs so we can restore the exact same set
+    var scenarioIds = [];
+    for (var i = 0; i < scenarios.length; i++) {
+      scenarioIds.push(scenarios[i].id);
+    }
+    PokerStorage.saveQuizProgress({
+      scenarioIds: scenarioIds,
+      currentIndex: currentIndex,
+      answers: answers,
+      totalScore: totalScore
+    });
+  }
+
   function init() {
     var player = PokerStorage.getCurrentPlayer();
     if (!player) {
       window.location.href = 'register.html';
       return;
     }
-    // Pick 10 random scenarios from the full pool
+
+    // Try to restore progress
+    var progress = PokerStorage.getQuizProgress();
+    if (progress && progress.scenarioIds && progress.currentIndex < QUESTIONS_PER_TEST) {
+      // Rebuild scenarios from saved IDs
+      var allScenarios = window.POKER_SCENARIOS;
+      var restored = [];
+      for (var i = 0; i < progress.scenarioIds.length; i++) {
+        for (var j = 0; j < allScenarios.length; j++) {
+          if (allScenarios[j].id === progress.scenarioIds[i]) {
+            restored.push(allScenarios[j]);
+            break;
+          }
+        }
+      }
+      if (restored.length === QUESTIONS_PER_TEST) {
+        scenarios = restored;
+        currentIndex = progress.currentIndex;
+        answers = progress.answers || [];
+        totalScore = progress.totalScore || 0;
+        renderScenario();
+        return;
+      }
+    }
+
+    // Fresh start — pick 10 random scenarios
     scenarios = shuffle(window.POKER_SCENARIOS).slice(0, QUESTIONS_PER_TEST);
+    currentIndex = 0;
+    answers = [];
+    totalScore = 0;
+    saveProgress();
     renderScenario();
   }
 
@@ -138,6 +181,7 @@
 
   function handleNext() {
     currentIndex++;
+    saveProgress();
     if (currentIndex >= QUESTIONS_PER_TEST) {
       showResults();
     } else {
@@ -166,6 +210,7 @@
       answers: answers
     });
     PokerStorage.clearCurrentPlayer();
+    PokerStorage.clearQuizProgress();
 
     var container = document.getElementById('testContent');
     var bracketLabels = { bronze: 'Bronze', silver: 'Silver', gold: 'Gold', platinum: 'Platinum' };
