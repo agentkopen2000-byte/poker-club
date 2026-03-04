@@ -4,7 +4,8 @@ const PokerStorage = {
   KEYS: {
     players: 'pokerClub_players',
     currentPlayer: 'pokerClub_currentPlayer',
-    quizProgress: 'pokerClub_quizProgress'
+    quizProgress: 'pokerClub_quizProgress',
+    tournamentVersion: 'pokerClub_tournamentVersion'
   },
 
   getPlayers() {
@@ -93,6 +94,18 @@ const PokerStorage = {
 
   clearQuizProgress() {
     localStorage.removeItem(this.KEYS.quizProgress);
+  },
+
+  getTournamentVersion() {
+    return parseInt(localStorage.getItem(this.KEYS.tournamentVersion)) || 0;
+  },
+
+  resetTournament() {
+    localStorage.removeItem(this.KEYS.players);
+    localStorage.removeItem(this.KEYS.currentPlayer);
+    localStorage.removeItem(this.KEYS.quizProgress);
+    var version = this.getTournamentVersion();
+    localStorage.setItem(this.KEYS.tournamentVersion, version + 1);
   },
 
   clearAllData() {

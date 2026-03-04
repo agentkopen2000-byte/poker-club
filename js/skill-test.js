@@ -32,7 +32,8 @@
       scenarioIds: scenarioIds,
       currentIndex: currentIndex,
       answers: answers,
-      totalScore: totalScore
+      totalScore: totalScore,
+      tournamentVersion: PokerStorage.getTournamentVersion()
     });
   }
 
@@ -46,8 +47,10 @@
 
     // Try to restore progress for this player
     var progress = PokerStorage.getQuizProgress();
+    var currentVersion = PokerStorage.getTournamentVersion();
     if (progress && progress.scenarioIds && progress.currentIndex < QUESTIONS_PER_TEST
-        && progress.playerName && progress.playerName.toLowerCase() === player.name.toLowerCase()) {
+        && progress.playerName && progress.playerName.toLowerCase() === player.name.toLowerCase()
+        && progress.tournamentVersion === currentVersion) {
       // Rebuild scenarios from saved IDs
       var allScenarios = window.POKER_SCENARIOS;
       var restored = [];
@@ -124,7 +127,8 @@
 
     var explanationHtml = '<div class="explanation-box" id="explanationBox"></div>';
     var actionsHtml = '<div class="scenario-actions">' +
-      '<button class="btn btn-primary" id="nextBtn" disabled>Next</button></div>';
+      '<button class="btn btn-submit" id="submitBtn" disabled>Submit Answer</button>' +
+      '<button class="btn btn-primary" id="nextBtn" style="display:none;">Next</button></div>';
 
     card.innerHTML = headerHtml + situationHtml + handHtml + actionHtml + optionsHtml + explanationHtml + actionsHtml;
     container.appendChild(card);
@@ -135,6 +139,7 @@
       optionBtns[j].addEventListener('click', handleOptionClick);
     }
 
+    document.getElementById('submitBtn').addEventListener('click', handleSubmit);
     document.getElementById('nextBtn').addEventListener('click', handleNext);
   }
 
@@ -143,7 +148,6 @@
 
     var btn = e.currentTarget;
     var index = parseInt(btn.getAttribute('data-index'));
-    var scenario = scenarios[currentIndex];
 
     // Clear previous selection
     var allBtns = document.querySelectorAll('.option-btn');
@@ -153,23 +157,32 @@
 
     btn.classList.add('selected');
     selectedOption = index;
+
+    // Enable submit button
+    document.getElementById('submitBtn').disabled = false;
+  }
+
+  function handleSubmit() {
+    if (answered || selectedOption < 0) return;
     answered = true;
 
-    var points = scenario.options[index].points;
+    var scenario = scenarios[currentIndex];
+    var points = scenario.options[selectedOption].points;
     totalScore += points;
     answers.push(points);
 
     // Show correct/wrong styling
+    var allBtns = document.querySelectorAll('.option-btn');
     for (var k = 0; k < allBtns.length; k++) {
       var optPoints = scenario.options[k].points;
-      if (k === index && optPoints === 3) {
+      if (k === selectedOption && optPoints === 3) {
         allBtns[k].classList.remove('selected');
         allBtns[k].classList.add('correct');
-      } else if (k === index && optPoints < 3) {
+      } else if (k === selectedOption && optPoints < 3) {
         allBtns[k].classList.remove('selected');
         allBtns[k].classList.add('wrong');
       }
-      if (optPoints === 3 && k !== index) {
+      if (optPoints === 3 && k !== selectedOption) {
         allBtns[k].classList.add('missed');
       }
     }
@@ -178,10 +191,12 @@
     var explanationBox = document.getElementById('explanationBox');
     var pointsClass = points >= 3 ? 'high' : points >= 2 ? 'mid' : 'low';
     explanationBox.innerHTML = '<h4>Explanation <span class="points-earned ' + pointsClass + '">+' + points + ' pts</span></h4>' +
-      '<p>' + scenario.options[index].explanation + '</p>';
+      '<p>' + scenario.options[selectedOption].explanation + '</p>';
     explanationBox.classList.add('visible');
 
-    document.getElementById('nextBtn').disabled = false;
+    // Hide submit, show next
+    document.getElementById('submitBtn').style.display = 'none';
+    document.getElementById('nextBtn').style.display = '';
   }
 
   function handleNext() {

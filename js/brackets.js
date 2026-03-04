@@ -242,8 +242,8 @@
 
     // Clear data
     document.getElementById('clearDataBtn').addEventListener('click', function () {
-      if (confirm('Are you sure you want to clear all player data? This cannot be undone.')) {
-        PokerStorage.clearAllData();
+      if (confirm('Are you sure you want to clear all player data? This cannot be undone. All players will need to retake the test.')) {
+        PokerStorage.resetTournament();
         renderBrackets();
       }
     });
