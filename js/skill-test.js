@@ -86,7 +86,6 @@
       }
     }
     scenarios = [mandatory].concat(shuffle(rest).slice(0, QUESTIONS_PER_TEST - 1));
-    scenarios = shuffle(scenarios);
     currentIndex = 0;
     answers = [];
     totalScore = 0;
