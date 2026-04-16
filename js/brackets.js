@@ -195,7 +195,7 @@
 
   // SHA-256 hash of the admin password. The plaintext password is not stored
   // in source. Compare hashed input against this value.
-  var ADMIN_PASSWORD_HASH = 'cc1d22bf30f0918898a4b3bbdc7d8981bdd0ad21db7f8919891e6fdf21894e69';
+  var ADMIN_PASSWORD_HASH = '201c8e1aaac0b90f7b098ab50fad20836ad94dbab8d8d1d901651d38fcb44a70';
 
   function sha256Hex(str) {
     var bytes = new TextEncoder().encode(str);
