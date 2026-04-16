@@ -240,6 +240,58 @@ a:hover {
   color: var(--text-secondary);
 }
 
+/* ===== Top Player ===== */
+.top-player {
+  padding: 3rem 0 1rem;
+  text-align: center;
+}
+
+.top-player h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.top-player-card {
+  max-width: 420px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 2rem 1.5rem;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05));
+  border: 1px solid rgba(212, 175, 55, 0.4);
+}
+
+.top-player-crown {
+  font-size: 2.5rem;
+  color: #d4af37;
+  margin-bottom: 0.5rem;
+}
+
+.top-player-name {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.top-player-score {
+  font-size: 1.1rem;
+  color: #d4af37;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.top-player-bracket {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.top-player-empty {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  margin: 0;
+}
+
 /* ===== How It Works Grid ===== */
 .how-it-works {
   padding: 3rem 0;

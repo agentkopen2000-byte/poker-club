@@ -33,6 +33,13 @@
   </section>
 
   <div class="container">
+    <section class="top-player section">
+      <h2>Current Leader</h2>
+      <div id="topPlayerBox" class="card top-player-card">
+        <p class="top-player-empty">PEEPS TAKE THE TEST RN</p>
+      </div>
+    </section>
+
     <section class="how-it-works">
       <h2>How It Works</h2>
       <div class="steps-grid">
@@ -79,5 +86,20 @@
 
   <script src="js/storage.js"></script>
   <script src="js/nav.js"></script>
+  <script>
+    (function () {
+      var box = document.getElementById('topPlayerBox');
+      if (!box) return;
+      var players = PokerStorage.getPlayers();
+      if (!players.length) return;
+      var top = players.slice().sort(function (a, b) { return b.score - a.score; })[0];
+      if (!top || typeof top.score !== 'number') return;
+      box.innerHTML =
+        '<div class="top-player-crown">&#9819;</div>' +
+        '<h3 class="top-player-name">' + top.name + '</h3>' +
+        '<p class="top-player-score">' + top.score + ' points</p>' +
+        (top.bracket ? '<p class="top-player-bracket">' + top.bracket + ' Bracket</p>' : '');
+    })();
+  </script>
 </body>
 </html>
