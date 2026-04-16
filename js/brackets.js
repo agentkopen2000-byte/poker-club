@@ -193,7 +193,19 @@
     return div.innerHTML;
   }
 
-  var ADMIN_PASSWORD = '2026PkerClbVE';
+  // SHA-256 hash of the admin password. The plaintext password is not stored
+  // in source. Compare hashed input against this value.
+  var ADMIN_PASSWORD_HASH = 'cc1d22bf30f0918898a4b3bbdc7d8981bdd0ad21db7f8919891e6fdf21894e69';
+
+  function sha256Hex(str) {
+    var bytes = new TextEncoder().encode(str);
+    return crypto.subtle.digest('SHA-256', bytes).then(function (buf) {
+      var arr = Array.from(new Uint8Array(buf));
+      return arr.map(function (b) {
+        return b.toString(16).padStart(2, '0');
+      }).join('');
+    });
+  }
 
   function showAdminPanel() {
     isAdmin = true;
@@ -226,13 +238,15 @@
       var password = document.getElementById('adminName').value.trim();
       var errorEl = document.getElementById('adminError');
 
-      if (password === ADMIN_PASSWORD) {
-        errorEl.classList.remove('visible');
-        sessionStorage.setItem('pokerClub_admin', 'true');
-        showAdminPanel();
-      } else {
-        errorEl.classList.add('visible');
-      }
+      sha256Hex(password).then(function (hash) {
+        if (hash === ADMIN_PASSWORD_HASH) {
+          errorEl.classList.remove('visible');
+          sessionStorage.setItem('pokerClub_admin', 'true');
+          showAdminPanel();
+        } else {
+          errorEl.classList.add('visible');
+        }
+      });
     });
 
     // Admin logout
