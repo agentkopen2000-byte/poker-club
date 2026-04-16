@@ -26,10 +26,10 @@ window.POKER_SCENARIOS = [
     potSize: "150",
     opponentAction: "It costs 100 to call and see the flop.",
     options: [
-      { text: "Go all-in \u2014 7-2 is the Harker Poker Club special!", points: 3, explanation: "That's the spirit! True Harker Poker Club members go all-in with 7-2. Loyalty above all!" },
-      { text: "Fold \u2014 this is a weak hand", points: 0, explanation: "Technically correct in real poker, but in Harker Poker Club, 7-2 is sacred. You gotta send it!" },
-      { text: "Call and hope for the best", points: 0, explanation: "Half measures won't cut it. If you're playing 7-2, you go ALL IN. That's the rule!" },
-      { text: "Raise a little to test the waters", points: 1, explanation: "Close, but a real Harker Poker Club member doesn't hesitate \u2014 it's all-in or nothing with 7-2!" }
+      { text: "Go all-in \u2014 you can win this", points: 3, explanation: "That's the spirit! True Harker Poker Club members go all-in with 7-2. Loyalty above all!" },
+      { text: "Fold \u2014 this is a weak hand", points: 0, explanation: "YOU ALWAYS GO ALL IN ON 2-7 OFFSUIT, RIGHT?????!??!??!?!??!?!?!!1!?!1?!@!/12?@#$@@!Q@$#" },
+      { text: "Call and hope for the best", points: 0, explanation: "YOU ALWAYS GO ALL IN ON 2-7 OFFSUIT, RIGHT?????!??!??!?!??!?!?!!1!?!1?!@!/12?@#$@@!Q@$#" },
+      { text: "Raise a little to test the waters", points: 1, explanation: "YOU ALWAYS GO ALL IN ON 2-7 OFFSUIT, RIGHT?????!??!??!?!??!?!?!!1!?!1?!@!/12?@#$@@!Q@$#" }
     ]
   },
   {
