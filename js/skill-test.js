@@ -181,6 +181,8 @@
     var points = scenario.options[selectedOption].points;
     totalScore += points;
     answers.push(points);
+    currentIndex++;
+    saveProgress();
 
     // Show correct/wrong styling
     var allBtns = document.querySelectorAll('.option-btn');
@@ -211,8 +213,6 @@
   }
 
   function handleNext() {
-    currentIndex++;
-    saveProgress();
     if (currentIndex >= QUESTIONS_PER_TEST) {
       showResults();
     } else {
