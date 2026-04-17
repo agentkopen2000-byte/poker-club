@@ -258,5 +258,11 @@
       '</div>';
   }
 
+  // Prevent browser back from re-rendering a question (lets user redo it)
+  history.replaceState(null, '', location.href);
+  window.addEventListener('popstate', function () {
+    history.replaceState(null, '', location.href);
+  });
+
   document.addEventListener('DOMContentLoaded', init);
 })();
