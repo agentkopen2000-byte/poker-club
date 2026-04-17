@@ -31,6 +31,10 @@ const PokerStorage = {
     } catch (e) {
       console.error('Failed to save player:', e);
     }
+    // Write-through to remote
+    PokerAPI.savePlayer(player).catch(function (e) {
+      console.warn('Remote savePlayer failed:', e);
+    });
   },
 
   getPlayersByBracket(bracket) {
@@ -67,6 +71,10 @@ const PokerStorage = {
       }
     }
     localStorage.setItem(this.KEYS.players, JSON.stringify(players));
+    // Write-through to remote
+    PokerAPI.movePlayer(timestamp, newBracket).catch(function (e) {
+      console.warn('Remote movePlayer failed:', e);
+    });
   },
 
   removePlayer(timestamp) {
@@ -74,6 +82,10 @@ const PokerStorage = {
       return p.timestamp !== timestamp;
     });
     localStorage.setItem(this.KEYS.players, JSON.stringify(players));
+    // Write-through to remote
+    PokerAPI.removePlayer(timestamp).catch(function (e) {
+      console.warn('Remote removePlayer failed:', e);
+    });
   },
 
   saveQuizProgress(progress) {
@@ -106,11 +118,28 @@ const PokerStorage = {
     localStorage.removeItem(this.KEYS.quizProgress);
     var version = this.getTournamentVersion();
     localStorage.setItem(this.KEYS.tournamentVersion, version + 1);
+    // Write-through to remote
+    PokerAPI.resetTournament().catch(function (e) {
+      console.warn('Remote resetTournament failed:', e);
+    });
   },
 
   clearAllData() {
     localStorage.removeItem(this.KEYS.players);
     localStorage.removeItem(this.KEYS.currentPlayer);
     localStorage.removeItem(this.KEYS.quizProgress);
+  },
+
+  fetchAndSyncPlayers() {
+    var self = this;
+    return PokerAPI.fetchPlayers().then(function (remote) {
+      if (Array.isArray(remote) && remote.length >= 0) {
+        localStorage.setItem(self.KEYS.players, JSON.stringify(remote));
+      }
+      return self.getPlayers();
+    }).catch(function (e) {
+      console.warn('Remote fetch failed, using local data:', e);
+      return self.getPlayers();
+    });
   }
 };

@@ -84,21 +84,29 @@
     <p>Harker School Poker Club &copy; 2026</p>
   </footer>
 
+  <script src="js/api.js"></script>
   <script src="js/storage.js"></script>
   <script src="js/nav.js"></script>
   <script>
     (function () {
       var box = document.getElementById('topPlayerBox');
       if (!box) return;
-      var players = PokerStorage.getPlayers();
-      if (!players.length) return;
-      var top = players.slice().sort(function (a, b) { return b.score - a.score; })[0];
-      if (!top || typeof top.score !== 'number') return;
-      box.innerHTML =
-        '<div class="top-player-crown">&#9819;</div>' +
-        '<h3 class="top-player-name">' + top.name + '</h3>' +
-        '<p class="top-player-score">' + top.score + ' points</p>' +
-        (top.bracket ? '<p class="top-player-bracket">' + top.bracket + ' Bracket</p>' : '');
+
+      function renderLeader(players) {
+        if (!players.length) return;
+        var top = players.slice().sort(function (a, b) { return b.score - a.score; })[0];
+        if (!top || typeof top.score !== 'number') return;
+        box.innerHTML =
+          '<div class="top-player-crown">&#9819;</div>' +
+          '<h3 class="top-player-name">' + top.name + '</h3>' +
+          '<p class="top-player-score">' + top.score + ' points</p>' +
+          (top.bracket ? '<p class="top-player-bracket">' + top.bracket + ' Bracket</p>' : '');
+      }
+
+      // Render from local cache immediately
+      renderLeader(PokerStorage.getPlayers());
+      // Then update from remote
+      PokerStorage.fetchAndSyncPlayers().then(renderLeader);
     })();
   </script>
 </body>

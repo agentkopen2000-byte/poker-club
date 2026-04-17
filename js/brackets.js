@@ -12,6 +12,10 @@
 
   function init() {
     renderBrackets();
+    // Fetch remote data and re-render
+    PokerStorage.fetchAndSyncPlayers().then(function () {
+      renderBrackets();
+    });
   }
 
   function renderBrackets() {
