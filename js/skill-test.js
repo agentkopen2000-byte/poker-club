@@ -207,9 +207,26 @@
       '<p>' + scenario.options[selectedOption].explanation + '</p>';
     explanationBox.classList.add('visible');
 
-    // Hide submit, show next
+    // Hide submit, show countdown
     document.getElementById('submitBtn').style.display = 'none';
-    document.getElementById('nextBtn').style.display = '';
+    var nextBtn = document.getElementById('nextBtn');
+    nextBtn.style.display = '';
+    var secondsLeft = 5;
+    nextBtn.textContent = 'Next (' + secondsLeft + ')';
+    nextBtn.disabled = true;
+    var countdown = setInterval(function () {
+      secondsLeft--;
+      if (secondsLeft <= 0) {
+        clearInterval(countdown);
+        handleNext();
+      } else {
+        nextBtn.textContent = 'Next (' + secondsLeft + ')';
+      }
+    }, 1000);
+    nextBtn.disabled = false;
+    nextBtn.addEventListener('click', function () {
+      clearInterval(countdown);
+    });
   }
 
   function handleNext() {
