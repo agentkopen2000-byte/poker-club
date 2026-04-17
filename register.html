@@ -83,6 +83,21 @@
       }
       var fullName = capitalize(first) + ' ' + capitalize(last);
 
+      // Check if this player already completed the test
+      var existingPlayers = PokerStorage.getPlayers();
+      var alreadyTook = false;
+      for (var i = 0; i < existingPlayers.length; i++) {
+        if (existingPlayers[i].name.toLowerCase() === fullName.toLowerCase()) {
+          alreadyTook = true;
+          break;
+        }
+      }
+      if (alreadyTook) {
+        errorEl.textContent = 'This name has already taken the test.';
+        errorEl.classList.add('visible');
+        return;
+      }
+
       // Check if this player has saved quiz progress
       var progress = PokerStorage.getQuizProgress();
       var currentPlayer = PokerStorage.getCurrentPlayer();
