@@ -71,8 +71,8 @@
         return;
       }
 
-      if (/\d/.test(first) || /\d/.test(last)) {
-        errorEl.textContent = 'Names cannot contain numbers.';
+      if (!/^[A-Za-z\s\-']+$/.test(first) || !/^[A-Za-z\s\-']+$/.test(last)) {
+        errorEl.textContent = 'Names must use English letters only (no numbers or foreign characters).';
         errorEl.classList.add('visible');
         return;
       }
