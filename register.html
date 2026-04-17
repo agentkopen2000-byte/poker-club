@@ -71,6 +71,12 @@
         return;
       }
 
+      if (/\d/.test(first) || /\d/.test(last)) {
+        errorEl.textContent = 'Names cannot contain numbers.';
+        errorEl.classList.add('visible');
+        return;
+      }
+
       // Normalize: capitalize first letter of each, lowercase rest
       function capitalize(s) {
         return s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
