@@ -41,7 +41,7 @@
     var player = PokerStorage.getCurrentPlayer();
     if (!player) {
       // Check if there's saved progress — redirect to register to re-enter name
-      window.location.href = 'register.html';
+      window.location.replace('register.html');
       return;
     }
 

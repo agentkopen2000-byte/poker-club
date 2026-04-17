@@ -105,7 +105,7 @@
       if (currentPlayer && currentPlayer.name.toLowerCase() === fullName.toLowerCase() && progress) {
         // Returning player with saved progress — just resume
         errorEl.classList.remove('visible');
-        window.location.href = 'skill-test.html';
+        window.location.replace('skill-test.html');
         return;
       }
 
@@ -113,7 +113,7 @@
       PokerStorage.clearQuizProgress();
       errorEl.classList.remove('visible');
       PokerStorage.setCurrentPlayer(fullName);
-      window.location.href = 'skill-test.html';
+      window.location.replace('skill-test.html');
     });
   </script>
 </body>
