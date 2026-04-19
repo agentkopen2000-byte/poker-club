@@ -43,6 +43,10 @@
             <label for="lastName">Last Name</label>
             <input type="text" id="lastName" class="form-input" placeholder="Enter your last name" maxlength="20" autocomplete="off">
           </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" class="form-input" placeholder="Enter your email" maxlength="50" autocomplete="off">
+          </div>
           <div class="form-error" id="nameError">Please enter both your first and last name.</div>
           <button type="submit" class="btn btn-primary" style="width: 100%;">Start Skill Test</button>
         </form>
@@ -63,10 +67,23 @@
       e.preventDefault();
       var first = document.getElementById('firstName').value.trim();
       var last = document.getElementById('lastName').value.trim();
+      var email = document.getElementById('email').value.trim();
       var errorEl = document.getElementById('nameError');
 
       if (!first || !last) {
         errorEl.textContent = 'Please enter both your first and last name.';
+        errorEl.classList.add('visible');
+        return;
+      }
+
+      if (!email) {
+        errorEl.textContent = 'Please enter your email address.';
+        errorEl.classList.add('visible');
+        return;
+      }
+
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        errorEl.textContent = 'Please enter a valid email address.';
         errorEl.classList.add('visible');
         return;
       }
@@ -112,7 +129,7 @@
       // New player or different name — clear old progress and start fresh
       PokerStorage.clearQuizProgress();
       errorEl.classList.remove('visible');
-      PokerStorage.setCurrentPlayer(fullName);
+      PokerStorage.setCurrentPlayer(fullName, email);
       window.location.replace('skill-test.html');
     });
   </script>

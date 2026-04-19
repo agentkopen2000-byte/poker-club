@@ -43,9 +43,10 @@ const PokerStorage = {
       .sort((a, b) => b.score - a.score);
   },
 
-  setCurrentPlayer(name) {
+  setCurrentPlayer(name, email) {
     localStorage.setItem(this.KEYS.currentPlayer, JSON.stringify({
       name,
+      email: email || '',
       startedAt: Date.now()
     }));
   },

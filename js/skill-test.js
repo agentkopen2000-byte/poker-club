@@ -252,6 +252,7 @@
     // Save player results
     PokerStorage.savePlayer({
       name: player.name,
+      email: player.email || '',
       score: totalScore,
       bracket: bracket,
       timestamp: player.startedAt,
