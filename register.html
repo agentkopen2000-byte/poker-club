@@ -82,8 +82,8 @@
         return;
       }
 
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        errorEl.textContent = 'Please enter a valid email address.';
+      if (!/^31[a-zA-Z]+@students\.harker\.org$/.test(email)) {
+        errorEl.textContent = 'Use your Harker email (31FirstLastinitial@students.harker.org).';
         errorEl.classList.add('visible');
         return;
       }
