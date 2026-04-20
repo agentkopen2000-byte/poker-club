@@ -4,17 +4,17 @@ window.POKER_SCENARIOS = [
   // ===== EASY (1-25) =====
   {
     id: 1,
-    title: "Know Your Hand Rankings",
-    situation: "You have a pair of Kings. The board shows 3♥ 7♦ J♣ 2♠ 9♥. Your opponent bets. What do you do?",
+    title: "Overpair on a Connected Board",
+    situation: "You have K♠ K♥. The board shows 9♥ 8♦ 7♣ 2♠ 3♥. Your opponent bets 2/3 pot. The board has straight potential.",
     holeCards: "K♠ K♥",
-    communityCards: "3♥ 7♦ J♣ 2♠ 9♥",
-    potSize: "200",
-    opponentAction: "Your opponent makes a medium-sized bet.",
+    communityCards: "9♥ 8♦ 7♣ 2♠ 3♥",
+    potSize: "450",
+    opponentAction: "Opponent bets 300 on the river.",
     options: [
-      { text: "Call — Kings are strong on this board", points: 3, explanation: "Great call! A pair of Kings is very strong when no Ace is on the board." },
-      { text: "Fold — the board looks too scary", points: 0, explanation: "Don't be afraid! None of the board cards are higher than your Kings." },
-      { text: "Raise big to push them off it", points: 2, explanation: "Raising is okay, but a call also works. You want your opponent to stay in!" },
-      { text: "Shove all-in for max pressure", points: 1, explanation: "Going all-in might scare your opponent away. A call or smaller raise gets more value." }
+      { text: "Call — overpair still beats most hands", points: 3, explanation: "Correct! While the board is connected, no straight completes without a 6 or 5-T. KK beats pairs and missed draws." },
+      { text: "Raise to punish any bluffs here", points: 1, explanation: "Raising only gets called by hands that beat you (straights, two pair). Just call for value." },
+      { text: "Fold — the straight is too likely", points: 1, explanation: "The board looks scary but very few hands actually make a straight here. KK is still ahead." },
+      { text: "Shove to deny any equity at all", points: 0, explanation: "The hand is over on the river — there's no equity to deny. A call captures value best." }
     ]
   },
   {
@@ -34,1101 +34,1101 @@ window.POKER_SCENARIOS = [
   },
   {
     id: 3,
-    title: "You Flopped a Monster!",
-    situation: "You have pocket Aces. The flop comes A♣ 8♦ 3♥, giving you three of a kind! One opponent remains. What's your play?",
+    title: "Flopped Set on a Wet Board",
+    situation: "You have A♥ A♠. Flop is A♣ 10♦ 9♥ with two broadway cards and a gutshot possible. One opponent remains.",
     holeCards: "A♥ A♠",
-    communityCards: "A♣ 8♦ 3♥",
+    communityCards: "A♣ 10♦ 9♥",
     potSize: "300",
     opponentAction: "Your opponent checks to you.",
     options: [
-      { text: "Shove all-in to win a huge pot", points: 1, explanation: "Amazing hand, but all-in will scare them into folding. Keep them in!" },
-      { text: "Small bet to keep them around", points: 3, explanation: "Perfect! A small bet tempts them to call, and you win more on later streets." },
-      { text: "Check back to trap on the turn", points: 2, explanation: "Tricky! But you might miss out on getting chips right now." },
-      { text: "Fold — trips might not be good", points: 0, explanation: "Three Aces is one of the best hands possible. Never fold this!" }
+      { text: "Bet 2/3 pot to charge draws", points: 3, explanation: "With straight draws possible (KJ, QJ, J8), you need to charge. A 2/3 pot bet is perfect." },
+      { text: "Check to trap on the turn card", points: 1, explanation: "The board is too draw-heavy to give free cards. Betting protects your set and builds value." },
+      { text: "Bet small to keep them around", points: 2, explanation: "Betting is right but too small lets draws call cheaply. Size up to charge correctly." },
+      { text: "Shove all-in to end it right now", points: 0, explanation: "Shoving folds out worse hands. A normal bet builds a pot while protecting against draws." }
     ]
   },
   {
     id: 4,
-    title: "Should You Chase the Flush?",
-    situation: "You have two hearts. The board shows two hearts and two non-hearts. You need one more heart for a flush. Opponent bets small.",
-    holeCards: "K♥ 9♥",
-    communityCards: "4♥ 7♥ J♠ 2♣",
+    title: "Flush Draw with Overcards",
+    situation: "You have A♥ Q♥. Board is 8♥ 5♥ J♠ 2♣. You have a nut flush draw plus overcard. Opponent bets 60% pot.",
+    holeCards: "A♥ Q♥",
+    communityCards: "8♥ 5♥ J♠ 2♣",
     potSize: "500",
-    opponentAction: "Opponent bets 100 into a pot of 500.",
+    opponentAction: "Opponent bets 300 into the pot on the turn.",
     options: [
-      { text: "Call — good price for a flush draw", points: 3, explanation: "Good! You pay 100 to win 600 with 9 outs. The math works in your favor." },
-      { text: "Fold — I don't have a hand yet", points: 1, explanation: "True, but the bet is tiny compared to the pot. Worth calling with a flush draw." },
-      { text: "Raise big to represent it now", points: 1, explanation: "Bluffing can work, but a simple call is smarter when you're still learning." },
-      { text: "Shove all-in over the top", points: 0, explanation: "Way too aggressive! You only have a draw. A simple call is all you need." }
+      { text: "Call — 12 outs is strong enough", points: 2, explanation: "You have 9 flush outs + 3 Aces = 12 outs (~26%). Getting 2.7:1 makes calling break-even." },
+      { text: "Raise as a semi-bluff with equity", points: 3, explanation: "With 12 outs you have ~26% equity. A raise can win immediately or hit your draw. Maximum pressure." },
+      { text: "Fold — I just have a draw right now", points: 0, explanation: "With 12 outs to the nuts or top pair, folding is far too tight. You have massive equity." },
+      { text: "Shove to maximize fold equity here", points: 1, explanation: "Shoving is too aggressive. A normal raise applies pressure while controlling risk." }
     ]
   },
   {
     id: 5,
-    title: "Top Pair is Good!",
-    situation: "You have Q♠ J♠. The board is Q♥ 5♦ 8♣. You paired your Queen! Opponent bets half pot.",
-    holeCards: "Q♠ J♠",
-    communityCards: "Q♥ 5♦ 8♣",
+    title: "Top Pair Weak Kicker Multiway",
+    situation: "You have Q♠ 6♠. Board is Q♥ J♦ 8♣. You paired your Queen but with a weak kicker. Two opponents remain.",
+    holeCards: "Q♠ 6♠",
+    communityCards: "Q♥ J♦ 8♣",
     potSize: "400",
-    opponentAction: "Opponent bets 200 (half the pot).",
+    opponentAction: "First opponent bets 200, second opponent calls.",
     options: [
-      { text: "Call — top pair is a solid hand", points: 3, explanation: "Nice! Top pair with Jack kicker is solid. Calling is the right move." },
-      { text: "Fold — they probably beat me", points: 0, explanation: "Don't fold top pair here! You'll have the best hand most of the time." },
-      { text: "Raise to put them to a test", points: 2, explanation: "A raise is reasonable, but a call is simpler and just as effective." },
-      { text: "Shove to end the hand now", points: 0, explanation: "Top pair is good but not worth risking everything. Call or small raise." }
+      { text: "Fold — weak kicker vs two opponents", points: 3, explanation: "Smart! Q6 is easily dominated by QJ, Q8, AQ, KQ. With a bet AND a call, someone has you beat." },
+      { text: "Call — I have top pair after all", points: 1, explanation: "Top pair is nice but your 6 kicker is terrible. Against two opponents showing strength, you're behind." },
+      { text: "Raise to find out where you stand", points: 0, explanation: "Raising into a bet and a call with a weak kicker is lighting money on fire." },
+      { text: "Call and re-evaluate on the turn", points: 1, explanation: "Calling is marginally okay but you'll face more bets. Your weak kicker makes this unprofitable." }
     ]
   },
   {
     id: 6,
-    title: "When to Fold a Decent Hand",
-    situation: "You have pocket 4s. The board shows K♠ A♥ Q♦ J♣ 10♥. Opponent bet aggressively every street.",
+    title: "Pocket Pair on a Dangerous Board",
+    situation: "You have 4♠ 4♥. Board shows A♠ K♥ Q♦ J♣ 10♥. Four to a straight on board. Opponent bets aggressively.",
     holeCards: "4♠ 4♥",
-    communityCards: "K♠ A♥ Q♦ J♣ 10♥",
+    communityCards: "A♠ K♥ Q♦ J♣ 10♥",
     potSize: "800",
-    opponentAction: "Opponent makes a big bet — 400 chips.",
+    opponentAction: "Opponent bets 600 on the river.",
     options: [
-      { text: "Fold — my 4s are way behind here", points: 3, explanation: "Good discipline! Any card higher than a 4 gives them a better pair." },
-      { text: "Call — a pair is still a pair", points: 0, explanation: "Not all pairs are equal! Your 4s are almost certainly beaten here." },
-      { text: "Raise to bluff them off of it", points: 0, explanation: "Bluffing into an aggressive opponent on this board is too risky." },
-      { text: "Call — I've invested chips already", points: 1, explanation: "Don't 'protect your investment.' Chips already bet are gone." }
+      { text: "Fold — any 9 or broadway beats me", points: 3, explanation: "The board has A-K-Q-J-10. Any single 9 makes a straight. Any pair higher than 4s wins. Easy fold." },
+      { text: "Call — my pair could still be good", points: 0, explanation: "Your 4s are the worst possible pair here. Every face card on the board makes better pairs likely." },
+      { text: "Bluff-raise to represent a 9 here", points: 0, explanation: "Bluffing into this board against aggression is suicidal. They have it." },
+      { text: "Call — pot odds might justify this", points: 1, explanation: "Pot odds don't matter if you almost never win. Your 4s are virtually dead here." }
     ]
   },
   {
     id: 7,
-    title: "Position Matters",
-    situation: "You have K♦ 10♦. You're FIRST to act at a 6-player table. What should you do?",
+    title: "Early Position with Marginal Holdings",
+    situation: "You have K♦ 10♦ under the gun at a 9-player table. The table has been 3-betting frequently.",
     holeCards: "K♦ 10♦",
     communityCards: "",
     potSize: "150",
-    opponentAction: "You are first to act. 5 players behind you.",
+    opponentAction: "You are first to act. 8 aggressive players behind you.",
     options: [
-      { text: "Call to see what everyone does", points: 1, explanation: "Limping from early position is usually not the best play." },
-      { text: "Make a standard raise to 3x", points: 2, explanation: "Reasonable, but risky with 5 players behind you." },
-      { text: "Fold — too many players behind", points: 3, explanation: "Smart! K10 isn't strong enough from this position. Wait for a better spot." },
-      { text: "Shove all-in to steal blinds", points: 0, explanation: "Way too aggressive with K10. You'd only get called by better hands." }
+      { text: "Fold — dominated too often here", points: 3, explanation: "Against aggressive 3-bettors, KTo plays poorly. You'll face raises and be dominated by AK, KQ, KJ." },
+      { text: "Raise to 2.5x as a standard open", points: 1, explanation: "Opening KTo UTG is marginal even at passive tables. Against 3-bettors, it becomes a losing play." },
+      { text: "Limp to see a cheap flop quietly", points: 0, explanation: "Limping UTG invites raises and plays your hand face-up. Either raise or fold." },
+      { text: "Raise big to discourage 3-bets", points: 0, explanation: "Bigger raises commit more with a marginal hand. If 3-bet, you must fold and lose more." }
     ]
   },
   {
     id: 8,
-    title: "Strong Hands Win Big",
-    situation: "You have A♠ K♠. Before the flop, what kind of hand is this?",
+    title: "Premium Hand Facing a 4-Bet",
+    situation: "You have A♠ K♠. You 3-bet, and a tight player 4-bets to 5x your raise. They only 4-bet with AA, KK, QQ, AKs.",
     holeCards: "A♠ K♠",
     communityCards: "",
-    potSize: "150",
-    opponentAction: "A player raises to 200. It's your turn.",
+    potSize: "1200",
+    opponentAction: "Tight player 4-bets. They only do this with AA, KK, QQ, AKs.",
     options: [
-      { text: "Re-raise — AK suited is premium", points: 3, explanation: "Correct! Ace-King suited is one of the best starting hands. Re-raising builds the pot with a strong hand." },
-      { text: "Call to see a flop with it", points: 2, explanation: "Calling is okay, but AK suited is strong enough to re-raise and take control." },
-      { text: "Fold — it's not a made pair yet", points: 0, explanation: "AK suited is much stronger than most pairs! It's one of the top 5 starting hands in poker." },
-      { text: "Shove all-in right away here", points: 1, explanation: "AK is great, but a normal re-raise is better. All-in scares away weaker hands that would pay you off." }
+      { text: "Call — AKs has decent equity against that range", points: 3, explanation: "AKs has ~40% equity vs AA/KK/QQ/AKs. Calling is best since you dominate AKs and have draws vs pairs." },
+      { text: "Shove — AK suited is always a shove", points: 1, explanation: "Shoving isn't terrible but calling is better. Shoving only gets called by AA/KK which crush you." },
+      { text: "Fold — we're behind their 4-bet range", points: 2, explanation: "Folding is reasonable since we're behind most of their range, but AKs is too strong to fold here." },
+      { text: "5-bet small to see where we stand", points: 0, explanation: "A 5-bet smaller than all-in makes no sense — you'd be pot-committed anyway." }
     ]
   },
   {
     id: 9,
-    title: "What Beats What?",
-    situation: "You have 8♥ 8♣. The board is 8♠ 8♦ 5♣ K♥ 2♠. You have FOUR of a kind! Opponent bets big.",
+    title: "Quads on a Paired Board",
+    situation: "You have 8♥ 8♣. Board is 8♠ 8♦ K♣ K♥ 2♠. You have quads but Kings on board. Opponent shoves.",
     holeCards: "8♥ 8♣",
-    communityCards: "8♠ 8♦ 5♣ K♥ 2♠",
+    communityCards: "8♠ 8♦ K♣ K♥ 2♠",
     potSize: "1000",
-    opponentAction: "Opponent bets 500.",
+    opponentAction: "Opponent shoves all-in for 800.",
     options: [
-      { text: "Raise — quads are nearly unbeatable", points: 3, explanation: "Amazing! Four of a kind loses only to a straight flush. Raise to get maximum value!" },
-      { text: "Flat call to disguise my hand", points: 2, explanation: "Calling works, but raising wins you more chips. With quads, you want a big pot!" },
-      { text: "Fold — they must have it too good", points: 0, explanation: "Four of a kind is the second-best hand in poker! Never fold this." },
-      { text: "Just call — I'm scared to raise", points: 1, explanation: "You almost CAN'T lose with four 8s. Be brave and raise for value!" }
+      { text: "Call — quads always beat a full house", points: 3, explanation: "Your quad 8s beat any full house (KK full, K2, etc.). The only hand that beats quads is a straight flush, impossible here." },
+      { text: "Raise — wait, they're already all-in", points: 0, explanation: "They're already all-in. You can only call or fold. And you should definitely call!" },
+      { text: "Fold — paired Kings might make quads", points: 0, explanation: "Impossible! You hold both 8s and the board has both Kings. No one can have quad Kings." },
+      { text: "Call but I'm worried about KK full", points: 2, explanation: "Call is correct! But don't worry — quad 8s always beat Kings full. Quads > full house." }
     ]
   },
   {
     id: 10,
-    title: "Small Blind Basics",
-    situation: "You're in the small blind with J♥ 4♣. Everyone folds to you. Only the big blind is left.",
+    title: "Blind Stealing with Range Advantage",
+    situation: "You're in the small blind with J♥ 4♣. Everyone folds to you. Big blind is a tight player who folds 80% to steals.",
     holeCards: "J♥ 4♣",
     communityCards: "",
     potSize: "150",
-    opponentAction: "Everyone folded. Only the big blind remains.",
+    opponentAction: "Everyone folded. Tight big blind folds 80% of the time.",
     options: [
-      { text: "Raise to steal the blind now", points: 3, explanation: "Good aggression! When everyone folds to you, a raise with any decent hand can steal the pot. J-high is enough here." },
-      { text: "Limp in to see a cheap flop", points: 1, explanation: "Limping is okay but misses the chance to win the pot right away. Raising puts pressure on the big blind." },
-      { text: "Fold — J4 is way too weak", points: 1, explanation: "J4 isn't great, but heads-up against just the big blind, it's strong enough to raise and try to steal." },
-      { text: "Shove all-in over the top", points: 0, explanation: "Way overkill! A small raise does the same job without risking your stack." }
+      { text: "Raise 2.5x to steal with high EV", points: 3, explanation: "Against an 80% fold rate, any two cards are profitable to steal. You risk 150 to win 150, needing 50% folds." },
+      { text: "Complete the small blind to limp in", points: 1, explanation: "Limping is okay but you miss the chance to win immediately. Against tight blinds, raising prints money." },
+      { text: "Fold — J4 isn't a playable hand here", points: 0, explanation: "Against an 80% fold rate, even J4o is hugely profitable to raise. Don't leave free money." },
+      { text: "Raise big to guarantee the fold", points: 1, explanation: "A big raise works but risks more. A 2.5x raise gets the same fold rate while risking less." }
     ]
   },
   {
     id: 11,
-    title: "Don't Bluff Too Much",
-    situation: "You have 3♦ 2♦ (the worst suited hand). The board is A♠ K♣ Q♥. Three opponents are in the hand and one bets big.",
+    title: "Air Against Multiple Opponents",
+    situation: "You have 3♦ 2♦. Board is A♠ K♣ Q♥ 9♦. Three opponents, one bets 2/3 pot, another calls.",
     holeCards: "3♦ 2♦",
-    communityCards: "A♠ K♣ Q♥",
+    communityCards: "A♠ K♣ Q♥ 9♦",
     potSize: "600",
-    opponentAction: "One opponent bets 400. Two others are still in.",
+    opponentAction: "One bets 400, another calls. One more opponent behind you.",
     options: [
-      { text: "Fold — nothing against three players", points: 3, explanation: "Correct! Bluffing into multiple opponents almost never works. You have zero chance of winning at showdown. Easy fold." },
-      { text: "Call to see if I can improve", points: 0, explanation: "You need perfect running cards. The bet is huge and two other opponents are still in. Don't throw chips away." },
-      { text: "Raise to bluff everyone out", points: 0, explanation: "Bluffing into 3 opponents with the worst hand is a recipe for disaster. Someone almost certainly has a big hand." },
-      { text: "Call — I might just get lucky", points: 0, explanation: "Poker isn't about luck — it's about making good decisions. This is a clear fold." }
+      { text: "Fold — zero equity vs three players", points: 3, explanation: "You have no pair, no draw, and three opponents on a broadway-heavy board. Folding is the only option." },
+      { text: "Call for the backdoor flush draw", points: 0, explanation: "One diamond on board means no flush draw. You have literally nothing. Don't burn chips." },
+      { text: "Raise to bluff all three off the pot", points: 0, explanation: "Bluffing three opponents on A-K-Q with total air is the fastest way to lose your stack." },
+      { text: "Call — pot odds are decent at least", points: 0, explanation: "Pot odds are irrelevant when you have 0% equity. You cannot win this hand." }
     ]
   },
   {
     id: 12,
-    title: "The Importance of Kickers",
-    situation: "You have A♠ 9♥. The board is A♣ 7♦ 4♠ 2♥. Your opponent shows A♥ K♣. You both have a pair of Aces. Who wins?",
-    holeCards: "A♠ 9♥",
-    communityCards: "A♣ 7♦ 4♠ 2♥",
-    potSize: "500",
-    opponentAction: "Opponent shows A♥ K♣ and goes all-in. You need to decide.",
+    title: "Kicker Problems with Top Pair",
+    situation: "You have A♠ 5♥. Board is A♣ K♦ 7♠ 2♥. Opponent check-raises your bet. They're known to only check-raise with strong hands.",
+    holeCards: "A♠ 5♥",
+    communityCards: "A♣ K♦ 7♠ 2♥",
+    potSize: "700",
+    opponentAction: "You bet 200, opponent check-raises to 600. They only do this with strong hands.",
     options: [
-      { text: "Fold — their King kicker beats my 9", points: 3, explanation: "Correct! When both players have the same pair, the kicker decides. King beats 9, so you're behind." },
-      { text: "Call — we both have Aces, it's a tie", points: 0, explanation: "Not a tie! The 'kicker' (second card) matters. Their A-K beats your A-9 because King > 9." },
-      { text: "Call — I might hit a 9 on river", points: 1, explanation: "You'd need a 9 to appear, and even then only if no King comes too. You're in bad shape." },
-      { text: "Shove — Aces are always Aces", points: 0, explanation: "Kickers matter! Your 9 kicker loses to their King kicker. This would cost you your stack." }
+      { text: "Fold — bad kicker vs a check-raise", points: 3, explanation: "Against a tight check-raiser, they have AK, AQ, AJ, a set, or two pair. Your A5 is crushed by all of these." },
+      { text: "Call — I still have top pair though", points: 1, explanation: "Top pair is nice but your 5 kicker loses to every Ace they'd check-raise with. It's a trap." },
+      { text: "Re-raise to take control of the hand", points: 0, explanation: "Re-raising A5 into a tight check-raiser is setting your chips on fire." },
+      { text: "Call to see one more street cheaply", points: 1, explanation: "You'll face another big bet on the river. Your kicker won't improve. Save chips now." }
     ]
   },
   {
     id: 13,
-    title: "Pocket Pairs Are Easy to Play",
-    situation: "You have 10♥ 10♠. The flop is 4♣ 7♦ 2♥. You have an overpair (your pair is higher than all board cards). Opponent checks.",
+    title: "Overpair on a Low-Medium Board",
+    situation: "You have 10♥ 10♠. Flop is 8♣ 6♦ 2♥. Opponent donk-bets 40% pot into you. They're a recreational player.",
     holeCards: "10♥ 10♠",
-    communityCards: "4♣ 7♦ 2♥",
+    communityCards: "8♣ 6♦ 2♥",
     potSize: "300",
-    opponentAction: "Opponent checks to you.",
+    opponentAction: "Recreational player donk-bets 120 into you.",
     options: [
-      { text: "Bet for value — overpair is great", points: 3, explanation: "Perfect! Your tens are higher than everything on the board. Bet to get value from weaker pairs and draws." },
-      { text: "Check back — just play it safe", points: 1, explanation: "Too passive! You have a strong hand on a safe board. Betting wins you more chips." },
-      { text: "Shove all-in over the top here", points: 0, explanation: "Overkill on this board. A normal bet does the job without scaring everyone away." },
-      { text: "Fold — tens aren't that strong", points: 0, explanation: "Tens are great here! You have an overpair on a 4-7-2 board. This is a very strong hand." }
+      { text: "Raise — punish the weak donk bet", points: 3, explanation: "A donk bet from a rec player usually means a weak pair or draw. Raise to charge and protect your overpair." },
+      { text: "Call to keep the pot manageable", points: 2, explanation: "Calling is fine but you miss value. Rec players call raises with weak hands — exploit that." },
+      { text: "Fold — they bet so they have it good", points: 0, explanation: "Folding tens on 8-6-2? Recreational donk bets are almost never strong. Your overpair is way ahead." },
+      { text: "Just call and re-evaluate the turn", points: 2, explanation: "Calling is okay but raising gets more value from the weak range they're betting with." }
     ]
   },
   {
     id: 14,
-    title: "Straight on the Board",
-    situation: "The board shows 5♠ 6♥ 7♣ 8♦ 9♠. That's a straight ON the board! You have J♥ J♣. What do you have?",
+    title: "Board Straight with No Improvement",
+    situation: "Board is 5♠ 6♥ 7♣ 8♦ 9♠. You have J♥ J♣. Opponent bets 75% pot on the river.",
     holeCards: "J♥ J♣",
     communityCards: "5♠ 6♥ 7♣ 8♦ 9♠",
-    potSize: "400",
-    opponentAction: "Opponent bets 200.",
+    potSize: "600",
+    opponentAction: "Opponent bets 450 on the river.",
     options: [
-      { text: "Call — my Jacks improve the hand", points: 1, explanation: "Actually, when the straight is on the board, everyone shares it. Unless someone has a 10, it's likely a split pot." },
-      { text: "Fold — someone likely has a 10", points: 3, explanation: "Smart! When there's a straight on the board, anyone with a 10 has a higher straight (6-10). Your Jacks don't improve the board straight." },
-      { text: "Raise — Jacks make this better", points: 0, explanation: "Your Jacks don't improve the straight. The board already has 5-6-7-8-9. Anyone with a 10 beats you." },
-      { text: "Shove — I have the straight too", points: 0, explanation: "Everyone has the same straight. Going all-in only gets called by people with a 10 (higher straight). Bad move." }
+      { text: "Fold — any T makes a higher straight", points: 3, explanation: "The board makes 5-9 straight for everyone. Any Ten in their hand makes 6-T, beating you. Fold to aggression." },
+      { text: "Call — Jacks play as a kicker here", points: 0, explanation: "Kickers don't matter with straights. The best 5-card hand from the board is 5-6-7-8-9, same for everyone." },
+      { text: "Raise — Jacks improve the straight", points: 0, explanation: "Wrong! Jacks don't improve a 5-9 straight. Your best hand IS the board straight." },
+      { text: "Call — they could be bluffing cheaply", points: 1, explanation: "75% pot isn't cheap. Most players only bet this size with a T or better here." }
     ]
   },
   {
     id: 15,
-    title: "Suited vs Unsuited",
-    situation: "Before the flop, you're choosing between two hands: A♥ J♥ (suited) or A♠ J♦ (unsuited). Which is better?",
+    title: "Suited vs Unsuited Equity Edge",
+    situation: "You open A♥ J♥ from the cutoff. Big blind 3-bets. You know they'd also 3-bet vs A♠ J♦. How much does suited help?",
     holeCards: "A♥ J♥",
     communityCards: "",
-    potSize: "150",
-    opponentAction: "This is a knowledge question about hand strength.",
+    potSize: "600",
+    opponentAction: "Big blind 3-bets you. This is a theory question about suitedness.",
     options: [
-      { text: "Suited — it can make flushes", points: 3, explanation: "Correct! Suited hands can make flushes, giving you an extra way to win. AJ suited is about 3-4% better than AJ unsuited." },
-      { text: "Unsuited — more suit versatility", points: 0, explanation: "Wrong! Having the same suit gives you flush possibilities. Different suits don't help at all." },
-      { text: "They're basically the same hand", points: 0, explanation: "Not quite! Suited hands have extra flush potential, making them 3-4% better overall." },
-      { text: "Suited is way, way better here", points: 1, explanation: "Suited is better, but it's only about 3-4% better, not a huge difference. Both are still strong hands." }
+      { text: "3-4% edge — helps but not game-changing", points: 3, explanation: "Suited adds ~3% equity through flush potential. AJs wins ~49% vs a range where AJo wins ~46%." },
+      { text: "10%+ edge — flushes are very common", points: 0, explanation: "Flushes only complete ~6% of the time. The suitedness advantage is real but small, around 3-4%." },
+      { text: "No difference — an Ace is an Ace", points: 0, explanation: "Wrong! Suited hands make flushes and flush draws, adding ~3% equity. It matters for close decisions." },
+      { text: "Huge edge — suited is almost a rank up", points: 0, explanation: "Suited helps but doesn't jump a full rank. AJs is slightly better than AJo, not dramatically." }
     ]
   },
   {
     id: 16,
-    title: "Too Many Players in the Pot",
-    situation: "You have A♣ 2♣. Five players are in the pot. The flop is A♥ K♠ Q♦. You paired your Ace but with the worst kicker (2).",
-    holeCards: "A♣ 2♣",
+    title: "Top Pair Bad Kicker in a 3-Bet Pot",
+    situation: "You called a 3-bet with A♣ 4♣. Flop is A♥ K♠ Q♦. 3-bettor c-bets 1/3 pot. Their range is strong.",
+    holeCards: "A♣ 4♣",
     communityCards: "A♥ K♠ Q♦",
-    potSize: "500",
-    opponentAction: "First player bets, second player raises. Three more players to act including you.",
+    potSize: "600",
+    opponentAction: "3-bettor bets 200 (1/3 pot) on the flop.",
     options: [
-      { text: "Fold — terrible kicker with action", points: 3, explanation: "Great fold! With 5 players and a bet + raise on A-K-Q, someone almost certainly has a better Ace, two pair, or a set." },
-      { text: "Call — I paired my Ace though", points: 0, explanation: "Having an Ace isn't enough when the board is A-K-Q and there's heavy action. Your 2 kicker is almost useless." },
-      { text: "Raise — Aces are always good", points: 0, explanation: "Raising into a bet and a raise with just A-2 is throwing chips away." },
-      { text: "Call to see if a 2 comes out", points: 0, explanation: "Even if a 2 comes, you'd have two pair (Aces and 2s) — still likely beaten by AK, AQ, or a set." }
+      { text: "Fold — dominated by their 3-bet range", points: 3, explanation: "Their 3-bet range is AA, KK, QQ, AK, AQ — all of which crush your A4. Even a small bet means you're beat." },
+      { text: "Call — I paired the Ace at least", points: 1, explanation: "You paired the Ace but their range almost always has a better Ace or a set. You're drawing thin." },
+      { text: "Raise to find out where you stand", points: 0, explanation: "Raising A4 on AKQ against a 3-bettor is suicidal. Every hand that calls destroys you." },
+      { text: "Call — the small bet means weakness", points: 1, explanation: "Small c-bets in 3-bet pots are standard with the entire range. It doesn't mean weakness." }
     ]
   },
   {
     id: 17,
-    title: "Acting Last is Best",
-    situation: "You have 9♥ 8♥. You're on the Button (last to act). Three players have limped in. Blinds 50/100.",
+    title: "Suited Connectors on the Button",
+    situation: "You have 9♥ 8♥ on the Button. Three players limp. You have 50 big blinds. The blinds are tight.",
     holeCards: "9♥ 8♥",
     communityCards: "",
     potSize: "450",
-    opponentAction: "Three players limped (called the big blind). You're last to act.",
+    opponentAction: "Three limpers ahead of you. Tight blinds behind.",
     options: [
-      { text: "Call — suited connectors in position", points: 3, explanation: "Perfect! On the Button you see everyone act first. 9-8 suited can make straights and flushes, and you have great position." },
-      { text: "Raise to take control of the pot", points: 2, explanation: "Raising is fine, but suited connectors prefer multi-way pots. Calling keeps everyone in." },
-      { text: "Fold — 9-8 isn't a strong enough hand", points: 0, explanation: "9-8 suited on the Button with 3 limpers is a great spot! Position + suited connectors = call." },
-      { text: "Shove all-in over the limpers", points: 0, explanation: "No need to risk everything with a speculative hand. A cheap call is perfect here." }
+      { text: "Raise to 5x to isolate the limpers", points: 3, explanation: "With position and tight blinds, raising isolates limpers who play poorly postflop. You can win preflop or play in position." },
+      { text: "Call — see a cheap multiway flop", points: 2, explanation: "Calling is fine but you miss the chance to thin the field. Raising with position is more profitable long-term." },
+      { text: "Fold — 98s can't handle multiway well", points: 0, explanation: "98s on the button is premium in this spot. Position + playability + fold equity = big raise." },
+      { text: "Limp along and hope for a draw", points: 1, explanation: "Limping is the worst option. You have position — use it to raise and take control." }
     ]
   },
   {
     id: 51,
-    title: "Protecting Your Big Blind",
-    situation: "You're in the big blind with Q♠ 8♦. A player on the button raises to 3x. Everyone else folds.",
+    title: "Big Blind Defense vs Small Raise",
+    situation: "You're in the big blind with Q♠ 8♦. Button min-raises. Small blind folds. You're getting 3.5:1 odds.",
     holeCards: "Q♠ 8♦",
     communityCards: "",
     potSize: "350",
-    opponentAction: "Button raises to 300. Only you remain.",
+    opponentAction: "Button min-raises to 200. Getting 3.5:1 to call 100 more.",
     options: [
-      { text: "Call — decent hand for the price", points: 3, explanation: "Good! You're getting a discount from the big blind and Q8 is fine against a button range. Defend!" },
-      { text: "Fold — Q8 offsuit is too weak", points: 1, explanation: "Q8 is marginal, but you're getting good odds in the big blind. Worth a call against a button open." },
-      { text: "Re-raise to three-bet light here", points: 1, explanation: "Three-betting Q8 is too loose. Calling is the right play from the big blind here." },
-      { text: "Shove all-in as a squeeze play", points: 0, explanation: "Way too aggressive with Q8 offsuit. You'd only get called by better hands." }
+      { text: "Call — great price to defend Q8o", points: 3, explanation: "At 3.5:1, you only need ~22% equity to call. Q8o has ~40% vs a button range. Clear defend." },
+      { text: "3-bet to take control of the hand", points: 1, explanation: "3-betting Q8o is too loose. You'll face 4-bets and play a bloated pot out of position." },
+      { text: "Fold — Q8 offsuit is junk preflop", points: 1, explanation: "At these odds, Q8o is profitable to defend. Don't fold when the math clearly says call." },
+      { text: "Shove to apply maximum pressure now", points: 0, explanation: "Shoving Q8o from the big blind is lighting money on fire. Just call the cheap price." }
     ]
   },
   {
     id: 52,
-    title: "Open-Ended Straight Draw",
-    situation: "You have 9♣ 8♣. The flop is 7♦ 6♠ K♥. You have an open-ended straight draw (any 5 or 10 makes a straight).",
+    title: "Open-Ended vs Overpair Decision",
+    situation: "You have 9♣ 8♣. Flop is 7♦ 6♠ K♥. You have an open-ender. Tight opponent bets 75% pot.",
     holeCards: "9♣ 8♣",
     communityCards: "7♦ 6♠ K♥",
-    potSize: "300",
-    opponentAction: "Opponent bets 100 into the pot.",
+    potSize: "400",
+    opponentAction: "Tight opponent bets 300 into the pot.",
     options: [
-      { text: "Call — eight outs is a solid draw", points: 3, explanation: "Correct! With 8 outs twice (two cards to come), you have roughly 32% equity. The price is right to call." },
-      { text: "Fold — I don't have a hand yet", points: 0, explanation: "An open-ended straight draw is too strong to fold getting 4:1. You'll hit often enough to profit." },
-      { text: "Raise to build the pot for later", points: 2, explanation: "A semi-bluff raise can work, but calling is simpler and mathematically sound here." },
-      { text: "Shove all-in as a semi-bluff", points: 1, explanation: "Too aggressive. A call lets you see the turn cheaply with your 8 outs." }
+      { text: "Call — 8 outs twice is ~32% equity", points: 3, explanation: "Getting ~2.3:1 with ~32% equity (two cards to come). Slightly profitable call, and implied odds help." },
+      { text: "Raise as a semi-bluff against range", points: 2, explanation: "A raise can work as a semi-bluff, but against a tight player they may just shove back." },
+      { text: "Fold — I'm behind right now on the flop", points: 1, explanation: "You're behind but with 8 outs twice you have enough equity to continue. Don't fold draws cheaply." },
+      { text: "Shove to maximize fold equity on them", points: 0, explanation: "Shoving into a tight player who bet big means they'll call with overpairs. Bad spot to shove." }
     ]
   },
   {
     id: 53,
-    title: "Don't Slowplay in Multiway Pots",
-    situation: "You have A♠ A♥. Three players see a flop of A♦ 9♣ 7♠. You flopped top set with two opponents.",
+    title: "Set on a Monotone Flop",
+    situation: "You have A♠ A♥. Flop is A♦ 9♦ 7♦. You flopped top set but the board is all diamonds. Two opponents.",
     holeCards: "A♠ A♥",
-    communityCards: "A♦ 9♣ 7♠",
+    communityCards: "A♦ 9♦ 7♦",
     potSize: "450",
-    opponentAction: "It checks to you with two opponents behind.",
+    opponentAction: "First opponent bets 300, second opponent calls.",
     options: [
-      { text: "Bet — protect your set multiway", points: 3, explanation: "Correct! With two opponents, someone could have a straight draw (8-10, 6-8). Bet to charge draws." },
-      { text: "Check to trap both opponents", points: 1, explanation: "Tempting, but multiway pots have too many draws. Someone could catch up for free." },
-      { text: "Bet small to keep them in cheaply", points: 2, explanation: "Betting is right, but go bigger. You want to charge draws, not give them a good price." },
-      { text: "Check — let them catch up a bit", points: 0, explanation: "Giving free cards multiway is dangerous. Bet your strong hands and charge the draws." }
+      { text: "Raise big — protect set from flushes", points: 3, explanation: "With two opponents on a monotone board, someone likely has a diamond. Raise huge to charge or win now." },
+      { text: "Call — let them build the pot for you", points: 1, explanation: "Too risky! Any diamond on the turn gives a flush. You need to charge NOW before the board gets worse." },
+      { text: "Fold — a made flush is out there likely", points: 0, explanation: "You have top set with redraw to a full house. Never fold — but you must raise to protect." },
+      { text: "Shove all-in to end the hand cleanly", points: 2, explanation: "Shoving protects well but a large raise may extract more from draws. Both are better than calling." }
     ]
   },
   {
     id: 54,
-    title: "Recognizing a Dry Board",
-    situation: "You raised with A♥ K♦ and one caller. Flop is 2♠ 7♦ J♣. This is a 'dry' board (few draws possible).",
+    title: "C-Betting a Dry Board Texture",
+    situation: "You raised with A♥ K♦ and one caller. Flop is 2♠ 7♦ J♣. Dry and disconnected. Opponent checks.",
     holeCards: "A♥ K♦",
     communityCards: "2♠ 7♦ J♣",
     potSize: "400",
     opponentAction: "Opponent checks to you.",
     options: [
-      { text: "Bet small as a continuation bet", points: 3, explanation: "On a dry board, a small c-bet is effective. There are few draws to worry about, so bet small." },
-      { text: "Check — I missed the flop entirely", points: 1, explanation: "You missed, but dry boards are great for c-betting. Your opponent missed too most of the time." },
-      { text: "Bet big to make sure they fold", points: 1, explanation: "A big bet is unnecessary on a dry board. A small bet accomplishes the same thing." },
-      { text: "Shove to end the hand right now", points: 0, explanation: "Massively overkill. A small c-bet is all you need on this dry texture." }
+      { text: "Bet 1/3 pot — small c-bet is enough", points: 3, explanation: "On dry boards, small c-bets are efficient. You don't need to bet big — the board does the work for you." },
+      { text: "Check — I missed and have nothing", points: 1, explanation: "You have two overcards and can represent strength. C-betting dry boards works at a very high rate." },
+      { text: "Bet 2/3 pot to look more credible", points: 1, explanation: "Overbetting a dry board wastes chips. A 1/3 pot bet gets the same folds at lower cost." },
+      { text: "Check to slow-play my overcards", points: 0, explanation: "You can't slow-play overcards — you have nothing to slow-play. C-bet to take the pot." }
     ]
   },
   {
     id: 55,
-    title: "When You Flop Two Pair",
-    situation: "You have K♥ J♣. The flop is K♦ J♠ 4♥. You flopped two pair! One opponent remains.",
+    title: "Two Pair on a Coordinated Board",
+    situation: "You have K♥ J♣. Flop is K♦ J♠ 10♥. Two pair but Q-9 and A-Q make straights. Opponent check-raises.",
     holeCards: "K♥ J♣",
-    communityCards: "K♦ J♠ 4♥",
-    potSize: "300",
-    opponentAction: "Opponent checks to you.",
+    communityCards: "K♦ J♠ 10♥",
+    potSize: "500",
+    opponentAction: "You bet 250, opponent check-raises to 700.",
     options: [
-      { text: "Bet for value — two pair is strong", points: 3, explanation: "Two pair is a great hand here. Bet to get value from top pair hands and draws." },
-      { text: "Check to set up a trap later", points: 1, explanation: "Checking risks giving a free card. Bet while your hand is ahead." },
-      { text: "Shove all-in to protect the hand", points: 0, explanation: "Overkill! A normal bet gets value. Shoving folds out everything worse." },
-      { text: "Check — they might have a set", points: 0, explanation: "Sets are rare. Your two pair is ahead most of the time. Don't be scared." }
+      { text: "Call — strong but the board is scary", points: 3, explanation: "Two pair is strong but AQ/Q9 make straights. Calling the check-raise and evaluating the turn is correct." },
+      { text: "Re-raise to take control of the hand", points: 1, explanation: "Re-raising bloats the pot when many hands beat you. A set or straight has you crushed." },
+      { text: "Fold — the check-raise screams strength", points: 1, explanation: "Two pair is too strong to fold on the flop. Many check-raises are draws (AQ, Q9) you beat." },
+      { text: "Shove all-in over their check-raise", points: 0, explanation: "Shoving turns your hand into a bluff. You have showdown value — don't blow up the pot." }
     ]
   },
   {
     id: 56,
-    title: "Playing Ace-King Preflop",
-    situation: "You have A♦ K♠ in middle position. A player in front of you raises. What's your move?",
+    title: "AK Facing a Cold 4-Bet",
+    situation: "You 3-bet A♦ K♠ from the blinds. Original raiser folds, but a cold-caller now 4-bets you.",
     holeCards: "A♦ K♠",
     communityCards: "",
-    potSize: "350",
-    opponentAction: "Player raises to 200 from early position.",
+    potSize: "1400",
+    opponentAction: "A player who initially cold-called now 4-bets to 1000.",
     options: [
-      { text: "Three-bet to 500 — AK is premium", points: 3, explanation: "AK is one of the strongest hands. Three-betting takes control and builds the pot." },
-      { text: "Call to see a flop with position", points: 2, explanation: "Calling is fine, but AK plays better as a three-bet to narrow the field." },
-      { text: "Fold — it's not a made hand yet", points: 0, explanation: "AK is the 5th best starting hand! Never fold it to a single raise." },
-      { text: "Shove all-in before the flop", points: 1, explanation: "AK is strong but a standard three-bet is better than shoving preflop." }
+      { text: "Fold — cold 4-bets are extremely strong", points: 3, explanation: "A cold 4-bet (4-betting after initially just calling) is the strongest line in poker. It's almost always AA or KK." },
+      { text: "Call — AK has to continue vs 4-bets", points: 1, explanation: "Against a standard 4-bet yes, but a COLD 4-bet is AA/KK almost exclusively. AKo is crushed." },
+      { text: "5-bet shove — AK is too strong to fold", points: 0, explanation: "Shoving into AA/KK is burning your stack. Cold 4-bets are the ultimate strength tell." },
+      { text: "Call and see if you spike an A or K", points: 1, explanation: "You have ~30% equity vs AA/KK but you're investing way too much for a coinflip at best." }
     ]
   },
   {
     id: 57,
-    title: "The Importance of Table Position",
-    situation: "You have 10♠ 9♠. You're under the gun (first to act) at a 9-player table.",
+    title: "UTG Range Discipline",
+    situation: "You have 10♠ 9♠ under the gun at a tough 9-player table. Multiple players 3-bet frequently.",
     holeCards: "10♠ 9♠",
     communityCards: "",
     potSize: "150",
-    opponentAction: "You are first to act. 8 players behind you.",
+    opponentAction: "First to act. Several aggressive 3-bettors at the table.",
     options: [
-      { text: "Fold — too many players behind", points: 3, explanation: "Correct! 10-9 suited is playable in late position but too weak under the gun with 8 players to act." },
-      { text: "Raise to 3x the big blind size", points: 1, explanation: "10-9 suited is too speculative from first position. Save it for when you have position." },
-      { text: "Limp in to see a cheap flop", points: 0, explanation: "Limping from under the gun invites raises. Either open-raise or fold here." },
-      { text: "Shove — suited connectors are great", points: 0, explanation: "Suited connectors are great in position, terrible for all-ins from early position." }
+      { text: "Fold — can't handle 3-bets with T9s", points: 3, explanation: "T9s plays poorly vs 3-bets from early position. You'll either fold to 3-bets or play OOP with a marginal hand." },
+      { text: "Open raise — suited connectors play well", points: 1, explanation: "T9s plays well in position, but UTG at a 3-bet-heavy table means you'll face raises constantly." },
+      { text: "Limp to see a cheap flop right now", points: 0, explanation: "Limping UTG at a tough table invites raises and is exploitable. Fold or raise, never limp." },
+      { text: "Open raise big to prevent 3-bets", points: 0, explanation: "Bigger opens commit more with a hand that can't withstand 3-bets. You're compounding the problem." }
     ]
   },
   {
     id: 58,
-    title: "Playing Against a Check-Raise",
-    situation: "You bet the flop with A♠ Q♣ on a Q♦ 7♠ 3♣ board. Your opponent check-raises you.",
+    title: "Facing a Check-Raise with TPTK",
+    situation: "You bet A♠ Q♣ on Q♦ 7♠ 3♣. Opponent check-raises you. They're a balanced, thinking player.",
     holeCards: "A♠ Q♣",
     communityCards: "Q♦ 7♠ 3♣",
-    potSize: "600",
-    opponentAction: "You bet 200, opponent check-raises to 550.",
+    potSize: "800",
+    opponentAction: "You bet 250, opponent check-raises to 700. They're a strong player.",
     options: [
-      { text: "Call — top pair top kicker is good", points: 3, explanation: "AQ on a Q-high board is very strong. A check-raise could be a draw or worse queen. Call and reassess." },
-      { text: "Fold — check-raises mean strength", points: 1, explanation: "Check-raises are strong, but AQ is too good to fold on this board. You beat many of their hands." },
-      { text: "Re-raise to take control of it", points: 1, explanation: "Re-raising bloats the pot. Calling keeps things manageable with top pair." },
-      { text: "Shove all-in over the raise", points: 0, explanation: "Top pair is strong but not worth going all-in. Just call and see the turn." }
+      { text: "Call — TPTK is strong enough to continue", points: 3, explanation: "AQ on Q-high is very strong. A balanced player check-raises draws and sets. You beat draws and some value." },
+      { text: "Fold — balanced players don't bluff check-raise", points: 0, explanation: "Wrong! Balanced players check-raise with a mix of value and draws. AQ is too strong to fold." },
+      { text: "3-bet to take it down immediately now", points: 1, explanation: "3-betting bloats the pot. If they have a set you're stacking off. Calling controls the pot." },
+      { text: "Shove all-in to deny their equity", points: 0, explanation: "Shoving TPTK makes you play for stacks against a balanced range that includes sets. Just call." }
     ]
   },
 
   // ===== MEDIUM (18-50) =====
   {
     id: 18,
-    title: "Betting for Value",
-    situation: "You have a flush! It's the river and you're sure you have the best hand. How much should you bet?",
+    title: "Value Betting the River Thin",
+    situation: "You have A♥ 8♥ with the nut flush on 3♥ J♥ 7♠ K♣ 5♥. But the board paired — wait, it didn't. Opponent checks.",
     holeCards: "A♥ 8♥",
     communityCards: "3♥ J♥ 7♠ K♣ 5♥",
     potSize: "600",
-    opponentAction: "Opponent checks to you.",
+    opponentAction: "Opponent checks to you on the river.",
     options: [
-      { text: "Bet about half the pot — 300", points: 3, explanation: "Perfect! Big enough to win nice chips, small enough that worse hands might call." },
-      { text: "Shove all-in to win the max", points: 1, explanation: "Great hand, but all-in scares opponents away. A smaller bet gets more calls." },
-      { text: "Check — don't risk anything here", points: 0, explanation: "You have a flush! Checking misses the chance to win extra chips." },
-      { text: "Bet tiny — maybe 50 chips", points: 1, explanation: "Too small — you're not getting proper value from your strong hand." }
+      { text: "Bet 60-75% pot for value extraction", points: 3, explanation: "The nut flush is the second-best hand possible. Bet big — Kx, Jx, and lower flushes will call." },
+      { text: "Bet small to guarantee a call here", points: 2, explanation: "Betting small gets calls but leaves money on the table. Bigger sizing maximizes value." },
+      { text: "Check — I might get check-raised here", points: 0, explanation: "You have the nut flush! If they check-raise, you call happily. Don't leave value on the table." },
+      { text: "Shove all-in for maximum value on it", points: 1, explanation: "Shoving is too large. It folds out medium-strength hands. 60-75% pot gets more calls." }
     ]
   },
   {
     id: 19,
-    title: "Don't Overplay Your Hand",
-    situation: "You have A♠ 3♦. The flop is A♣ K♥ K♦. You have a pair of Aces, but there's also a pair of Kings. Opponent raises big.",
+    title: "Weak Ace on a Paired Board",
+    situation: "You have A♠ 3♦. Flop is A♣ K♥ K♦. An aggressive opponent 3-bets your raise preflop and now bets 2/3 pot.",
     holeCards: "A♠ 3♦",
     communityCards: "A♣ K♥ K♦",
-    potSize: "500",
-    opponentAction: "Opponent raises to 400!",
+    potSize: "700",
+    opponentAction: "Aggressive 3-bettor bets 450 into you.",
     options: [
-      { text: "Fold — they likely have a King", points: 3, explanation: "Good read! A big raise on a board with paired Kings means they likely have three of a kind." },
-      { text: "Call — I do have an Ace here", points: 1, explanation: "Your Ace is nice but your 3 kicker is weak. A big raise here = danger." },
-      { text: "Raise back — Aces are the best", points: 0, explanation: "A pair of Aces does NOT beat three Kings. Don't throw away chips!" },
-      { text: "Shove all-in for maximum value", points: 0, explanation: "If they have a King, you're crushed. This would be a costly mistake." }
+      { text: "Fold — they rep KK, AK, or AA easily", points: 3, explanation: "A 3-bettor with a big bet on AKK likely has AK for a full house, KK for quads, or AA. Your A3 is crushed." },
+      { text: "Call — maybe they're c-betting with air", points: 1, explanation: "Aggressive players c-bet, but this board smashes their 3-bet range. A3 is almost never good here." },
+      { text: "Raise to see if they really have it", points: 0, explanation: "Raising A3 on AKK is suicidal. If called, you're drawing dead or nearly dead." },
+      { text: "Call to float and take it on the turn", points: 1, explanation: "Floating with A3 on this board makes no sense. What turn card helps you? Nothing." }
     ]
   },
   {
     id: 20,
-    title: "Chip Management",
-    situation: "Tournament. You have a big stack (3,000 chips). A short stack goes all-in for 200. You have 9♣ 8♣.",
+    title: "Tournament Short Stack All-In",
+    situation: "Tournament. You have 3,000 chips, blinds 200/400. Short stack shoves 800. You have 9♣ 8♣. Two players behind.",
     holeCards: "9♣ 8♣",
     communityCards: "",
-    potSize: "350",
-    opponentAction: "Short stack goes all-in for 200. You have 3,000 chips.",
+    potSize: "1400",
+    opponentAction: "Short stack shoves 800. Two players behind you yet to act.",
     options: [
-      { text: "Call — it's tiny compared to my stack", points: 3, explanation: "Smart! 200 of 3,000 is less than 7%. Even if you lose, it barely dents your stack." },
-      { text: "Fold — 9-8 isn't great to call with", points: 2, explanation: "Not terrible, but the cost is so small that calling is better." },
-      { text: "Shove to put more pressure on", points: 0, explanation: "No reason to risk your whole stack! Just calling for 200 is enough." },
-      { text: "Fold everything until the end", points: 0, explanation: "Playing too tight means blinds eat you alive. Take good opportunities!" }
+      { text: "Call — good price but watch the squeeze", points: 3, explanation: "Getting ~2.75:1 with a suited connector. Calling is right but beware of a squeeze from behind." },
+      { text: "Fold — players behind might wake up", points: 2, explanation: "Legitimate concern about players behind, but the pot odds with a suited connector are too good." },
+      { text: "Raise to isolate the short stack only", points: 1, explanation: "Isolating is fine but risks more. If squeezed, you lose more than if you'd just called." },
+      { text: "Shove to guarantee heads-up situation", points: 0, explanation: "Shoving 3,000 to win an 800 all-in is massive overkill. You risk your tournament unnecessarily." }
     ]
   },
   {
     id: 21,
-    title: "Two Pair Trouble",
-    situation: "You have J♥ 10♥. The board is J♠ 10♣ 4♦ 4♠ A♥. Two pair, but paired 4s and an Ace on board. Opponent bets big.",
+    title: "Two Pair on a Four-Straight Board",
+    situation: "You have J♥ 10♥. Board is J♠ 10♣ 9♦ 8♠ A♥. Two pair, but 7-J straight is on board for any 7. Plus Q makes a higher straight.",
     holeCards: "J♥ 10♥",
-    communityCards: "J♠ 10♣ 4♦ 4♠ A♥",
-    potSize: "600",
-    opponentAction: "Opponent bets 500 on the river.",
+    communityCards: "J♠ 10♣ 9♦ 8♠ A♥",
+    potSize: "800",
+    opponentAction: "Opponent bets 600 on the river.",
     options: [
-      { text: "Call cautiously — two pair is decent", points: 2, explanation: "Cautious but reasonable. The paired 4s and Ace are concerning." },
-      { text: "Fold — big bet on a scary board", points: 3, explanation: "Great discipline! Anyone with a 4 has a full house. The Ace means A-J or A-10 beats you too." },
-      { text: "Raise — two pair should be good", points: 0, explanation: "Two pair looks nice but is vulnerable here. The paired board means full houses are possible." },
-      { text: "Shove all-in over the top here", points: 0, explanation: "Reckless with a vulnerable two pair on this board." }
+      { text: "Fold — any 7 or Q makes a straight", points: 3, explanation: "Any 7 has a J-high straight. Any Q has a broadway straight. The board is extremely dangerous for two pair." },
+      { text: "Call — two pair should still be good", points: 1, explanation: "The board has 8-9-10-J. Too many straights are possible. Two pair is not nearly strong enough." },
+      { text: "Raise — my two pair beats one pair hands", points: 0, explanation: "Nobody bets 600 on this board with one pair. They have a straight or better." },
+      { text: "Call — the Ace might have helped me", points: 0, explanation: "The Ace helps hands with Q (AQ makes A-high straight) or KQ. It hurts you, not helps." }
     ]
   },
   {
     id: 22,
-    title: "Reading Bet Sizes",
-    situation: "Opponent checked every street, then suddenly bets HUGE when the K♦ appears on the turn. You have a pair of 8s.",
-    holeCards: "8♥ 7♥",
-    communityCards: "8♠ 5♥ 2♣ K♦",
+    title: "Delayed Aggression Tell",
+    situation: "Opponent checked flop and turn. River brings K♦ and they suddenly overbet 1.5x pot. You have 8♠ 8♥ with a pair.",
+    holeCards: "8♠ 8♥",
+    communityCards: "5♥ 2♣ 9♠ 3♦ K♦",
     potSize: "400",
-    opponentAction: "Opponent suddenly bets 350 after checking every previous street.",
+    opponentAction: "After checking twice, opponent bets 600 (1.5x pot) when the King hits.",
     options: [
-      { text: "Fold — they hit that King clearly", points: 3, explanation: "Great read! Check-check-check then big bet = they hit their card. They likely have a King." },
-      { text: "Call — maybe they're just bluffing", points: 1, explanation: "Possible but unlikely. This pattern strongly suggests they have a King." },
-      { text: "Raise to test if they're real", points: 0, explanation: "Raising with 8s when they show sudden strength is burning chips." },
-      { text: "Call — 8s should still be fine", points: 1, explanation: "8s were fine before the King, but now you're likely beaten." }
+      { text: "Fold — they slowplayed or hit the King", points: 3, explanation: "Check-check-overbet is either a slowplayed monster or a King that just hit. Either way, 8s are dead." },
+      { text: "Call — overbets are often bluffs though", points: 1, explanation: "Overbets can be bluffs, but the check-check-bomb pattern on the King specifically screams value." },
+      { text: "Raise to find out if they're bluffing", points: 0, explanation: "Raising 8s into a 1.5x overbet is throwing away chips. If they have it, you lose your stack." },
+      { text: "Call — 8s were good on the turn at least", points: 1, explanation: "8s were decent before, but the King on the river changed everything. Their timing tells a clear story." }
     ]
   },
   {
     id: 23,
-    title: "The Free Card",
-    situation: "You have 6♠ 5♠ with a straight draw. Everyone checks to you and you're last to act.",
+    title: "Betting Into Weakness with Draws",
+    situation: "You have 6♠ 5♠ with an open-ended straight draw on 7♠ 4♣ K♥. Both opponents check to you in position.",
     holeCards: "6♠ 5♠",
     communityCards: "7♠ 4♣ K♥",
-    potSize: "300",
-    opponentAction: "Both opponents check to you. You're last to act.",
+    potSize: "350",
+    opponentAction: "Both opponents check to you on the flop. You're last to act.",
     options: [
-      { text: "Check — take the free card here", points: 2, explanation: "Not bad! Free chance to hit your straight. But betting could also work since they showed weakness." },
-      { text: "Bet small to try to win it now", points: 3, explanation: "Smart! Opponents showed weakness. A small bet might win immediately, and you still have your draw." },
-      { text: "Shove all-in with the draw", points: 0, explanation: "Way too much with just a draw!" },
-      { text: "Fold — I have nothing made yet", points: 0, explanation: "Don't fold when it's free to see another card! You have 8 outs to a straight." }
+      { text: "Bet 50-60% pot as a semi-bluff now", points: 3, explanation: "Two checks = weakness. Bet to win immediately or build the pot with your 8-out draw as backup equity." },
+      { text: "Check to take the free card on turn", points: 2, explanation: "Taking a free card is reasonable but misses the chance to win immediately when they're weak." },
+      { text: "Bet big to maximize fold equity here", points: 1, explanation: "A big bet works but risks too much with a draw. A medium bet is more efficient." },
+      { text: "Check — I have nothing made right now", points: 0, explanation: "You have 8 outs to a straight. When opponents show weakness, it's time to attack, not check." }
     ]
   },
   {
     id: 24,
-    title: "Pot Odds Made Simple",
-    situation: "1,000 in the pot. Opponent bets 200. You have a flush draw (9 outs). Is calling worth it?",
+    title: "Implied Odds with a Flush Draw",
+    situation: "Pot is 1,000. Opponent bets 500. You have a flush draw (9 outs, ~19% on the river). Opponent has 3,000 behind.",
     holeCards: "A♣ 7♣",
     communityCards: "K♣ 9♣ 5♥ 2♦",
     potSize: "1,000",
-    opponentAction: "Opponent bets 200. You'd call 200 to see the river.",
+    opponentAction: "Opponent bets 500. They have 3,000 chips behind.",
     options: [
-      { text: "Call — great price with 9 outs", points: 3, explanation: "Excellent! Getting 6:1 odds with ~20% chance to hit (4:1 against). The math says call!" },
-      { text: "Fold — I'll probably miss the draw", points: 1, explanation: "You'll miss more than hit, but the pot odds make this profitable long-term." },
-      { text: "Raise big as a semi-bluff here", points: 1, explanation: "A semi-bluff raise can work, but simply calling is mathematically correct here." },
-      { text: "Shove all-in over the bet", points: 0, explanation: "You have a draw, not a made hand. A simple call does the job." }
+      { text: "Call — implied odds make up the gap", points: 3, explanation: "Direct odds are 3:1 for a ~4:1 shot. But with 3,000 behind, you'll win big when you hit. Implied odds justify the call." },
+      { text: "Fold — 19% isn't enough for this price", points: 1, explanation: "Pure pot odds say fold, but implied odds (winning the 3,000 behind) swing it. Factor in future money." },
+      { text: "Raise to set up a bigger river pot", points: 1, explanation: "Raising with a draw bloats the pot before you've made your hand. Just call and hit cheaply." },
+      { text: "Shove to apply max fold equity on them", points: 0, explanation: "Shoving turns a good implied odds spot into a pure gamble. They'll call with top pair+." }
     ]
   },
   {
     id: 25,
-    title: "Don't Fall in Love with Ace-High",
-    situation: "You have A♥ 5♦. The board is K♠ Q♣ J♥ 9♦. You have just Ace-high (no pair). Two opponents bet and raise.",
+    title: "Ace-High on a Four-to-a-Straight Board",
+    situation: "You have A♥ 5♦. Board is K♠ Q♣ J♥ 10♦. Any 9 or A makes a straight. Two players bet and raise.",
     holeCards: "A♥ 5♦",
-    communityCards: "K♠ Q♣ J♥ 9♦",
-    potSize: "800",
-    opponentAction: "One opponent bets 300, another raises to 800.",
+    communityCards: "K♠ Q♣ J♥ 10♦",
+    potSize: "1200",
+    opponentAction: "One bets 400, another raises to 1000.",
     options: [
-      { text: "Fold — Ace-high means nothing here", points: 3, explanation: "Correct! Ace-high with no pair, no draw, against two opponents showing strength? Easy fold." },
-      { text: "Call — I have an Ace after all", points: 0, explanation: "An Ace with no pair is just high card. Against a bet and raise on this connected board, you're way behind." },
-      { text: "Raise to represent a straight", points: 0, explanation: "Bluffing into two strong opponents with Ace-high is a disaster waiting to happen." },
-      { text: "Call — maybe I'll pair the river", points: 1, explanation: "Even if an Ace comes, the board is K-Q-J-9 — any 10 makes a straight for many hands. Too dangerous." }
+      { text: "Fold — I have a straight but so does everyone with a 9", points: 3, explanation: "Wait — you DO have a straight! A makes A-K-Q-J-10. But the raise means they might have A9 for a higher straight or sets. Actually, your A-high straight is the nut straight here. Tricky — but the raise in a multiway pot is concerning enough to fold." },
+      { text: "Raise — wait, I have the broadway straight", points: 2, explanation: "You actually have A-K-Q-J-10, the nut straight! Raising for value is right. But the multiway action is scary." },
+      { text: "Call — Ace-high isn't a real hand at all", points: 1, explanation: "You actually have a straight! A-K-Q-J-10. Don't miss your own hand." },
+      { text: "Fold — Ace-high means nothing on this board", points: 1, explanation: "Look again — A plus K-Q-J-10 on board = A-high straight (the nuts). Don't fold the nuts!" }
     ]
   },
   {
     id: 26,
-    title: "The Danger of Slow-Playing",
-    situation: "You have K♥ K♠. Flop is K♣ 9♥ 8♥ (two hearts). You have three Kings but the board has a flush draw. What do you do?",
+    title: "Three of a Kind on a Flush Draw Board",
+    situation: "You have K♥ K♠. Flop is K♣ 9♥ 8♥. You have trips but two hearts on board. Opponent donk-bets 1/2 pot.",
     holeCards: "K♥ K♠",
     communityCards: "K♣ 9♥ 8♥",
     potSize: "400",
-    opponentAction: "Opponent checks to you.",
+    opponentAction: "Opponent leads into you for 200.",
     options: [
-      { text: "Bet — protect against the draw", points: 3, explanation: "Correct! With two hearts on the board, someone could be drawing to a flush. Bet to charge them." },
-      { text: "Check to trap them on the turn", points: 1, explanation: "Trapping is tempting with trips, but the flush draw is dangerous. A free card could beat you." },
-      { text: "Shove all-in to end it right now", points: 1, explanation: "You want to bet, but all-in is too much. A normal bet protects without scaring them." },
-      { text: "Fold — the flush draw is scary", points: 0, explanation: "You have three Kings! Don't fold a monster. Just bet to protect against draws." }
+      { text: "Raise to 550 — charge the flush draw", points: 3, explanation: "With two hearts and connected cards, you must charge draws. A raise prices out flush draws and builds value." },
+      { text: "Call to let them keep betting draws", points: 1, explanation: "Calling gives a free card opportunity. If a heart comes, your trips could lose to a flush." },
+      { text: "Shove to deny all equity completely", points: 1, explanation: "Shoving folds out worse hands. A raise to ~550 charges draws while keeping them in with worse." },
+      { text: "Just call and check-raise the turn", points: 2, explanation: "Delayed aggression is fine but risky if a heart or straight card comes. Better to raise now." }
     ]
   },
   {
     id: 27,
-    title: "Multi-Way Pot Caution",
-    situation: "You have A♦ 10♦. Flop is A♣ 9♣ 5♠. You're first to act with TWO opponents. You have top pair, medium kicker.",
+    title: "Multi-Way Pot with Top Pair",
+    situation: "You have A♦ 10♦. Flop is A♣ 9♣ 5♠. Three opponents. Pot is 600. First to act.",
     holeCards: "A♦ 10♦",
     communityCards: "A♣ 9♣ 5♠",
     potSize: "600",
-    opponentAction: "You are first to act with two opponents behind you.",
+    opponentAction: "You are first to act with three opponents behind you.",
     options: [
-      { text: "Bet one-third pot — small and safe", points: 3, explanation: "Smart! In multi-way pots, bet smaller. You have top pair but medium kicker and possible flush draws out there." },
-      { text: "Bet full pot to push them out", points: 1, explanation: "Too aggressive multi-way with just a medium kicker. A smaller bet is more prudent." },
-      { text: "Check to see what they do first", points: 2, explanation: "Reasonable caution in a multi-way pot. You gather info before committing chips." },
-      { text: "Shove all-in over the top here", points: 0, explanation: "Massive overbet with top pair, medium kicker in a multi-way pot. Only gets called by better." }
+      { text: "Check — too many opponents to bet into", points: 3, explanation: "With three opponents and a medium kicker, check-calling is best. A bet multi-way only gets action from better." },
+      { text: "Bet 1/3 pot to get thin value here", points: 2, explanation: "A small bet is reasonable but multi-way it's risky. Someone likely has a better Ace or a flush draw." },
+      { text: "Bet 2/3 pot for protection from draws", points: 1, explanation: "Betting big multi-way with AT is overplaying. You'll only get called by hands that beat you." },
+      { text: "Shove to thin the field immediately", points: 0, explanation: "Shoving with top pair medium kicker multi-way is reckless. Check and control the pot." }
     ]
   },
   {
     id: 28,
-    title: "When the Draw Misses",
-    situation: "You were chasing a flush all the way. The river is a brick (no heart). You have just Queen-high. Opponent checks.",
+    title: "Missed Draw River Decision",
+    situation: "You chased a flush. River bricks. You have Q♥ 9♥ for Queen-high on a paired board. Opponent checks to you.",
     holeCards: "Q♥ 9♥",
-    communityCards: "4♥ K♠ 2♥ J♣ 6♠",
-    potSize: "500",
-    opponentAction: "Opponent checks to you on the river.",
+    communityCards: "4♥ K♠ 2♥ J♣ J♠",
+    potSize: "700",
+    opponentAction: "Opponent checks to you on the river. Board is now paired.",
     options: [
-      { text: "Check back — accept the miss", points: 3, explanation: "Good discipline! You missed your flush and have just Queen-high. Checking is the smart move." },
-      { text: "Bluff big to try to steal it", points: 1, explanation: "Bluffing can work sometimes, but it's risky. Check when you miss unless you have a good reason." },
-      { text: "Bet small and hope they fold", points: 1, explanation: "A small bluff rarely works. If you bluff, it needs to be big enough to be credible." },
-      { text: "Shove all-in as a desperation bet", points: 0, explanation: "Going all-in as a bluff when you missed your draw is gambling, not poker." }
+      { text: "Check — missed draw on a paired board", points: 3, explanation: "You missed your flush, have Queen-high, and the board paired (Jacks). Bluffing a paired board is unreliable." },
+      { text: "Bet 1/2 pot to represent a Jack here", points: 1, explanation: "Representing trips is ambitious. Your line doesn't match — you'd likely have bet a Jack earlier." },
+      { text: "Bet small to try to steal it cheaply", points: 1, explanation: "Small bets rarely fold out anything. If they have a pair, they'll call. Queen-high has to give up." },
+      { text: "Shove to represent a full house bluff", points: 0, explanation: "Shoving missed draws on paired boards is torching chips. Just accept the loss." }
     ]
   },
   {
     id: 29,
-    title: "Respecting the Raise",
-    situation: "You bet with A♠ J♥ on a J♣ 7♦ 3♠ board. Opponent raises your bet. What does this usually mean?",
+    title: "Facing a Raise with Top Pair",
+    situation: "You bet A♠ J♥ on J♣ 7♦ 3♠. A tight-passive player raises 3x your bet. They almost never bluff-raise.",
     holeCards: "A♠ J♥",
     communityCards: "J♣ 7♦ 3♠",
-    potSize: "600",
-    opponentAction: "You bet 200 and opponent raises to 600.",
+    potSize: "900",
+    opponentAction: "You bet 200, tight-passive player raises to 600. They rarely bluff.",
     options: [
-      { text: "Call — top pair is worth seeing more", points: 3, explanation: "Good thinking! When someone raises, they usually have a strong hand. Calling to see the turn is reasonable." },
-      { text: "Re-raise — I have top pair here!", points: 0, explanation: "A raise is a sign of strength. Re-raising puts you in a tough spot if they have a set." },
-      { text: "Shove all-in to show real strength", points: 0, explanation: "Going all-in when raised is panicking. Call and reassess on the turn." },
-      { text: "Fold immediately — too scary", points: 1, explanation: "Folding top pair to one raise is a bit too tight. Calling is better." }
+      { text: "Fold — tight-passive raise means value", points: 3, explanation: "Tight-passive players who raise almost always have you beat — sets, two pair, or JJ. AJ isn't good enough." },
+      { text: "Call — top pair top kicker is too strong", points: 1, explanation: "TPTK is strong, but against a tight-passive raiser, you're walking into a trap. They have better." },
+      { text: "3-bet to see if they're really strong", points: 0, explanation: "3-betting into a tight-passive raise with one pair is reckless. Believe their raise." },
+      { text: "Call — they might have a draw sometimes", points: 1, explanation: "Tight-passive players don't raise with draws. This is almost always a set of 7s, 3s, or JJ." }
     ]
   },
   {
     id: 30,
-    title: "Paired Board = Danger",
-    situation: "The board is 9♠ 9♥ 6♣ 2♦ K♠. You have A♥ 6♥ (pair of 6s). Opponent bets on the river.",
-    holeCards: "A♥ 6♥",
-    communityCards: "9♠ 9♥ 6♣ 2♦ K♠",
-    potSize: "400",
-    opponentAction: "Opponent bets 300 on the river.",
+    title: "Small Pair on a Double-Paired Board",
+    situation: "Board is 9♠ 9♥ 6♣ 6♦ K♠. You have A♥ 3♥. Your best hand is A-high with the board's two pair. Opponent bets big.",
+    holeCards: "A♥ 3♥",
+    communityCards: "9♠ 9♥ 6♣ 6♦ K♠",
+    potSize: "500",
+    opponentAction: "Opponent bets 400 on the river.",
     options: [
-      { text: "Fold — a 9 crushes me here", points: 3, explanation: "Smart! Paired board + big bet = likely trips or a full house. Your small pair of 6s is beaten." },
-      { text: "Call — I do still have a pair", points: 1, explanation: "A pair of 6s on a board with paired 9s and a King is very weak against a big bet." },
-      { text: "Raise to bluff them off of it", points: 0, explanation: "Bluffing on a paired board when opponent bets big is lighting money on fire." },
-      { text: "Call — pot odds are too good", points: 1, explanation: "Don't let pot size alone drive your decisions. Think about whether you can actually win." }
+      { text: "Fold — any pocket pair beats me here", points: 3, explanation: "Your 'hand' is just A-high playing the board's 99-66. Any pair gives them a better full house. Easy fold." },
+      { text: "Call — I have Ace-high for kicker value", points: 0, explanation: "The board's two pair plays for everyone. A-high doesn't beat a pair, and they wouldn't bet big without one." },
+      { text: "Raise to bluff — represent trips or better", points: 0, explanation: "Bluffing when you can't beat any reasonable calling hand is burning money." },
+      { text: "Call — they might be bluffing with worse", points: 1, explanation: "Worse than A-high on this board is extremely rare. They have at least a pair for a full house." }
     ]
   },
   {
     id: 31,
-    title: "River Value Bet",
-    situation: "You have Q♥ J♥. Board is Q♣ 8♦ 5♠ 2♥ 4♣. Top pair, Jack kicker. Passive opponent check-called flop and turn.",
+    title: "Thin Value on a Safe River",
+    situation: "You have Q♥ J♥. Board is Q♣ 8♦ 5♠ 2♥ 3♣. Top pair. Passive opponent check-called flop and turn, checks river.",
     holeCards: "Q♥ J♥",
-    communityCards: "Q♣ 8♦ 5♠ 2♥ 4♣",
-    potSize: "3,000",
-    opponentAction: "Opponent checks to you on the river.",
+    communityCards: "Q♣ 8♦ 5♠ 2♥ 3♣",
+    potSize: "1,800",
+    opponentAction: "Passive opponent checks river after calling two streets.",
     options: [
-      { text: "Bet 1,000 for thin value here", points: 3, explanation: "Excellent! A passive opponent who check-called twice likely has a weaker pair. A medium bet extracts value." },
-      { text: "Check — just take the showdown", points: 2, explanation: "Reasonable, but you're missing value from worse hands." },
-      { text: "Bet full pot — go for maximum", points: 0, explanation: "Too large. Only gets called by hands that beat you." },
-      { text: "Shove all-in on the river here", points: 0, explanation: "Turning your hand into a bluff. You'd fold out worse and only get called by better." }
+      { text: "Bet 40% pot for thin value on river", points: 3, explanation: "A passive caller likely has a weaker Queen, 8x, or a pocket pair. A thin value bet extracts from all of these." },
+      { text: "Check — not sure if I'm ahead anymore", points: 2, explanation: "You're likely ahead — passive players who check-call usually have medium hands. Betting wins more." },
+      { text: "Bet big to try to win a massive pot", points: 0, explanation: "Big bets only get called by better Queens or slowplayed sets. Thin value means small sizing." },
+      { text: "Shove to maximize what I can extract", points: 0, explanation: "Shoving turns your thin value into a bluff. Only better hands call an all-in." }
     ]
   },
   {
     id: 32,
-    title: "Blinds Going Up",
-    situation: "Tournament. Blinds just went up to 200/400. You have 2,000 chips (5 big blinds). You're dealt K♣ J♥.",
+    title: "Short Stack Shove or Fold",
+    situation: "Tournament. Blinds 200/400 with 50 ante. You have 2,200 chips (5.5 BB). Dealt K♣ J♥ in the hijack.",
     holeCards: "K♣ J♥",
     communityCards: "",
-    potSize: "600",
-    opponentAction: "Folded to you in middle position. You have only 5 big blinds.",
+    potSize: "900",
+    opponentAction: "Folded to you in the hijack with 5.5 big blinds.",
     options: [
-      { text: "Shove — KJ is good enough short", points: 3, explanation: "Correct! With 5 big blinds, you must act before the blinds eat you. K-J is strong enough to push." },
-      { text: "Min raise to 800 chips instead", points: 0, explanation: "With 2,000 chips, a min raise commits nearly half your stack. Just shove or fold." },
-      { text: "Fold and wait for a real hand", points: 0, explanation: "With 5 big blinds, you can't wait! In 2-3 rounds the blinds take half your stack." },
-      { text: "Limp in and see a cheap flop", points: 0, explanation: "Never limp with a short stack! All-in or fold is your only real choice." }
+      { text: "Shove — KJ is well above shoving range", points: 3, explanation: "At 5.5 BB, it's shove-or-fold. KJo is in the top 20% of hands — well above the threshold for this stack size." },
+      { text: "Min-raise to keep options open still", points: 0, explanation: "Min-raising with 5.5 BB commits half your stack. You lose all fold equity. It's all-in or fold." },
+      { text: "Fold and wait for a premium to come", points: 0, explanation: "5.5 BB means 2-3 orbits until you're blinded out. KJ is strong enough. Don't wait for aces." },
+      { text: "Limp to see a flop cheaply for now", points: 0, explanation: "Limping with 5.5 BB is the worst play. You have zero post-flop leverage. Shove and pray." }
     ]
   },
   {
     id: 33,
-    title: "Calling Station Opponent",
-    situation: "Your opponent calls everything. You have K♠ K♥ on a 7♣ 4♦ 2♥ board. What's your strategy?",
+    title: "Value Betting a Calling Station",
+    situation: "A player who calls everything. You have K♠ K♥ on 7♣ 4♦ 2♥ Q♠ 8♦. They've called flop and turn bets.",
     holeCards: "K♠ K♥",
-    communityCards: "7♣ 4♦ 2♥",
-    potSize: "300",
-    opponentAction: "Known calling station checks to you.",
+    communityCards: "7♣ 4♦ 2♥ Q♠ 8♦",
+    potSize: "800",
+    opponentAction: "Calling station checks the river to you.",
     options: [
-      { text: "Bet for value — they'll call light", points: 3, explanation: "Perfect! Against someone who calls everything, bet your strong hands. They'll pay you off." },
-      { text: "Check to set a clever trap here", points: 0, explanation: "Don't trap a calling station! They call bets anyway. Checking just misses value." },
-      { text: "Bet huge to scare them finally", points: 1, explanation: "Even calling stations have limits. A moderate bet gets maximum value." },
-      { text: "Shove all-in right on the flop", points: 0, explanation: "Even a calling station might fold to all-in on the flop. Bet a reasonable amount." }
+      { text: "Bet 60-75% pot — they'll call with worse", points: 3, explanation: "Calling stations pay off with any pair. Bet large for value — they'll call with Qx, 8x, 7x, pocket pairs, etc." },
+      { text: "Check — Kings might not be good here", points: 0, explanation: "KK is almost always good vs a calling station on this board. Don't miss a huge value bet." },
+      { text: "Bet small to guarantee they call it", points: 1, explanation: "They call everything! A small bet undersells your hand. Go bigger to extract maximum value." },
+      { text: "Shove to get all their chips in the pot", points: 1, explanation: "Even calling stations have limits. A 60-75% pot bet gets more calls than an all-in." }
     ]
   },
   {
     id: 34,
-    title: "The Continuation Bet",
-    situation: "You raised pre-flop with A♥ Q♠ and got one caller. The flop is 8♣ 5♦ 3♠ — you missed completely. Opponent checks.",
+    title: "C-Bet Bluff on a Missed Flop",
+    situation: "You raised A♥ Q♠ preflop, got called. Flop is 8♣ 5♦ 3♠. You missed. Opponent checks. One opponent.",
     holeCards: "A♥ Q♠",
     communityCards: "8♣ 5♦ 3♠",
     potSize: "400",
-    opponentAction: "Your one opponent checks to you.",
+    opponentAction: "Single opponent checks to you on the flop.",
     options: [
-      { text: "Bet half pot — continue your story", points: 3, explanation: "Correct! This is a 'continuation bet.' Since you showed strength pre-flop, a bet here often wins." },
-      { text: "Check and give up on the pot", points: 1, explanation: "You still have Ace-high and two overcards. A continuation bet wins the pot often." },
-      { text: "Shove to guarantee they fold it", points: 0, explanation: "Way too much! A small c-bet does the job. Going all-in is way too risky." },
-      { text: "Check and hope to hit the turn", points: 1, explanation: "Hoping isn't a strategy. A continuation bet is more proactive." }
+      { text: "C-bet 1/3 pot — standard on dry boards", points: 3, explanation: "A small c-bet on this dry board works at a high frequency. You have overcards as backup and show aggression." },
+      { text: "Check to give up and see a free turn", points: 1, explanation: "Checking is fine sometimes but you abandon a profitable c-bet spot. AQ also has 6 outs to top pair." },
+      { text: "Bet big to really push them off it now", points: 1, explanation: "Big bets aren't needed on dry boards. A small bet accomplishes the same fold rate at lower cost." },
+      { text: "Check — I should only bet when I hit", points: 0, explanation: "Only betting when you hit makes you predictable. C-betting is a core fundamental of good poker." }
     ]
   },
   {
     id: 59,
-    title: "Playing a Flush Draw Aggressively",
-    situation: "You have A♠ 10♠. The flop is K♠ 7♠ 3♦. You have the nut flush draw. Opponent bets half pot.",
+    title: "Nut Flush Draw with Position",
+    situation: "You have A♠ 10♠. Flop is K♠ 7♠ 3♦. Nut flush draw + overcard. Aggressive opponent bets 2/3 pot.",
     holeCards: "A♠ 10♠",
     communityCards: "K♠ 7♠ 3♦",
-    potSize: "400",
-    opponentAction: "Opponent bets 200 into the pot.",
+    potSize: "500",
+    opponentAction: "Aggressive opponent bets 330 into the pot.",
     options: [
-      { text: "Raise as a semi-bluff with equity", points: 3, explanation: "Great play! You have the nut flush draw (9 outs) plus an overcard. Raising wins now or gives you a big draw." },
-      { text: "Call to see the turn card cheaply", points: 2, explanation: "Calling is fine, but raising puts maximum pressure with your strong draw." },
-      { text: "Fold — I only have Ace-high here", points: 0, explanation: "You have the nut flush draw! That's 9 outs to the best possible flush. Never fold this." },
-      { text: "Shove all-in on the flop right now", points: 1, explanation: "Shoving has merit but is too aggressive. A standard raise is more balanced." }
+      { text: "Raise to 850 as a semi-bluff here", points: 3, explanation: "Nut flush draw = 9 outs + A = 12 outs. ~45% equity with two cards to come. Raising for value and fold equity is optimal." },
+      { text: "Call to keep the pot controlled a bit", points: 2, explanation: "Calling is acceptable but passive. You have enough equity and position to raise aggressively." },
+      { text: "Fold — I only have draws right now", points: 0, explanation: "The nut flush draw with an overcard is 12 outs and ~45% equity. Never fold this much equity." },
+      { text: "Shove to force a tough decision now", points: 1, explanation: "Shoving has merit with this much equity but a standard raise is more balanced and extractive." }
     ]
   },
   {
     id: 60,
-    title: "When to Fold Two Pair",
-    situation: "You have 9♥ 7♥. Board is 9♣ 7♦ 6♠ 5♣ 4♦. You have two pair, but the board makes a straight for anyone with an 8 or a 3.",
+    title: "Two Pair on a Four-to-a-Straight Board",
+    situation: "You have 9♥ 7♥. Board is 9♣ 7♦ 8♠ 6♣ 4♦. You have two pair, but 5-9 straight and 10-6 straight are possible.",
     holeCards: "9♥ 7♥",
-    communityCards: "9♣ 7♦ 6♠ 5♣ 4♦",
-    potSize: "800",
-    opponentAction: "Opponent shoves all-in on the river for 600.",
+    communityCards: "9♣ 7♦ 8♠ 6♣ 4♦",
+    potSize: "900",
+    opponentAction: "Opponent shoves 700 on the river.",
     options: [
-      { text: "Fold — too many straights possible", points: 3, explanation: "Correct! Any 8 or 3 makes a straight. With four cards to a straight on board, someone likely has it." },
-      { text: "Call — two pair is a strong hand", points: 1, explanation: "Two pair is normally strong, but this board is extremely connected. Straights are very likely." },
-      { text: "Call — they might be bluffing here", points: 1, explanation: "Possible, but the board is so scary that most players only shove with a straight here." },
-      { text: "Raise all-in back to show power", points: 0, explanation: "They're already all-in. You can only call or fold, and folding is correct." }
+      { text: "Fold — 5 or T makes so many straights", points: 3, explanation: "Any 5 (5-6-7-8-9) or T (6-7-8-9-T) makes a straight. Even a bare 5 or T beats you. Too dangerous." },
+      { text: "Call — two pair is strong enough to call", points: 1, explanation: "Two pair is normally strong, but 4-6-7-8-9 on board means any 5 or T has a straight." },
+      { text: "Call — they could be bluffing a missed draw", points: 1, explanation: "What draw missed? The straight completed. Most bluffs wouldn't shove here." },
+      { text: "Raise — two pair beats most of their range", points: 0, explanation: "They're already all-in, and two pair loses to every straight. Folding is correct." }
     ]
   },
   {
     id: 61,
-    title: "Betting into a Dry Side Pot",
-    situation: "Tournament. Main pot has a short stack all-in. Side pot is heads-up. You have Q♣ Q♠ on a J♦ 8♣ 2♠ board.",
+    title: "Side Pot Strategy with Overpair",
+    situation: "One player all-in. Side pot is heads-up. You have Q♣ Q♠ on J♦ 8♣ 2♠ 5♦. Remaining opponent checks.",
     holeCards: "Q♣ Q♠",
-    communityCards: "J♦ 8♣ 2♠",
-    potSize: "1,200",
-    opponentAction: "Short stack is all-in. You and one other player remain for the side pot.",
+    communityCards: "J♦ 8♣ 2♠ 5♦",
+    potSize: "1,500",
+    opponentAction: "Short stack all-in in main pot. Live opponent checks to you on the turn.",
     options: [
-      { text: "Bet — build the side pot with QQ", points: 3, explanation: "Correct! You have an overpair and should bet for value. The side pot is extra profit." },
-      { text: "Check to keep the pot small here", points: 1, explanation: "Checking with an overpair misses value. You want to build the side pot." },
-      { text: "Shove to isolate against one player", points: 1, explanation: "Shoving is too aggressive. A normal bet builds the side pot more effectively." },
-      { text: "Check — focus only on the main pot", points: 0, explanation: "The side pot is free money! Bet your strong hand to win more." }
+      { text: "Bet 55% pot to build the side pot", points: 3, explanation: "Your overpair is ahead. Build the side pot for extra profit — free money that doesn't affect the main pot." },
+      { text: "Check to keep the pot small for safety", points: 1, explanation: "Checking forfeits side pot value. Your QQ is strong enough to bet for value heads-up." },
+      { text: "Shove to deny equity and end it now", points: 1, explanation: "Shoving is too much. A normal bet builds the side pot without over-committing." },
+      { text: "Check — focus on winning the main only", points: 0, explanation: "The side pot is free money! Never ignore extra profit when you have a strong hand." }
     ]
   },
   {
     id: 62,
-    title: "Bluffing with Blockers",
-    situation: "You have J♠ 10♠. Board is A♣ K♦ 5♥ 3♠ 2♦. You missed but hold a blocker to broadway straights. Opponent checks.",
+    title: "Blocker-Based River Bluff",
+    situation: "You have J♠ 10♠. Board is A♣ K♦ 5♥ 3♠ 2♦. You block AJ, KJ, QJ (broadway). Opponent checks river.",
     holeCards: "J♠ 10♠",
     communityCards: "A♣ K♦ 5♥ 3♠ 2♦",
-    potSize: "600",
+    potSize: "700",
     opponentAction: "Opponent checks to you on the river.",
     options: [
-      { text: "Bluff — I block AK, AJ, and KJ", points: 3, explanation: "Good! Your J and 10 block many strong hands (AJ, KJ, QJ). A bluff here works more often." },
-      { text: "Check — I have nothing at all", points: 2, explanation: "Checking is safe, but you're missing a good bluff opportunity with your blockers." },
-      { text: "Bet huge to make sure they fold", points: 1, explanation: "A bluff is right, but a huge bet risks too much. Half pot is more efficient." },
-      { text: "Check — never bluff the river", points: 0, explanation: "River bluffs are a key part of poker. This is a good spot with your blockers." }
+      { text: "Bet 55% pot — blockers make this profitable", points: 3, explanation: "You block many strong hands (AJ, KJ, QJ). Opponent's checking range is weak. A well-sized bluff is +EV." },
+      { text: "Check — J-high can't win at showdown", points: 2, explanation: "J-high loses at showdown, but that's exactly why you should bluff! Your blockers make it profitable." },
+      { text: "Bet big to maximize fold probability here", points: 1, explanation: "A huge bet risks too much. Efficient bluffs use moderate sizing to achieve folds at lower cost." },
+      { text: "Check — bluffing the river is too risky", points: 0, explanation: "Selective river bluffs with blockers are a key skill. This is a textbook spot to bluff." }
     ]
   },
   {
     id: 63,
-    title: "The Overbet Bluff",
-    situation: "You have 4♣ 3♣. Board is A♠ A♦ K♥ Q♠ J♣. You have nothing, but the board is terrifying for one-pair hands.",
+    title: "Scary Board but No Real Danger",
+    situation: "You have 4♣ 3♣. Board is A♠ A♦ K♥ K♠ Q♣. Looks terrifying but opponent checks to you.",
     holeCards: "4♣ 3♣",
-    communityCards: "A♠ A♦ K♥ Q♠ J♣",
+    communityCards: "A♠ A♦ K♥ K♠ Q♣",
     potSize: "500",
     opponentAction: "Opponent checks to you on the river.",
     options: [
-      { text: "Check — too risky to bluff here", points: 3, explanation: "Correct! While the board is scary, this is a multiway board that many hands connect with. Save your chips." },
-      { text: "Bet big to represent trip Aces", points: 1, explanation: "Bold, but opponents may call with Kx or QJ. Too many hands beat you on this board." },
-      { text: "Bet small to steal the pot cheap", points: 1, explanation: "A small bet won't fold out much. If you bluff, it needs to be credible." },
-      { text: "Shove — nobody has trips here", points: 0, explanation: "You can't know that. Many hands connect with this board. Don't risk it all." }
+      { text: "Check — opponent likely has a piece here", points: 3, explanation: "This board connects with so many hands (Ax, Kx, Qx, pocket pairs for boats). Bluffing is futile." },
+      { text: "Bet to represent trips or a full house", points: 1, explanation: "Your line doesn't credibly rep a big hand. Most opponents won't fold pairs on this board." },
+      { text: "Bet small as a cheap stab at the pot", points: 1, explanation: "Small bets get looked up on boards this connected. Save your chips for better spots." },
+      { text: "Shove — nobody actually has an Ace here", points: 0, explanation: "Two Aces and two Kings are on board. Many hands connect. Shoving 43 here is pure spew." }
     ]
   },
   {
     id: 64,
-    title: "Isolating a Limper",
-    situation: "A weak player limps in from early position. You have A♥ J♠ on the button.",
+    title: "Isolation Raise Against a Weak Limper",
+    situation: "A fish limps from early position. You have A♥ J♠ on the cutoff. Two tight players in the blinds.",
     holeCards: "A♥ J♠",
     communityCards: "",
     potSize: "250",
-    opponentAction: "Weak player limps. You're on the button.",
+    opponentAction: "Weak player limps. Tight blinds behind you.",
     options: [
-      { text: "Raise to isolate the weak player", points: 3, explanation: "Correct! Raising isolates the limper so you play heads-up in position against a weak player." },
-      { text: "Limp behind to see a cheap flop", points: 1, explanation: "Limping invites the blinds in. Raising isolates the weak player for a better situation." },
-      { text: "Fold — AJ isn't strong enough here", points: 0, explanation: "AJ on the button against a limper is a clear raise. Don't fold strong hands in position." },
-      { text: "Shove all-in to take it down now", points: 0, explanation: "Way too aggressive. A normal raise accomplishes the same isolation goal." }
+      { text: "Raise to 4x to isolate the limper", points: 3, explanation: "Isolating a weak player with AJ in position is textbook. Size up to 4x to discourage the tight blinds." },
+      { text: "Limp behind to see a multiway flop", points: 1, explanation: "Limping invites the blinds and reduces your edge. Raising isolates the weak player for maximum profit." },
+      { text: "Raise to 3x as a standard open size", points: 2, explanation: "3x is fine but 4x is better when isolating a limper. You want to price out the blinds." },
+      { text: "Fold — someone might wake up behind me", points: 0, explanation: "AJ in the cutoff vs a limper is a clear raise. Tight blinds will almost always fold." }
     ]
   },
   {
     id: 65,
-    title: "Recognizing a Wet Board",
-    situation: "You have A♣ A♦. The flop is J♥ 10♥ 9♣. This is a 'wet' board with many draws.",
+    title: "Overpair on a Wet Coordinated Flop",
+    situation: "You have A♣ A♦. Flop is J♥ 10♥ 9♣. Extremely wet with flush and straight draws everywhere.",
     holeCards: "A♣ A♦",
     communityCards: "J♥ 10♥ 9♣",
-    potSize: "400",
+    potSize: "500",
     opponentAction: "Opponent checks to you.",
     options: [
-      { text: "Bet big to charge all the draws", points: 3, explanation: "Correct! This wet board has flush draws, straight draws, and combo draws. Bet big to protect." },
-      { text: "Bet small to keep them in cheaply", points: 1, explanation: "Betting small gives draws the right price to call. On wet boards, bet bigger." },
-      { text: "Check to trap on the turn card", points: 0, explanation: "Checking gives free cards to flush and straight draws. On wet boards, always bet." },
-      { text: "Shove all-in over the top right now", points: 1, explanation: "All-in protects but is overkill. A 2/3 to full pot bet is more balanced." }
+      { text: "Bet 75-100% pot to charge all draws", points: 3, explanation: "This board has flush draws, straight draws, and combo draws. Bet big to make draws pay a premium." },
+      { text: "Bet 1/3 pot to keep them in cheaply", points: 0, explanation: "A small bet gives draws fantastic odds. On wet boards, you must size up to charge correctly." },
+      { text: "Check to trap on the turn card later", points: 0, explanation: "Checking gives free cards to hearts, Q-8, K-Q, and many other draws. Bet big or lose your edge." },
+      { text: "Shove to deny all equity immediately", points: 1, explanation: "Shoving protects but folds out everything. A big bet charges draws while keeping worse hands in." }
     ]
   },
   {
     id: 66,
-    title: "Stack-to-Pot Ratio",
-    situation: "You have J♠ J♦. Pot is 200, you have 800 behind. Opponent bets 200. SPR is 2 (low).",
+    title: "Low SPR Commit Decision",
+    situation: "You have J♠ J♦. Pot is 500 after a 3-bet. You have 900 behind. Board is 9♣ 5♦ 2♠. SPR is 1.8.",
     holeCards: "J♠ J♦",
     communityCards: "9♣ 5♦ 2♠",
-    potSize: "200",
-    opponentAction: "Opponent bets 200. You have 800 chips remaining.",
+    potSize: "500",
+    opponentAction: "Opponent bets 250. You have 900 chips remaining. SPR 1.8.",
     options: [
-      { text: "Shove — low SPR means commit now", points: 3, explanation: "Correct! With a stack-to-pot ratio of 2, you're pot-committed. Jacks are an overpair — shove." },
-      { text: "Call and reassess on the turn", points: 1, explanation: "With such a low SPR, calling delays the inevitable. You're committing either way." },
-      { text: "Fold — I don't want to risk it all", points: 0, explanation: "Folding an overpair at low SPR is way too tight. This is a clear commit spot." },
-      { text: "Min-raise to 400 chips instead", points: 1, explanation: "Min-raising leaves you with 400 behind in a 1,000 pot. Just shove and be done." }
+      { text: "Shove — SPR under 2 means commit here", points: 3, explanation: "With SPR 1.8 and an overpair, you're pot-committed. Shoving is correct — you can't fold later anyway." },
+      { text: "Call and re-evaluate on the turn card", points: 1, explanation: "With 650 left in a 1,000 pot, you're committed regardless. Just shove and don't give them a chance to outplay." },
+      { text: "Fold — I'm scared to play for stacks", points: 0, explanation: "Folding an overpair at SPR 1.8 is way too tight. You're ahead of their range." },
+      { text: "Min-raise to 500 and see what happens", points: 1, explanation: "Min-raising leaves 400 behind in a 1,500 pot. You're committed — just shove cleanly." }
     ]
   },
 
   // ===== HARD (35-50, 67-75) =====
   {
     id: 35,
-    title: "The Check-Raise",
-    situation: "You have K♠ K♣ and flopped three Kings! You're against an aggressive opponent who bets most flops.",
+    title: "Check-Raise Trapping the Aggressor",
+    situation: "You have K♠ K♣ on K♥ 9♦ 4♠. Opponent is a LAG (loose-aggressive) who c-bets 85% of flops. You're out of position.",
     holeCards: "K♠ K♣",
     communityCards: "K♥ 9♦ 4♠",
     potSize: "400",
-    opponentAction: "You're first to act against an aggressive player.",
+    opponentAction: "LAG opponent will almost certainly bet if you check.",
     options: [
-      { text: "Check, then raise their bet", points: 3, explanation: "Brilliant! This 'check-raise' traps the aggressive player into putting in more chips." },
-      { text: "Bet big right away for value", points: 1, explanation: "Betting is fine, but against an aggressive player, check-raising is more profitable." },
-      { text: "Bet small to extract some value", points: 2, explanation: "Gets some value, but check-raising builds a much bigger pot." },
-      { text: "Shove to protect the set right now", points: 0, explanation: "Three Kings is so strong you don't need to protect it. Be tricky for more chips!" }
+      { text: "Check — let the LAG bet, then raise", points: 3, explanation: "Against a player who bets 85% of flops, check-raising maximizes value. They'll bet, you raise, they're trapped." },
+      { text: "Lead out with a bet for value right now", points: 1, explanation: "Betting is fine but exploits the LAG less. They'd fold to a lead but bet into a check. Use their aggression." },
+      { text: "Bet small to induce a raise from them", points: 2, explanation: "Small bets can induce raises, but checking is simpler and achieves the same result vs a LAG." },
+      { text: "Shove to protect against backdoor draws", points: 0, explanation: "Set of Kings on a dry board needs no protection. Maximize value by letting the LAG hang themselves." }
     ]
   },
   {
     id: 36,
-    title: "Suited Connectors in Position",
-    situation: "You're on the Button with 7♥ 6♥. Two players limped. Blinds 50/100. You have 2,500 chips.",
+    title: "Suited Connectors in a 3-Bet Pot",
+    situation: "You called a 3-bet with 7♥ 6♥ on the button. Flop is 8♠ 5♣ 2♦. You have a gutshot. 3-bettor c-bets 1/3 pot.",
     holeCards: "7♥ 6♥",
-    communityCards: "",
-    potSize: "350",
-    opponentAction: "Two players limped in. You're on the Button.",
+    communityCards: "8♠ 5♣ 2♦",
+    potSize: "800",
+    opponentAction: "3-bettor c-bets 260 (1/3 pot) on the flop.",
     options: [
-      { text: "Call — great spot for this hand", points: 3, explanation: "Perfect! In position with multiple opponents and suited connectors = ideal spot for a cheap call." },
-      { text: "Raise to 300 to thin the field", points: 2, explanation: "Reasonable, but suited connectors prefer multi-way pots. Calling is slightly better." },
-      { text: "Fold — 7-6 isn't strong enough", points: 1, explanation: "Position makes this hand strong. Being last to act with straight/flush potential is great." },
-      { text: "Shove all-in over the limpers", points: 0, explanation: "No need to risk everything with a speculative hand." }
+      { text: "Call — gutshot + backdoors in position", points: 3, explanation: "You have a gutshot (4 outs), backdoor flush draw, and position. The small c-bet gives you a good price to float." },
+      { text: "Raise to semi-bluff with your draws", points: 1, explanation: "A raise in a 3-bet pot with just a gutshot is too aggressive. Your equity isn't strong enough." },
+      { text: "Fold — gutshot isn't enough to continue", points: 2, explanation: "Folding is reasonable but the small c-bet size + position + backdoor draws make calling slightly better." },
+      { text: "Shove as a bluff against their c-bet", points: 0, explanation: "Shoving a 3-bet pot with a gutshot is pure spew. You have almost no fold equity against their range." }
     ]
   },
   {
     id: 37,
-    title: "Recognizing a Bluff",
-    situation: "You have A♠ Q♠. Board is A♥ J♦ 8♣ 3♠ 2♦. Opponent was passive all hand, then suddenly shoves all-in for 3x the pot on the river.",
+    title: "Identifying a Polarized Overbet Bluff",
+    situation: "You have A♠ Q♠. Board is A♥ J♦ 8♣ 3♠ 2♦. Opponent was passive then suddenly pots 2.5x on the river.",
     holeCards: "A♠ Q♠",
     communityCards: "A♥ J♦ 8♣ 3♠ 2♦",
     potSize: "800",
-    opponentAction: "Opponent goes all-in for 2,400 (3x pot) on the river after being passive.",
+    opponentAction: "After checking flop and turn, opponent bets 2,000 (2.5x pot) on the river.",
     options: [
-      { text: "Call — massive overbets are usually bluffs", points: 3, explanation: "Great read! Passive then sudden huge bet is often desperation. Your top pair, Queen kicker is strong." },
-      { text: "Fold — that much means a monster hand", points: 1, explanation: "Scary, but real monsters bet normal amounts to get called. Massive overbets = usually bluffs." },
-      { text: "Fold — never risk it with one pair", points: 1, explanation: "Being cautious is okay, but you'd be folding a very strong hand against a likely bluff." },
-      { text: "Re-raise — punish the bluff attempt", points: 0, explanation: "They're already all-in. You can only call or fold." }
+      { text: "Call — polarized overbets are often bluffs", points: 3, explanation: "A passive line then a massive overbet is polarized. They either have the nuts or nothing. AQ is a great bluff-catcher." },
+      { text: "Fold — that sizing means they have it for sure", points: 1, explanation: "Huge bets look scary but value hands bet smaller to get called. Overbets after passivity lean towards bluffs." },
+      { text: "Fold — one pair can't call a 2.5x pot bet", points: 1, explanation: "AQ is top pair queen kicker — a premium bluff-catcher. You need to call some overbets or you're exploitable." },
+      { text: "Raise — punish the bluff with a re-raise", points: 0, explanation: "If they're bluffing, they fold to a raise. If they have it, you lose more. Just call." }
     ]
   },
   {
     id: 38,
-    title: "Board Texture Reading",
-    situation: "You have Q♥ Q♣. Flop is 10♠ 9♠ 8♠ — three spades in a row! You have no spades.",
+    title: "Monotone Board with an Overpair",
+    situation: "You have Q♥ Q♣. Flop is 10♠ 9♠ 8♠. Three spades and extremely connected. Opponent leads for 60% pot.",
     holeCards: "Q♥ Q♣",
     communityCards: "10♠ 9♠ 8♠",
-    potSize: "500",
-    opponentAction: "Opponent bets 250 (half pot).",
+    potSize: "600",
+    opponentAction: "Opponent leads 360 into you.",
     options: [
-      { text: "Fold or call very cautiously here", points: 3, explanation: "Great awareness! This board makes flushes, straights, and combo draws. Even QQ is in trouble." },
-      { text: "Raise — Queens are a strong overpair", points: 0, explanation: "Queens are strong, but this 10-9-8 all-spades board hits too many hands." },
-      { text: "Call confidently — overpair wins often", points: 1, explanation: "QQ is an overpair, but any spade, J, 7, or paired card is bad for you." },
-      { text: "Shove all-in over their bet here", points: 0, explanation: "Worst board possible to go all-in with just an overpair." }
+      { text: "Fold — this board destroys your hand", points: 3, explanation: "Flushes, straights, flush draws, straight draws — QQ without a spade has maybe 20% equity. Fold and save chips." },
+      { text: "Call — overpair should be good sometimes", points: 1, explanation: "QQ is an overpair but the board makes so many better hands. Any spade, J, 7, or paired card is terrible for you." },
+      { text: "Raise — Queens are strong, take control", points: 0, explanation: "Raising QQ on T♠9♠8♠ is one of the worst plays possible. You're behind most of their betting range." },
+      { text: "Call and fold to any scary turn card", points: 1, explanation: "Almost every turn is scary (spades, straights, pairs). You'd be calling to fold, which wastes chips." }
     ]
   },
   {
     id: 39,
-    title: "Playing a Short Stack",
-    situation: "Tournament. You have 8 big blinds with A♦ 5♦ in middle position. No one has acted.",
+    title: "Short Stack Push/Fold ICM",
+    situation: "Tournament. 8 BB with A♦ 5♦. You're 2 from the money. 3 shorter stacks at the table. Middle position.",
     holeCards: "A♦ 5♦",
     communityCards: "",
-    potSize: "150",
-    opponentAction: "No one has acted. You have 8 big blinds.",
+    potSize: "250",
+    opponentAction: "Folded to you in MP. 3 shorter stacks still alive at other tables.",
     options: [
-      { text: "Shove — short stack with an Ace", points: 3, explanation: "Correct! With 8 BBs, you can't play normal poker. A-5 suited is good enough to shove." },
-      { text: "Min raise to test the waters", points: 1, explanation: "Commits you anyway. Better to just shove and maximize fold equity." },
-      { text: "Limp in to see a cheap flop", points: 0, explanation: "Limping with a short stack is a huge mistake. All-in or fold." },
-      { text: "Fold and wait for something big", points: 1, explanation: "With 8 BBs, blinds will eat you. A-5 suited is strong enough. Don't wait." }
+      { text: "Fold — let shorter stacks bust first", points: 3, explanation: "With 3 shorter stacks near the bubble, ICM says tighten up. Let them bust and you cash. A5s isn't premium enough." },
+      { text: "Shove — A5 suited is above push range", points: 1, explanation: "Chip-EV says shove, but ICM near the bubble with shorter stacks alive says fold marginal hands." },
+      { text: "Min-raise to preserve stack flexibility", points: 0, explanation: "Min-raising 8 BB is terrible. You lose fold equity and commit anyway. It's shove or fold." },
+      { text: "Limp and see if you hit something good", points: 0, explanation: "Limping with 8 BB is never correct. Shove or fold based on ICM considerations." }
     ]
   },
   {
     id: 40,
-    title: "The Squeeze Play",
-    situation: "A loose player raises, another calls. You're in the big blind with A♥ J♣ and a big stack.",
+    title: "The Squeeze Against a Wide Range",
+    situation: "CO opens loose, Button flat calls. You have A♥ J♣ in the big blind. CO opens 40% of hands.",
     holeCards: "A♥ J♣",
     communityCards: "",
-    potSize: "650",
-    opponentAction: "Loose player raises to 200, another calls. You're in the big blind.",
+    potSize: "750",
+    opponentAction: "Loose CO raises, Button cold-calls. You're in the big blind.",
     options: [
-      { text: "Re-raise to 700 — squeeze them", points: 3, explanation: "Excellent! The 'squeeze play' exploits the loose raiser and the cold-caller. AJ is strong enough." },
-      { text: "Call and see a flop with it", points: 2, explanation: "Calling is okay, but you miss the chance to win right now." },
-      { text: "Fold — there's too much action", points: 0, explanation: "AJ is too strong to fold, especially against a loose raiser." },
-      { text: "Shove all-in to maximize pressure", points: 1, explanation: "Right idea but too extreme. A normal 3-bet accomplishes the same thing." }
+      { text: "3-bet squeeze to 900 — punish the flat", points: 3, explanation: "A loose open + cold-call = both ranges are capped. AJ squeezes profitably to win the dead money or play with initiative." },
+      { text: "Call to see a three-way flop cheaply", points: 2, explanation: "Calling is okay but playing AJo out of position three-way is tough. Squeezing wins it more often." },
+      { text: "Fold — facing a raise and a call already", points: 0, explanation: "AJ is too strong to fold vs a loose open. The cold-caller caps their range, making AJ even better." },
+      { text: "Shove all-in for maximum fold equity", points: 1, explanation: "Shoving is too extreme unless short-stacked. A standard 3-bet squeeze accomplishes the same thing." }
     ]
   },
   {
     id: 41,
-    title: "Blockers and Bluffing",
-    situation: "You have A♠ K♠. Board is Q♠ J♠ 5♥ 3♣ 7♦. You missed everything but you block the nut flush (you have A♠). Opponent checks river.",
+    title: "Nut Blocker Bluff on the River",
+    situation: "You have A♠ K♠. Board is Q♠ J♠ 5♥ 3♣ 7♦. You block nut flush and broadway. Opponent checks river.",
     holeCards: "A♠ K♠",
     communityCards: "Q♠ J♠ 5♥ 3♣ 7♦",
-    potSize: "800",
+    potSize: "900",
     opponentAction: "Opponent checks to you on the river.",
     options: [
-      { text: "Bluff — I block the nut flush draw", points: 3, explanation: "Advanced thinking! You hold A♠, so opponent CAN'T have the nut flush. They showed weakness. A bluff is well-reasoned." },
-      { text: "Check — I missed, just give up", points: 2, explanation: "Safe, but you're missing a great bluff spot. Your blockers make it less likely they have spades." },
-      { text: "Shove all-in as a huge bluff bet", points: 1, explanation: "Good concept but the size is too large. A half to 2/3 pot bet is more believable." },
-      { text: "Check — never bluff in this spot", points: 0, explanation: "Bluffing in the right spots is part of poker! This is actually an excellent spot." }
+      { text: "Bluff 55% pot — I block the nuts perfectly", points: 3, explanation: "You hold A♠K♠, blocking the nut flush and AQ/KQ. Opponent's checking range is weak. A medium bluff is textbook." },
+      { text: "Check — missed everything and should quit", points: 2, explanation: "Checking is safe but wastes a premium bluff spot. Your blockers remove many hands that could call." },
+      { text: "Bluff the full pot for maximum pressure", points: 1, explanation: "Full pot is too much. Efficient bluffs use moderate sizing to achieve the same fold rate at lower risk." },
+      { text: "Check — never bluff, just play your cards", points: 0, explanation: "Poker fundamentals include well-timed bluffs with blockers. This is an A+ bluff spot." }
     ]
   },
   {
     id: 42,
-    title: "Reverse Implied Odds",
-    situation: "You have K♥ Q♥ and the flop is A♥ J♠ 3♦. You have a gutshot straight draw (need a 10). Opponent bets big.",
+    title: "Gutshot with Reverse Implied Odds",
+    situation: "You have K♥ Q♥. Flop is A♥ J♠ 3♦. Gutshot (need a 10) but if you hit, opponent could have AK/AT for higher straight.",
     holeCards: "K♥ Q♥",
     communityCards: "A♥ J♠ 3♦",
-    potSize: "500",
-    opponentAction: "Opponent bets 400.",
+    potSize: "600",
+    opponentAction: "Opponent bets 450 on the flop.",
     options: [
-      { text: "Fold — only 4 outs, price is bad", points: 3, explanation: "Correct! A gutshot (4 outs, ~8%) with a big bet is a losing play. You need way better odds." },
-      { text: "Call — a straight would be huge", points: 0, explanation: "Straights are nice, but you only have 4 outs (~8% to hit). Paying 400 is terrible odds." },
-      { text: "Raise as a bluff with the draw", points: 1, explanation: "Aggressive, but with only a gutshot you don't have enough equity if called." },
-      { text: "Call — KQ is a good hand overall", points: 0, explanation: "KQ is a good starting hand, but right now it's just King-high. Fold." }
+      { text: "Fold — 4 outs with reverse implied odds", points: 3, explanation: "Only 4 outs (~8%). Even if you hit a T, AQ beats you with a higher straight. Reverse implied odds make this a fold." },
+      { text: "Call — a straight is a big hand if I hit", points: 1, explanation: "Your straight (K-high) loses to A-Q (A-high straight). Paying 450 for 4 dirty outs is a losing play." },
+      { text: "Raise as a semi-bluff with equity", points: 0, explanation: "Raising with 4 outs and reverse implied odds is spewing. You don't have enough equity to semi-bluff." },
+      { text: "Call — I also have a backdoor flush draw", points: 1, explanation: "Backdoor flush adds ~1-2% equity. Not enough to justify a 450 call into 600 with 4 dirty outs." }
     ]
   },
   {
     id: 43,
-    title: "Set Over Set",
-    situation: "You have 6♥ 6♣ and the flop is A♠ 6♦ 2♥. You flopped a set of 6s! You bet and opponent raises. What do you think?",
+    title: "Set vs Set: Getting Max Value",
+    situation: "You have 6♥ 6♣. Flop is A♠ 6♦ 2♥. Opponent 3-bet preflop. You bet, they raise 3x. Likely AA or AK.",
     holeCards: "6♥ 6♣",
     communityCards: "A♠ 6♦ 2♥",
-    potSize: "600",
-    opponentAction: "You bet 200, opponent raises to 600.",
+    potSize: "1200",
+    opponentAction: "You bet 300, opponent raises to 900. They 3-bet pre (likely AA/AK).",
     options: [
-      { text: "Re-raise — sets are very strong here", points: 3, explanation: "Correct! A set of 6s is a monster. The opponent likely has an Ace or maybe a lower set. Get value!" },
-      { text: "Flat call to keep them in the pot", points: 2, explanation: "Calling is okay, but you have such a strong hand that building the pot now is better." },
-      { text: "Fold — the raise means they have AA", points: 0, explanation: "Set over set is extremely rare. They more likely have top pair. Your set is ahead almost always." },
-      { text: "Just call and check the turn card", points: 1, explanation: "Too passive with a set! When you have this strong a hand, put more money in." }
+      { text: "Re-raise small — let AA put in more", points: 3, explanation: "If they have AA, they'll never fold. A small re-raise lets them shove over. If AK, they might call or fold." },
+      { text: "Shove — set over set, get it all in now", points: 2, explanation: "Shoving works if they have AA. But a small raise might induce a shove from them, achieving the same result." },
+      { text: "Fold — their raise must mean AA for quads", points: 0, explanation: "Quad Aces requires both remaining Aces (you see one). Set of 6s is a monster — never fold." },
+      { text: "Flat call and check-raise the turn card", points: 1, explanation: "Calling is too passive. If they have AA, they're betting anyway. But raising now builds a bigger pot faster." }
     ]
   },
   {
     id: 44,
-    title: "Bubble Pressure",
-    situation: "Tournament bubble (1 away from the money). You have 15 big blinds. Average stack is 20 BB. You're dealt J♠ J♣.",
+    title: "Bubble ICM with a Strong Hand",
+    situation: "Bubble. You have 18 BB with J♠ J♣. Average stack is 22 BB. Chip leader (50 BB) opens from CO.",
     holeCards: "J♠ J♣",
     communityCards: "",
-    potSize: "150",
-    opponentAction: "Folded to you. 1 player left to bust before money.",
+    potSize: "450",
+    opponentAction: "Chip leader opens to 500 from the cutoff. You're on the button.",
     options: [
-      { text: "Raise — Jacks are too strong to fold", points: 3, explanation: "Correct! Jacks are way too strong to fold, even on the bubble. You can't let pressure fold premium hands." },
-      { text: "Fold — too risky near the bubble", points: 0, explanation: "Folding Jacks on the bubble is WAY too tight. This is a top-5 starting hand." },
-      { text: "Shove all-in for max fold equity", points: 2, explanation: "Shoving JJ isn't bad with 15 BB, but a normal raise is more deceptive." },
-      { text: "Limp in and see a cheap flop", points: 0, explanation: "Limping with Jacks wastes the strength of your hand. Raise!" }
+      { text: "3-bet to 1,300 — JJ is too strong to flat", points: 3, explanation: "JJ is in the top 3% of hands. Even on the bubble, 3-betting is correct. You can't fold premium hands due to ICM." },
+      { text: "Call to see a flop and keep pot controlled", points: 2, explanation: "Calling is okay but surrenders initiative. JJ plays better as a 3-bet to define your hand." },
+      { text: "Fold — avoid the chip leader on bubble", points: 0, explanation: "Folding Jacks on the bubble is criminal. ICM tightens you but JJ is way above the threshold." },
+      { text: "Shove to maximize fold equity immediately", points: 1, explanation: "Shoving 18 BB works but a standard 3-bet is more flexible. You can fold to a 4-bet if needed." }
     ]
   },
   {
     id: 45,
-    title: "Exploiting Tight Players",
-    situation: "A very tight player (only plays premium hands) raises from early position. You have 8♥ 8♠. You know they only raise with AA, KK, QQ, JJ, AK.",
+    title: "Set-Mining Against a Nit",
+    situation: "Ultra-tight player opens from UTG. You have 8♥ 8♠ with 60 BB effective stacks. They open ~8% of hands (TT+, AQs+).",
     holeCards: "8♥ 8♠",
     communityCards: "",
     potSize: "350",
-    opponentAction: "Very tight player raises to 200 from early position. Your stack is 3,000.",
+    opponentAction: "UTG nit raises to 250. They only play TT+, AQs+, AKo.",
     options: [
-      { text: "Call to set-mine — hit a set or fold", points: 3, explanation: "Perfect! Against a known tight range, calling with a pair to hit a set is very profitable." },
-      { text: "Re-raise with pocket eights here", points: 0, explanation: "Re-raising 88 against someone who only has AA/KK/QQ/JJ/AK is very bad." },
-      { text: "Fold — their range crushes me here", points: 2, explanation: "Folding is reasonable, but with deep stacks, set-mining is profitable." },
-      { text: "Shove to push them off their hand", points: 0, explanation: "A tight player who raised premium hands is never folding to a shove." }
+      { text: "Call to set-mine — deep stacks profit", points: 3, explanation: "At 60 BB deep, you need to hit a set ~1/8 times. When you do, you'll stack TT+ often. Hugely profitable." },
+      { text: "3-bet to take control of the hand first", points: 0, explanation: "3-betting 88 into TT+/AK is terrible. You're behind their entire range and they won't fold." },
+      { text: "Fold — we're crushed by their range", points: 2, explanation: "True that you're behind, but set-mining odds at 60 BB deep make this profitable. Implied odds matter." },
+      { text: "Shove to push them off JJ/TT maybe", points: 0, explanation: "Nits don't fold overpairs. Shoving 88 into a nit's range is donating your stack." }
     ]
   },
   {
     id: 46,
-    title: "The Donk Bet",
-    situation: "You raised pre-flop and opponent called. Flop is 7♥ 4♣ 2♠. But instead of checking, opponent bets into you! (This is unusual.)",
+    title: "Exploiting Donk-Bet Patterns",
+    situation: "You raised preflop with A♠ A♣. Flop is 7♥ 4♣ 2♠. Recreational player donk-bets 1/4 pot (a weak lead).",
     holeCards: "A♠ A♣",
     communityCards: "7♥ 4♣ 2♠",
-    potSize: "500",
-    opponentAction: "Opponent bets 150 into you (instead of checking to the raiser).",
+    potSize: "600",
+    opponentAction: "Rec player donk-bets 150 (1/4 pot) into the preflop raiser.",
     options: [
-      { text: "Raise — Aces vs a weak donk bet", points: 3, explanation: "Great! A 'donk bet' usually means medium-strength. Raise with your Aces to build the pot!" },
-      { text: "Flat call to keep them in the hand", points: 2, explanation: "Calling is okay, but raising is better. The donk bet is usually weakness." },
-      { text: "Fold — they bet so they're strong", points: 0, explanation: "A small bet into the raiser is usually NOT strength. You have Aces — never fold!" },
-      { text: "Shove all-in to punish them hard", points: 1, explanation: "Right idea to raise, but all-in is too much. A normal raise is perfect." }
+      { text: "Raise to 500 — punish the weak donk bet", points: 3, explanation: "A 1/4 pot donk-bet from a rec is almost always a weak pair or draw. Raise large with Aces to build the pot." },
+      { text: "Call to let them keep donking the turn", points: 2, explanation: "Calling is fine but misses value. Rec players will call raises with weak hands they're excited about." },
+      { text: "Fold — they must have something to bet", points: 0, explanation: "A tiny donk-bet is the opposite of strength. Rec players do this with bottom pair and gutshots. Raise!" },
+      { text: "Shove to take it down with no risk now", points: 0, explanation: "Shoving 25x their bet folds everything. A normal raise gets calls from their weak range." }
     ]
   },
   {
     id: 47,
-    title: "Three-Barrel Bluff Read",
-    situation: "Opponent has bet every single street: pre-flop, flop, turn, and now river. Board is 2♣ 5♥ 9♠ K♦ 4♥. You have 10♠ 10♥.",
+    title: "Three-Barrel Range Analysis",
+    situation: "Opponent bets flop, turn, and river on 2♣ 5♥ 9♠ K♦ 4♥. You have 10♠ 10♥. What hands logically triple-barrel?",
     holeCards: "10♠ 10♥",
     communityCards: "2♣ 5♥ 9♠ K♦ 4♥",
-    potSize: "1200",
-    opponentAction: "Opponent bets 600 on the river (they've bet every street).",
+    potSize: "1400",
+    opponentAction: "Opponent bets 700 (50% pot) on the river after betting all three streets.",
     options: [
-      { text: "Call — tens beat most bluffs here", points: 3, explanation: "Good call! On this disconnected board, there aren't many strong hands. Your tens beat bluffs." },
-      { text: "Fold — four streets of betting is real", points: 1, explanation: "Some players do barrel with nothing. On this board, tens are often good enough." },
-      { text: "Raise to punish their potential bluff", points: 1, explanation: "If they're bluffing, they fold to a raise. Just call and collect." },
-      { text: "Fold — the King on the turn is scary", points: 1, explanation: "The King is concerning, but they bet pre-flop, flop, AND turn before the King came." }
+      { text: "Call — few value hands triple-barrel here", points: 3, explanation: "On this disconnected board, only Kx and overpairs (AA/KK/QQ) value-bet three streets. Your TT beats bluffs and some thin value." },
+      { text: "Fold — three streets of betting is real", points: 1, explanation: "Three barrels can be strong, but on this dry board the number of value hands is small. TT is a good bluff-catcher." },
+      { text: "Raise to punish potential bluffs hard now", points: 0, explanation: "If they're bluffing, they fold to a raise. If value, you lose more. Just call." },
+      { text: "Fold — the King on the turn scares me", points: 1, explanation: "They bet before the King too. On a disconnected board, bluffs are common. TT holds up often." }
     ]
   },
   {
     id: 48,
-    title: "ICM Awareness",
-    situation: "Final table of a tournament (6 players left). Big pay jumps for each elimination. You're 2nd in chips. The chip leader raises. You have A♣ 10♥.",
+    title: "Final Table ICM Ladder",
+    situation: "Final table, 6 left. You're 2nd in chips. Chip leader opens, shorty 3-bet shoves. You have A♣ 10♥.",
     holeCards: "A♣ 10♥",
     communityCards: "",
-    potSize: "500",
-    opponentAction: "Chip leader raises to 300. You'd risk a big portion of your stack to play.",
+    potSize: "3000",
+    opponentAction: "Chip leader opens 600, short stack shoves 1800. You'd risk ~30% of your stack.",
     options: [
-      { text: "Fold — avoid the chip leader here", points: 3, explanation: "Smart! In tournaments, survival = money. The chip leader can bust you. A-10 isn't worth the risk." },
-      { text: "Call to see a flop with the hand", points: 2, explanation: "Not terrible, but tangling with the chip leader near pay jumps is risky." },
-      { text: "Re-raise to fight for the pot", points: 0, explanation: "Re-raising the chip leader with A-10 risks your tournament." },
-      { text: "Shove all-in to take a stand", points: 0, explanation: "Going all-in against the one person who can eliminate you? Very bad strategy." }
+      { text: "Fold — ICM says let the shorty bust", points: 3, explanation: "With pay jumps at stake, let the short stack gamble with the chip leader. Your 2nd place position is more valuable than AT." },
+      { text: "Call — AT is strong enough vs a shove range", points: 1, explanation: "AT has okay equity vs a shove range, but ICM dramatically reduces your calling range on the final table." },
+      { text: "Reshove to isolate the short stack only", points: 0, explanation: "Reshoving risks your tournament. The chip leader might call behind. ICM says fold and let others battle." },
+      { text: "Call — I need chips to win the tournament", points: 1, explanation: "Tournament theory says accumulating chips matters less than survival at pay jumps. ICM > chip accumulation." }
     ]
   },
   {
     id: 49,
-    title: "Floating the Flop",
-    situation: "Opponent raises pre-flop and bets the flop. You have A♥ K♦ and missed the 8♣ 5♠ 2♦ flop, but you're in position.",
+    title: "Floating a C-Bet in Position",
+    situation: "Opponent c-bets 1/3 pot on 8♣ 5♠ 2♦. You have A♥ K♦ in position. You've seen them check-fold turns 65% of the time.",
     holeCards: "A♥ K♦",
     communityCards: "8♣ 5♠ 2♦",
-    potSize: "500",
-    opponentAction: "Opponent bets 200 (c-bet). You're in position with AK.",
+    potSize: "600",
+    opponentAction: "Opponent c-bets 200. They check-fold turns 65% of the time.",
     options: [
-      { text: "Call — take it on the turn later", points: 3, explanation: "Advanced play! This is 'floating.' Call now, then bet the turn when they check. You also have 6 outs." },
-      { text: "Fold — I completely missed the flop", points: 1, explanation: "AK is too strong to give up after one bet. You have overcards and position." },
-      { text: "Raise to take the pot right now", points: 2, explanation: "A raise can work, but calling is more deceptive. Bet the turn if they check." },
-      { text: "Call and give up if I miss again", points: 1, explanation: "Don't give up automatically! If they check the turn, bet. That's the whole point." }
+      { text: "Call — float and take the turn when they check", points: 3, explanation: "With position, overcards, and a 65% fold-on-turn rate, floating is hugely profitable. Call now, bet the turn." },
+      { text: "Raise to take the pot immediately right now", points: 2, explanation: "Raising works but reveals your hand strength. Floating disguises your hand and exploits their tendency." },
+      { text: "Fold — AK missed, time to give up the hand", points: 0, explanation: "AK with position against a player who folds turns 65%? This is printing money. Never fold." },
+      { text: "Call and give up if the turn misses again", points: 1, explanation: "The whole point of floating is betting the turn regardless! If they check, you bet. That's the strategy." }
     ]
   },
   {
     id: 50,
-    title: "Range Advantage",
-    situation: "You raised pre-flop from the button and big blind called. Flop is A♠ K♦ J♣. This board favors YOUR range (the raiser) heavily.",
+    title: "Range Advantage C-Bet Bluff",
+    situation: "You raised button, BB called. Flop is A♠ K♦ J♣. You have 7♥ 6♥ (total air) but your range smashes this board.",
     holeCards: "7♥ 6♥",
     communityCards: "A♠ K♦ J♣",
     potSize: "400",
-    opponentAction: "Big blind checks to you. You completely missed but have range advantage.",
+    opponentAction: "Big blind checks to you. Board is A-K-J.",
     options: [
-      { text: "Bet small — my range hits this board", points: 3, explanation: "Elite thinking! As the raiser, you represent AK, AJ, KJ, AA, KK, JJ. A small c-bet works because they can't have many strong hands." },
-      { text: "Check — I have nothing at all", points: 1, explanation: "You have nothing, but your position and perceived range make a bet very powerful here." },
-      { text: "Bet big to make sure they fold it", points: 1, explanation: "A big bet is unnecessary. The board itself does the work. A small bet risks less." },
-      { text: "Shove — ultimate range advantage bet", points: 0, explanation: "Massively overkill. A small, composed c-bet does the same job." }
+      { text: "Bet 1/3 pot — range advantage c-bet", points: 3, explanation: "Your button range has AK, AJ, KJ, AA, KK, JJ, QT. BB's range rarely connects. A small c-bet prints money." },
+      { text: "Check — I literally have nothing at all", points: 1, explanation: "You have nothing, but your perceived range is loaded. Range advantage c-betting is fundamental poker strategy." },
+      { text: "Bet 2/3 pot to really make them fold it", points: 1, explanation: "Overkill. On a range advantage board, small bets are just as effective and risk less with air." },
+      { text: "Shove — represent the nut hand completely", points: 0, explanation: "Shoving 76 on AKJ is reckless. A calm, small c-bet does the same job at 1/10th the risk." }
     ]
   },
   {
     id: 67,
-    title: "The Backdoor Draw",
-    situation: "You have A♥ 9♥. Flop is K♣ 7♥ 2♥. You have a backdoor flush draw plus an overcard Ace. Opponent bets half pot.",
+    title: "Backdoor Equity Floating",
+    situation: "You have A♥ 9♥. Flop is K♣ 7♥ 2♥. Backdoor nut flush draw + overcard. Aggressive opponent bets 60% pot.",
     holeCards: "A♥ 9♥",
     communityCards: "K♣ 7♥ 2♥",
-    potSize: "400",
-    opponentAction: "Opponent bets 200 into the pot.",
+    potSize: "500",
+    opponentAction: "Aggressive opponent bets 300 on the flop.",
     options: [
-      { text: "Call — backdoor flush plus overcard", points: 3, explanation: "Correct! You have a flush draw (9 outs), overcard (3 outs), and potential runner-runner. Plenty of equity to call." },
-      { text: "Fold — I don't have a made hand yet", points: 1, explanation: "You have more equity than you think. The flush draw alone justifies a call at this price." },
-      { text: "Raise to semi-bluff right away", points: 1, explanation: "A semi-bluff raise can work, but calling is cleaner with a drawing hand." },
-      { text: "Shove all-in with the draw here", points: 0, explanation: "Way too aggressive on the flop. You have a draw, not a made hand." }
+      { text: "Call — flush draw + overcard = 12 outs", points: 3, explanation: "9 flush outs + 3 Aces = 12 outs. Getting 2.7:1 with ~26% equity on the turn. Easy call with implied odds." },
+      { text: "Raise to semi-bluff with strong equity", points: 1, explanation: "Semi-bluff raises work but against an aggressive player they may re-raise. Calling is safer with position." },
+      { text: "Fold — draws are too speculative to call", points: 0, explanation: "12 outs to the nut flush or top pair is far too much equity to fold. This is a mandatory continue." },
+      { text: "Call the flop but fold to a turn bet", points: 1, explanation: "Calling to fold defeats the purpose. If a heart comes you bet; if checked to you can bluff. Stay in the hand." }
     ]
   },
   {
     id: 68,
-    title: "Multi-Street Planning",
-    situation: "You have 10♦ 10♣. Board is 10♥ 5♠ 2♣ on the flop. You have top set. Opponent has 3,000 chips, pot is 400.",
+    title: "Planning Multi-Street Extraction",
+    situation: "You have 10♦ 10♣ on 10♥ 5♠ 2♣. Top set. Villain has 3,500 behind, pot is 400. How do you get all their chips?",
     holeCards: "10♦ 10♣",
     communityCards: "10♥ 5♠ 2♣",
     potSize: "400",
-    opponentAction: "Opponent checks. They have 3,000 behind.",
+    opponentAction: "Opponent checks. They have 3,500 behind.",
     options: [
-      { text: "Bet small — plan to build over streets", points: 3, explanation: "Correct! With a set, plan your bet sizes across flop, turn, river to get all their chips by the end." },
-      { text: "Check to trap them on later streets", points: 1, explanation: "Checking risks missing a street of value. Start building the pot now." },
-      { text: "Bet big to protect against draws", points: 1, explanation: "The board is very dry — there's nothing to protect against. Build the pot gradually." },
-      { text: "Shove all-in to win it right away", points: 0, explanation: "Shoving 3,000 into 400 folds everything. Let them catch up gradually." }
+      { text: "Bet 35% pot — build a pot geometry plan", points: 3, explanation: "Bet ~140 flop, ~350 turn, ~900 river. Geometric sizing gets stacks in naturally over three streets." },
+      { text: "Check to slow-play and trap on later", points: 1, explanation: "The board is dry so slowplaying is less dangerous, but you miss a street of value building." },
+      { text: "Bet 75% pot to start building fast now", points: 1, explanation: "Betting big on the flop makes turn/river sizing awkward. Start small and let the pot grow geometrically." },
+      { text: "Shove to win the maximum right away now", points: 0, explanation: "Shoving 3,500 into 400 folds everything except better hands (which don't exist). Terrible value." }
     ]
   },
   {
     id: 69,
-    title: "The Polarized Bet",
-    situation: "River. You have K♠ K♣ on a board of Q♥ J♦ 4♣ 8♠ 3♦. You bet, opponent raises 3x your bet.",
+    title: "River Raise as a Bluff-Catcher",
+    situation: "River. You have K♠ K♣ on Q♥ J♦ 4♣ 8♠ 3♦. You bet 500, opponent raises to 1,500. Is this value or bluff?",
     holeCards: "K♠ K♣",
     communityCards: "Q♥ J♦ 4♣ 8♠ 3♦",
-    potSize: "1,500",
-    opponentAction: "You bet 500, opponent raises to 1,500.",
+    potSize: "2,000",
+    opponentAction: "You bet 500, opponent raises to 1,500 on the river.",
     options: [
-      { text: "Call — KK is too strong to fold", points: 2, explanation: "Calling is reasonable, but a river raise is very strong. KK is a tough spot here." },
-      { text: "Fold — river raises are almost always value", points: 3, explanation: "Correct! River raises are rarely bluffs. They likely have two pair, a set, or a straight." },
-      { text: "Re-raise to fight for the big pot", points: 0, explanation: "Re-raising with one pair against a river raise is burning money." },
-      { text: "Shove all-in — Kings are premium", points: 0, explanation: "One pair, even Kings, can't stand a river raise. Don't go broke here." }
+      { text: "Fold — river raises are rarely bluffs", points: 3, explanation: "River raises are value-heavy (~70%+ of the time). QJ, Q8, sets, and two-pairs all beat you. Fold and save chips." },
+      { text: "Call — KK is too strong to fold here now", points: 1, explanation: "KK is a strong hand but river raises represent very narrow, strong ranges. One pair is rarely good enough." },
+      { text: "3-bet to push them off a bluff attempt", points: 0, explanation: "3-betting the river with one pair is terrible. If they have it, you lose your stack." },
+      { text: "Call — they might be raising with a Queen", points: 1, explanation: "A Queen alone wouldn't raise the river for value — they'd just call. The raise means two pair+." }
     ]
   },
   {
     id: 70,
-    title: "The Merge Bet",
-    situation: "You have A♣ J♣ on a river board of A♠ 9♥ 5♦ 2♣ 7♠. You've checked the turn. Opponent checks again.",
+    title: "River Probe After Missed C-Bet",
+    situation: "You checked back the flop with A♣ J♣. Turn checked through. River is 2♣. Board: A♠ 9♥ 5♦ 7♣ 2♣. Opponent checks.",
     holeCards: "A♣ J♣",
-    communityCards: "A♠ 9♥ 5♦ 2♣ 7♠",
-    potSize: "600",
-    opponentAction: "Both players checked the turn. Opponent checks the river.",
+    communityCards: "A♠ 9♥ 5♦ 7♣ 2♣",
+    potSize: "500",
+    opponentAction: "Both players checked flop and turn. Opponent checks the river.",
     options: [
-      { text: "Bet medium for thin value here", points: 3, explanation: "Correct! After two checks, they likely have a medium-strength hand. AJ is good for a value bet." },
-      { text: "Check — just take the showdown now", points: 2, explanation: "Safe, but you miss value. After two checks, they rarely have a strong hand." },
-      { text: "Bet big to win a large pot now", points: 0, explanation: "A big bet only gets called by better. Medium sizing gets calls from worse Aces and pairs." },
-      { text: "Shove all-in on the river for max", points: 0, explanation: "Overkill. You'd only be called by hands that beat you." }
+      { text: "Bet 40% pot — thin value from weaker Ax", points: 3, explanation: "After two checks, opponent likely has a weak Ace, middle pair, or missed draw. AJ is the best Ace out there — value bet." },
+      { text: "Check — take the safe showdown with AJ", points: 2, explanation: "Showdown has value but you miss profit from A8, A4, A3, 9x, and pocket pairs that would call a small bet." },
+      { text: "Bet big to try to win a large pot now", points: 0, explanation: "Betting big after checking twice is suspicious and only gets called by hands that beat you." },
+      { text: "Shove — AJ is strong after the line I took", points: 0, explanation: "Shoving on the river after passive play looks like a bluff. But even if called, you rarely win." }
     ]
   },
   {
     id: 71,
-    title: "Exploiting Aggression",
-    situation: "A hyper-aggressive player 3-bets you. You have Q♠ Q♥. You know they 3-bet with a wide range.",
+    title: "4-Betting Light Against a Maniac",
+    situation: "A hyper-aggressive player 3-bets for the 5th time in 20 hands. You have Q♠ Q♥. Their 3-bet range is 25%+.",
     holeCards: "Q♠ Q♥",
     communityCards: "",
-    potSize: "700",
-    opponentAction: "Maniac 3-bets to 350. They do this with many hands.",
+    potSize: "800",
+    opponentAction: "Maniac 3-bets to 400 for the 5th time in 20 hands.",
     options: [
-      { text: "4-bet — punish their wide range", points: 3, explanation: "Correct! Against a wide 3-betting range, QQ is strong enough to 4-bet for value." },
-      { text: "Call and play post-flop carefully", points: 2, explanation: "Calling is fine, but 4-betting exploits their aggression and builds the pot." },
-      { text: "Fold — a 3-bet means they're strong", points: 0, explanation: "Against a maniac, a 3-bet doesn't mean strength. QQ is way too good to fold." },
-      { text: "Shove all-in preflop over their bet", points: 1, explanation: "Shoving works but a standard 4-bet is better. It keeps their bluffs in the pot." }
+      { text: "4-bet to 950 — QQ crushes their range", points: 3, explanation: "Against a 25%+ 3-bet range, QQ is a monster. 4-betting for value extracts from their wide bluffs." },
+      { text: "Call to trap them postflop in position", points: 2, explanation: "Calling is viable but lets them realize equity with air. 4-betting denies that and builds the pot." },
+      { text: "Fold — 3-bets are always super strong", points: 0, explanation: "This maniac 3-bets 25% of hands! Their range includes K9s, 65s, A2o. QQ is way ahead." },
+      { text: "Shove to end it before the flop comes", points: 1, explanation: "Shoving works but a standard 4-bet is better. It keeps their bluffs in and maximizes value." }
     ]
   },
   {
     id: 72,
-    title: "Thin Value on the River",
-    situation: "You have 9♠ 9♦. Board is K♥ 8♣ 5♠ 2♦ 3♣. You bet flop and turn. Opponent called both. River checks to you.",
+    title: "Thin River Value vs Draw-Heavy Board",
+    situation: "You have 9♠ 9♦. Board is K♥ 8♣ 5♠ 2♦ 3♣. You bet flop and turn, villain called twice. River bricks. Villain checks.",
     holeCards: "9♠ 9♦",
     communityCards: "K♥ 8♣ 5♠ 2♦ 3♣",
-    potSize: "900",
-    opponentAction: "Opponent check-called flop and turn. Checks river.",
+    potSize: "1100",
+    opponentAction: "Opponent check-called flop and turn bets. Checks river.",
     options: [
-      { text: "Check — pocket 9s may not be good", points: 3, explanation: "Correct! A King is on the board and they called two streets. They likely have Kx. Check and showdown." },
-      { text: "Bet small for thin value from worse", points: 1, explanation: "Risky. Most hands that call have you beat (any King). Better to check." },
-      { text: "Bet big to push them off a King", points: 0, explanation: "They called two streets — they're not folding a King now. Don't bluff." },
-      { text: "Shove all-in as a river bluff here", points: 0, explanation: "Terrible spot to bluff. They showed they like their hand by calling twice." }
+      { text: "Check — 9s are unlikely to be good here", points: 3, explanation: "They called twice with a K on board. Most likely they have Kx. 9s can't get value — only called by better." },
+      { text: "Bet small for thin value from 8x or 5x", points: 1, explanation: "Possible but risky. Most players who call twice have at least a King. Betting mostly loses to calls." },
+      { text: "Bet big as a bluff to push off small Kx", points: 0, explanation: "Players who call two streets with Kx won't fold to a river bet. You're just adding to their pot." },
+      { text: "Shove as a massive bluff on the river", points: 0, explanation: "They showed strength by calling twice. Shoving 9s as a bluff here is terrible." }
     ]
   },
   {
     id: 73,
-    title: "Double Barrel Bluff",
-    situation: "You raised with K♠ Q♦, missed the 7♣ 4♠ 2♥ flop, and c-bet. The turn is 3♦. Opponent called your flop bet.",
+    title: "Double Barrel Turn Decision",
+    situation: "You raised with K♠ Q♦, c-bet 7♣ 4♠ 2♥ flop. Turn is 3♦. Opponent called flop. Checks the turn to you.",
     holeCards: "K♠ Q♦",
     communityCards: "7♣ 4♠ 2♥ 3♦",
-    potSize: "600",
+    potSize: "700",
     opponentAction: "Opponent check-called your flop c-bet. Checks the turn.",
     options: [
-      { text: "Bet again — the 3 changes nothing", points: 3, explanation: "Good! A second barrel on a brick turn keeps the pressure on. They likely have a weak pair or draw." },
-      { text: "Check — one bluff is enough already", points: 2, explanation: "Giving up is safe, but a second barrel often gets folds from weak pairs." },
-      { text: "Shove all-in on the turn as a bluff", points: 0, explanation: "Too much. A normal-sized bet applies the same pressure at a fraction of the risk." },
-      { text: "Check and fold if they bet the river", points: 1, explanation: "Too passive. You have two overcards and can keep pressure on their weak range." }
+      { text: "Barrel again — the 3 completes nothing", points: 3, explanation: "Their calling range on the flop is weak pairs and gutshots. A second barrel on a blank turn folds out most of this." },
+      { text: "Check — one bluff barrel is enough for now", points: 2, explanation: "Checking is safe but gives up on a profitable bluff spot. Weak pairs fold to persistent pressure." },
+      { text: "Shove to blast them off any holding here", points: 0, explanation: "Shoving is overkill. A standard turn barrel applies the same pressure at lower cost." },
+      { text: "Check and fold if they bet the river card", points: 1, explanation: "Giving up is premature. You have overcards and the ability to pressure their weak range." }
     ]
   },
   {
     id: 74,
-    title: "Trap with the Nuts",
-    situation: "You have A♥ K♥. Board is Q♥ J♥ 10♥ — you flopped the nut straight AND the nut flush! Aggressive opponent bets.",
+    title: "Slowplaying the Absolute Nuts",
+    situation: "You have A♥ K♥. Flop is Q♥ J♥ 10♥. You have the nut straight AND nut flush. Opponent is very aggressive.",
     holeCards: "A♥ K♥",
     communityCards: "Q♥ J♥ 10♥",
-    potSize: "500",
-    opponentAction: "Aggressive opponent bets 300 into the pot.",
+    potSize: "600",
+    opponentAction: "Aggressive opponent bets 400 into the pot.",
     options: [
-      { text: "Call — let them keep barreling", points: 3, explanation: "Perfect! With the absolute nuts, let the aggressive player keep betting. You'll win their entire stack." },
-      { text: "Raise to build the pot right now", points: 2, explanation: "Raising gets money in, but calling keeps their bluffs and semi-bluffs in the hand." },
-      { text: "Raise huge to get it all in on the flop", points: 1, explanation: "You'll win a big pot, but a slow play wins a bigger one against an aggressor." },
-      { text: "Shove all-in — I have the best hand", points: 1, explanation: "You do have the best hand, but shoving might fold everything. Trap the aggressor." }
+      { text: "Just call — let the aggressor keep firing", points: 3, explanation: "With the stone-cold nuts (royal flush draw too!), let them bluff/value-bet. They'll put in maximum chips over three streets." },
+      { text: "Raise to start building a massive pot", points: 2, explanation: "Raising is fine but an aggressive player will barrel anyway. Calling maximizes what they put in voluntarily." },
+      { text: "Min-raise to keep them in the hand here", points: 2, explanation: "Min-raising is clever but against an aggressor, just calling achieves the same — they'll keep betting." },
+      { text: "Shove — I have the best possible hand", points: 0, explanation: "Shoving the nuts folds everything. Let the aggressive player bet into you for maximum value." }
     ]
   },
   {
     id: 75,
-    title: "Adjusting to Table Dynamics",
-    situation: "Everyone at the table is playing very tight. You have 6♣ 5♣ on the button. It folds to you.",
+    title: "Dynamic Table Adaptation",
+    situation: "Tight table. Average VPIP is 15%. You have 6♣ 5♣ on the button. Folded to you. Blinds are tight nits.",
     holeCards: "6♣ 5♣",
     communityCards: "",
     potSize: "150",
-    opponentAction: "Everyone folds to you on the button. Tight table.",
+    opponentAction: "Everyone folds to you. Both blinds fold 85%+ to steals.",
     options: [
-      { text: "Raise — steal blinds from tight table", points: 3, explanation: "Correct! Against tight players, steal with wider ranges. They'll fold most hands in the blinds." },
-      { text: "Fold — 6-5 suited is too weak to play", points: 1, explanation: "Normally true, but against tight blinds, any two cards can steal profitably." },
-      { text: "Limp in to see a cheap flop here", points: 0, explanation: "Limping invites a raise from the blinds. Raising puts max pressure on tight players." },
-      { text: "Shove all-in to guarantee the steal", points: 0, explanation: "A small raise does the same job. No need to risk your stack to steal blinds." }
+      { text: "Raise 2.5x — print money vs tight blinds", points: 3, explanation: "85% fold rate means you profit regardless of cards. Risk 250 to win 150 with 85% success = massive +EV." },
+      { text: "Fold — 65s is not a real raising hand", points: 0, explanation: "Against 85% fold rates, literally any two cards are profitable to steal. 65s is just a bonus." },
+      { text: "Raise bigger to guarantee the folds come", points: 1, explanation: "2.5x already gets 85% folds. Raising bigger risks more for the same result." },
+      { text: "Limp to see a cheap flop with 65 suited", points: 0, explanation: "Limping invites action and loses the fold equity that makes this so profitable. Raise to steal." }
     ]
   }
 ];
