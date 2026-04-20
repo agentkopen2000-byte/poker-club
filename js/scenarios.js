@@ -116,7 +116,7 @@ window.POKER_SCENARIOS = [
     potSize: "1200",
     opponentAction: "Tight player 4-bets. They only do this with AA, KK, QQ, AKs.",
     options: [
-      { text: "Call — AKs has decent equity against that range", points: 3, explanation: "AKs has ~40% equity vs AA/KK/QQ/AKs. Calling is best since you dominate AKs and have draws vs pairs." },
+      { text: "Call — AKs has equity vs that range", points: 3, explanation: "AKs has ~40% equity vs AA/KK/QQ/AKs. Calling is best since you dominate AKs and have draws vs pairs." },
       { text: "Shove — AK suited is always a shove", points: 1, explanation: "Shoving isn't terrible but calling is better. Shoving only gets called by AA/KK which crush you." },
       { text: "Fold — we're behind their 4-bet range", points: 2, explanation: "Folding is reasonable since we're behind most of their range, but AKs is too strong to fold here." },
       { text: "5-bet small to see where we stand", points: 0, explanation: "A 5-bet smaller than all-in makes no sense — you'd be pot-committed anyway." }
@@ -493,10 +493,10 @@ window.POKER_SCENARIOS = [
     potSize: "1200",
     opponentAction: "One bets 400, another raises to 1000.",
     options: [
-      { text: "Fold — I have a straight but so does everyone with a 9", points: 3, explanation: "Wait — you DO have a straight! A makes A-K-Q-J-10. But the raise means they might have A9 for a higher straight or sets. Actually, your A-high straight is the nut straight here. Tricky — but the raise in a multiway pot is concerning enough to fold." },
-      { text: "Raise — wait, I have the broadway straight", points: 2, explanation: "You actually have A-K-Q-J-10, the nut straight! Raising for value is right. But the multiway action is scary." },
-      { text: "Call — Ace-high isn't a real hand at all", points: 1, explanation: "You actually have a straight! A-K-Q-J-10. Don't miss your own hand." },
-      { text: "Fold — Ace-high means nothing on this board", points: 1, explanation: "Look again — A plus K-Q-J-10 on board = A-high straight (the nuts). Don't fold the nuts!" }
+      { text: "Fold — others likely have a straight too", points: 3, explanation: "Wait — you DO have a straight! A makes A-K-Q-J-10. But the raise means they might have A9 for a higher straight or sets. Actually, your A-high straight is the nut straight here. Tricky — but the raise in a multiway pot is concerning enough to fold." },
+      { text: "Raise — I actually have the nut straight", points: 2, explanation: "You actually have A-K-Q-J-10, the nut straight! Raising for value is right. But the multiway action is scary." },
+      { text: "Call — Ace-high isn't a hand at all here", points: 1, explanation: "You actually have a straight! A-K-Q-J-10. Don't miss your own hand." },
+      { text: "Fold — Ace-high is nothing on this board", points: 1, explanation: "Look again — A plus K-Q-J-10 on board = A-high straight (the nuts). Don't fold the nuts!" }
     ]
   },
   {
