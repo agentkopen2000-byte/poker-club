@@ -182,7 +182,23 @@
     totalScore += points;
     answers.push(points);
     currentIndex++;
-    saveProgress();
+
+    // If that was the last question, save results immediately (prevents back-swipe exploit)
+    if (currentIndex >= QUESTIONS_PER_TEST) {
+      var player = PokerStorage.getCurrentPlayer();
+      var bracket = determineBracket(totalScore);
+      PokerStorage.savePlayer({
+        name: player.name,
+        email: player.email || '',
+        score: totalScore,
+        bracket: bracket,
+        timestamp: player.startedAt,
+        answers: answers
+      });
+      PokerStorage.clearQuizProgress();
+    } else {
+      saveProgress();
+    }
 
     // Show correct/wrong styling
     var allBtns = document.querySelectorAll('.option-btn');
@@ -249,16 +265,18 @@
     var bracket = determineBracket(totalScore);
     var player = PokerStorage.getCurrentPlayer();
 
-    // Save player results
-    PokerStorage.savePlayer({
-      name: player.name,
-      email: player.email || '',
-      score: totalScore,
-      bracket: bracket,
-      timestamp: player.startedAt,
-      answers: answers
-    });
-    PokerStorage.clearCurrentPlayer();
+    // Player may already be saved from handleSubmit (last question saves immediately)
+    if (player) {
+      PokerStorage.savePlayer({
+        name: player.name,
+        email: player.email || '',
+        score: totalScore,
+        bracket: bracket,
+        timestamp: player.startedAt,
+        answers: answers
+      });
+      PokerStorage.clearCurrentPlayer();
+    }
     PokerStorage.clearQuizProgress();
 
     var container = document.getElementById('testContent');
