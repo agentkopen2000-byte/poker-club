@@ -197,18 +197,27 @@
     return div.innerHTML;
   }
 
-  // SHA-256 hash of the admin password. The plaintext password is not stored
-  // in source. Compare hashed input against this value.
-  var ADMIN_PASSWORD_HASH = '201c8e1aaac0b90f7b098ab50fad20836ad94dbab8d8d1d901651d38fcb44a70';
+  // PBKDF2-HMAC-SHA256 with 100k iterations. Salt and hash are split to
+  // make casual source inspection less useful.
+  var _s = ['46dd3f13','7593ea01','5299ad2b','771a57e2'];
+  var _h = ['1efe4272','b0b91eec','0cfaf0c2','f97c577b','469b6d44','cd2eee71','7fccbeeb','23c5ec5b'];
+  var ADMIN_SALT = _s.join('');
+  var ADMIN_HASH = _h.join('');
+  var PBKDF2_ITERATIONS = 100000;
 
-  function sha256Hex(str) {
-    var bytes = new TextEncoder().encode(str);
-    return crypto.subtle.digest('SHA-256', bytes).then(function (buf) {
-      var arr = Array.from(new Uint8Array(buf));
-      return arr.map(function (b) {
-        return b.toString(16).padStart(2, '0');
-      }).join('');
-    });
+  function deriveKey(password) {
+    var enc = new TextEncoder();
+    return crypto.subtle.importKey('raw', enc.encode(password), 'PBKDF2', false, ['deriveBits'])
+      .then(function (key) {
+        return crypto.subtle.deriveBits(
+          { name: 'PBKDF2', salt: enc.encode(ADMIN_SALT), iterations: PBKDF2_ITERATIONS, hash: 'SHA-256' },
+          key, 256
+        );
+      })
+      .then(function (buf) {
+        var arr = Array.from(new Uint8Array(buf));
+        return arr.map(function (b) { return b.toString(16).padStart(2, '0'); }).join('');
+      });
   }
 
   function showAdminPanel() {
@@ -242,8 +251,8 @@
       var password = document.getElementById('adminName').value.trim();
       var errorEl = document.getElementById('adminError');
 
-      sha256Hex(password).then(function (hash) {
-        if (hash === ADMIN_PASSWORD_HASH) {
+      deriveKey(password).then(function (hash) {
+        if (hash === ADMIN_HASH) {
           errorEl.classList.remove('visible');
           sessionStorage.setItem('pokerClub_admin', 'true');
           showAdminPanel();
