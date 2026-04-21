@@ -243,6 +243,16 @@
     nextBtn.addEventListener('click', function () {
       clearInterval(countdown);
     });
+
+    // If user navigates away (swipe back, tab switch), skip to next question immediately
+    function onHidden() {
+      if (document.visibilityState === 'hidden') {
+        clearInterval(countdown);
+        document.removeEventListener('visibilitychange', onHidden);
+        handleNext();
+      }
+    }
+    document.addEventListener('visibilitychange', onHidden);
   }
 
   function handleNext() {
