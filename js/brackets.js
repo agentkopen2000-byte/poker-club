@@ -200,7 +200,7 @@
   // PBKDF2-HMAC-SHA256 with 100k iterations. Salt and hash are split to
   // make casual source inspection less useful.
   var _s = ['46dd3f13','7593ea01','5299ad2b','771a57e2'];
-  var _h = ['1efe4272','b0b91eec','0cfaf0c2','f97c577b','469b6d44','cd2eee71','7fccbeeb','23c5ec5b'];
+  var _h = ['1e31b557','0da36c10','2a4d8d21','07b70df0','4fe516ab','b0b6ada8','39795cdb','ad42bb91'];
   var ADMIN_SALT = _s.join('');
   var ADMIN_HASH = _h.join('');
   var PBKDF2_ITERATIONS = 100000;
