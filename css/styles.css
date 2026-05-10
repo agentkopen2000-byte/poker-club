@@ -791,6 +791,12 @@ a:hover {
   background: rgba(192, 57, 43, 0.5);
 }
 
+.admin-email {
+  font-size: 0.8em;
+  color: var(--text-secondary);
+  opacity: 0.85;
+}
+
 /* Admin section */
 .admin-section {
   margin-top: 3rem;

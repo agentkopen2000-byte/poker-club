@@ -61,7 +61,11 @@
 
   function renderPlayerRow(player, currentBracket, seed) {
     var html = '<li>';
-    html += '<span>' + (seed ? '#' + seed + ' ' : '') + escapeHtml(player.name) + '</span>';
+    html += '<span>' + (seed ? '#' + seed + ' ' : '') + escapeHtml(player.name);
+    if (isAdmin && player.email) {
+      html += ' <span class="admin-email">(' + escapeHtml(player.email) + ')</span>';
+    }
+    html += '</span>';
     html += '<span style="display:flex;align-items:center;gap:0.5rem;">';
     html += '<span class="player-score">' + player.score + ' pts</span>';
     if (isAdmin) {
