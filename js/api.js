@@ -2,7 +2,7 @@
 
 var PokerAPI = {
   // Replace with your deployed Apps Script web app URL
-  BASE_URL: 'https://script.google.com/a/macros/students.harker.org/s/AKfycby8_nyWiD9yytqcYBVf_w3RqU-FhVocjJUbmf_jeld9vPfxW8XOGpK-FVKbUidiyBeY/exec',
+  BASE_URL: 'https://script.google.com/macros/s/AKfycbywrUSFdrLUh2EbCDlMR9hS6L6Xip9Dh42HiZMzCwk0B9zG2avIISkpz8rQ5KSZcCbOFg/exec',
 
   TIMEOUT_MS: 8000,
 
@@ -58,6 +58,15 @@ var PokerAPI = {
       method: 'POST',
       headers: { 'Content-Type': 'text/plain' },
       body: JSON.stringify({ action: 'resetTournament' })
+    });
+  },
+
+  verifyAdmin: function (password) {
+    if (!this.isConfigured()) return Promise.reject(new Error('API not configured'));
+    return this._fetch(this.BASE_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify({ action: 'verifyAdmin', password: password })
     });
   }
 };

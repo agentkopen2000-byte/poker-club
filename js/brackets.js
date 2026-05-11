@@ -201,28 +201,6 @@
     return div.innerHTML;
   }
 
-  // Credential verification data (obfuscated)
-  var _k = [100,53,52,51,99,48,54,102,98,49,101,98,101,101,98,56,52,49,97,56,97,54,51,101,97,56,100,97,48,56,48,51,98,98,53,102,52,51,101,53,97,52,49,102,52,100,54,102,55,53,98,50,102,55,102,102,56,50,50,50,54,52,52,97,56,53,99,55,50,49,55,57,55,55,51,55,54,54,97,51,101,99,53,99,97,100,56,49,50,51,98,53,49,48,101,100];
-  var _d = function(a,s,e){return a.slice(s,e).map(function(c){return String.fromCharCode(c);}).join('');};
-  var ADMIN_SALT = _d(_k,0,32);
-  var ADMIN_HASH = _d(_k,32,96);
-  var PBKDF2_ITERATIONS = 100000;
-
-  function deriveKey(password) {
-    var enc = new TextEncoder();
-    return crypto.subtle.importKey('raw', enc.encode(password), 'PBKDF2', false, ['deriveBits'])
-      .then(function (key) {
-        return crypto.subtle.deriveBits(
-          { name: 'PBKDF2', salt: enc.encode(ADMIN_SALT), iterations: PBKDF2_ITERATIONS, hash: 'SHA-256' },
-          key, 256
-        );
-      })
-      .then(function (buf) {
-        var arr = Array.from(new Uint8Array(buf));
-        return arr.map(function (b) { return b.toString(16).padStart(2, '0'); }).join('');
-      });
-  }
-
   function showAdminPanel() {
     isAdmin = true;
     document.getElementById('adminLogin').style.display = 'none';
@@ -249,19 +227,21 @@
       showAdminPanel();
     }
 
-    // Admin login
+    // Admin login (server-side verification)
     document.getElementById('adminLoginBtn').addEventListener('click', function () {
       var password = document.getElementById('adminName').value.trim();
       var errorEl = document.getElementById('adminError');
 
-      deriveKey(password).then(function (hash) {
-        if (hash === ADMIN_HASH) {
+      PokerAPI.verifyAdmin(password).then(function (res) {
+        if (res.valid) {
           errorEl.classList.remove('visible');
           sessionStorage.setItem('pokerClub_admin', 'true');
           showAdminPanel();
         } else {
           errorEl.classList.add('visible');
         }
+      }).catch(function () {
+        errorEl.classList.add('visible');
       });
     });
 
