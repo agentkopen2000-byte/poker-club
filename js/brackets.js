@@ -201,12 +201,11 @@
     return div.innerHTML;
   }
 
-  // PBKDF2-HMAC-SHA256 with 100k iterations. Salt and hash are split to
-  // make casual source inspection less useful.
-  var _s = ['46dd3f13','7593ea01','5299ad2b','771a57e2'];
-  var _h = ['1e31b557','0da36c10','2a4d8d21','07b70df0','4fe516ab','b0b6ada8','39795cdb','ad42bb91'];
-  var ADMIN_SALT = _s.join('');
-  var ADMIN_HASH = _h.join('');
+  // Credential verification data (obfuscated)
+  var _k = [100,53,52,51,99,48,54,102,98,49,101,98,101,101,98,56,52,49,97,56,97,54,51,101,97,56,100,97,48,56,48,51,98,98,53,102,52,51,101,53,97,52,49,102,52,100,54,102,55,53,98,50,102,55,102,102,56,50,50,50,54,52,52,97,56,53,99,55,50,49,55,57,55,55,51,55,54,54,97,51,101,99,53,99,97,100,56,49,50,51,98,53,49,48,101,100];
+  var _d = function(a,s,e){return a.slice(s,e).map(function(c){return String.fromCharCode(c);}).join('');};
+  var ADMIN_SALT = _d(_k,0,32);
+  var ADMIN_HASH = _d(_k,32,96);
   var PBKDF2_ITERATIONS = 100000;
 
   function deriveKey(password) {
