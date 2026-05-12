@@ -228,6 +228,7 @@
       PokerAPI.verifyAdmin(password).then(function (res) {
         if (res.valid) {
           errorEl.classList.remove('visible');
+          PokerAPI.adminPassword = password;
           showAdminPanel();
         } else {
           errorEl.classList.add('visible');
@@ -239,6 +240,7 @@
 
     // Admin logout
     document.getElementById('adminLogout').addEventListener('click', function () {
+      PokerAPI.adminPassword = null;
       hideAdminPanel();
     });
 

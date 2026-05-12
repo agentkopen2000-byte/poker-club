@@ -2,7 +2,7 @@
 
 var PokerAPI = {
   // Replace with your deployed Apps Script web app URL
-  BASE_URL: 'https://script.google.com/macros/s/AKfycbywrUSFdrLUh2EbCDlMR9hS6L6Xip9Dh42HiZMzCwk0B9zG2avIISkpz8rQ5KSZcCbOFg/exec',
+  BASE_URL: 'https://script.google.com/macros/s/AKfycbwk54xGTGuwVs9ftsx9KTtJ181YbSg3VS4P3i_kJG4P1DTr2vth5q4YAgsOVTAMV4wWjQ/exec',
 
   TIMEOUT_MS: 8000,
 
@@ -34,12 +34,14 @@ var PokerAPI = {
     });
   },
 
+  adminPassword: null,
+
   movePlayer: function (timestamp, newBracket) {
     if (!this.isConfigured()) return Promise.reject(new Error('API not configured'));
     return this._fetch(this.BASE_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify({ action: 'movePlayer', timestamp: timestamp, newBracket: newBracket })
+      body: JSON.stringify({ action: 'movePlayer', timestamp: timestamp, newBracket: newBracket, password: this.adminPassword })
     });
   },
 
@@ -48,7 +50,7 @@ var PokerAPI = {
     return this._fetch(this.BASE_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify({ action: 'removePlayer', timestamp: timestamp })
+      body: JSON.stringify({ action: 'removePlayer', timestamp: timestamp, password: this.adminPassword })
     });
   },
 
@@ -57,7 +59,7 @@ var PokerAPI = {
     return this._fetch(this.BASE_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify({ action: 'resetTournament' })
+      body: JSON.stringify({ action: 'resetTournament', password: this.adminPassword })
     });
   },
 
