@@ -2,7 +2,7 @@
 
 var PokerAPI = {
   // Replace with your deployed Apps Script web app URL
-  BASE_URL: 'https://script.google.com/macros/s/AKfycbwk54xGTGuwVs9ftsx9KTtJ181YbSg3VS4P3i_kJG4P1DTr2vth5q4YAgsOVTAMV4wWjQ/exec',
+  BASE_URL: 'https://script.google.com/macros/s/AKfycbyHwymzktxuP6Clhaa2NptivdKfBPWGrCRtAjZAkxM0abz7EAChWeDvmptiZ3GLzfXoJA/exec',
 
   TIMEOUT_MS: 8000,
 
