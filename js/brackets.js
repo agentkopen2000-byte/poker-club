@@ -214,18 +214,11 @@
     document.getElementById('adminPanel').style.display = 'none';
     document.getElementById('adminName').value = '';
     document.getElementById('adminError').classList.remove('visible');
-    sessionStorage.removeItem('pokerClub_admin');
     renderBrackets();
   }
 
   document.addEventListener('DOMContentLoaded', function () {
     init();
-
-    // Restore admin session
-    var savedAdmin = sessionStorage.getItem('pokerClub_admin');
-    if (savedAdmin) {
-      showAdminPanel();
-    }
 
     // Admin login (server-side verification)
     document.getElementById('adminLoginBtn').addEventListener('click', function () {
@@ -235,7 +228,6 @@
       PokerAPI.verifyAdmin(password).then(function (res) {
         if (res.valid) {
           errorEl.classList.remove('visible');
-          sessionStorage.setItem('pokerClub_admin', 'true');
           showAdminPanel();
         } else {
           errorEl.classList.add('visible');
